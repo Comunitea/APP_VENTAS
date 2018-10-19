@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/logout"
+        android:id="@+id/portada_action_exit"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/cerrar_sm" />
+    <item
+        android:title="@string/configuration"
+        android:id="@+id/portada_action_configuration"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/header_footer_menu" />
+</menu>

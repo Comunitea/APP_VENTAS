@@ -1,0 +1,77 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    
+    <style name="DialogStyle" parent="android:TextAppearance.Holo.DialogWindowTitle">
+    	<item name="android:textSize">@dimen/h1</item>
+    	<item name="android:textColor">@color/midban_text_color</item>
+	</style>
+    
+    <style name="PortadaTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@color/midban_actionbar_background</item>
+        <item name="android:buttonStyle">@style/MidbanButton</item>
+        <item name="android:imageButtonStyle">@style/MidbanImgButton</item>
+        <item name="android:dialogTheme">@style/MidbanDialog</item>
+        <item name="android:actionBarStyle">@style/MidbanActionBar</item>
+        <item name="android:actionBarItemBackground">@color/midban_actionbar_background</item>
+        <item name="android:textSize">@dimen/h2</item>
+        <item name="android:fontFamily">sans-serif-light</item>      
+    </style>
+    
+    <!-- Application theme. -->
+    <style name="AppMidbanTheme" parent="AppBaseTheme">
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <item name="android:windowBackground">@color/midban_background</item>
+        <item name="android:buttonStyle">@style/MidbanButton</item>
+        <item name="android:imageButtonStyle">@style/MidbanImgButton</item>
+        <item name="android:dialogTheme">@style/MidbanDialog</item>
+        <item name="android:actionBarStyle">@style/MidbanActionBar</item>
+        <item name="android:actionBarItemBackground">@color/midban_actionbar_background</item>
+        <item name="android:textSize">@dimen/h2</item>
+    </style>
+
+    <style name="MidbanButton" parent="@android:style/Widget.Holo.Button">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:background">@drawable/button_background_sl</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/h1</item>
+    </style>
+    
+    <style name="MidbanButtonSecondary" parent="@android:style/Widget.Holo.Button">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:background">@drawable/button_background_sec_sl</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/h1</item>
+    </style>
+
+    <style name="MidbanImgButton" parent="@android:style/Widget.Holo.ImageButton">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:background">@drawable/button_background_sl</item>
+    </style>
+
+    <style name="MidbanDialog" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:buttonStyle">@style/MidbanButton</item>
+    </style>
+
+    <style name="MidbanActionBar" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@color/midban_actionbar_background</item>
+        <item name="android:titleTextStyle">@style/MidbanTitle</item>
+    </style>
+
+    <style name="MidbanTitle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/midban_title_text_color</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/h1</item>
+    </style>
+
+</resources>

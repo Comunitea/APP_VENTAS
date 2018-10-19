@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/separator_margin"
+    android:paddingRight="@dimen/separator_margin">
+
+
+    <ImageView
+        android:id="@+id/product_catalog_order_item_image"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_height="60dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="6"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h6"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h6"
+            android:textColor="@color/midban_secondary_text_color" />
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_packaging"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/h6"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="6"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h6" />
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h6" />
+
+        <TextView
+            android:id="@+id/product_catalog_order_item_eur_kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h6" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/product_catalog_order_item_icon_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:src="@drawable/icon_info">
+    </ImageView>
+
+</LinearLayout>

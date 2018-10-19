@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_typology_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_typology_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_typology"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_typology_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:lines="4"
+                android:tag="tipología"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_typology_icons_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_invoice_address_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_invoice_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_invoice_address"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_invoice_address_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:lines="4"
+                android:tag="dirección facturación"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/fragment_partner_detail_tab_card_invoice_address_icons_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mapas_geolocalizacion" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_delivery_address_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_delivery_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_delivery_address"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_delivery_address_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:lines="4"
+                android:tag="dirección entrega"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/fragment_partner_detail_tab_card_delivery_address_icons_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mapas_geolocalizacion" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_contact_name_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_contact_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_contact_name"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_contact_name_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="contacto"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_contact_name_icons_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/h3" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_phone_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_phone_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_phone"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_phone_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="teléfono"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_phone_icons_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_fax_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_fax_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_fax"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_fax_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="fax"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_fax_icons_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_email_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_email_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_email"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_email_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="email"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/fragment_partner_detail_tab_card_email_icons_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/general_email" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_payment_mode_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_payment_mode_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_payment_mode"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_payment_mode_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="email"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/midban_grey" />
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tab_card_account_payment_term_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_account_payment_term_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="@string/fragment_partner_detail_tab_card_account_payment_term"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card_account_payment_term_data_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:tag="email"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true" android:drawable="@drawable/tab_selected_layer"></item>
+    <item android:drawable="@drawable/tab_unselected_layer"></item>
+
+</selector>

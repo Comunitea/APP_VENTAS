@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/midban_background"
+    android:padding="@dimen/activity_horizontal_margin" >
+
+    <TextView
+        android:id="@+id/dialog_product_catalog_filters_tv_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <Spinner
+        android:id="@+id/dialog_product_catalog_filters_spinner_category"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/dialog_product_catalog_filters_editext_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/dialog_product_catalog_filters_temperature"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <Button
+        android:id="@+id/dialog_product_catalog_filters_button_apply"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/filter"
+        android:layout_margin="@dimen/separator_margin"/>
+
+    <TextView android:id="@+id/dialog_product_catalog_filters_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/clear_filters"
+        android:drawableLeft="@drawable/general_filtrar_borrar"
+        android:drawablePadding="5dp"/>
+
+</LinearLayout>

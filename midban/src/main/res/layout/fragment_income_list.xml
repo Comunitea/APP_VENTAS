@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.fragments.IncomeListFragment" >
+
+    <LinearLayout
+        android:id="@+id/fragment_income_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/fragment_income_num_incomes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:textSize="@dimen/h4" />
+
+        <!--TextView
+            android:id="@+id/fragment_income_cash_amount_incomes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:textSize="@dimen/h4" />
+
+        <TextView
+            android:id="@+id/fragment_income_check_amount_incomes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:textSize="@dimen/h4" /-->
+        
+        <TextView
+            android:id="@+id/fragment_income_total_amount_incomes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:textSize="@dimen/h4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_income_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_income_summary"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/separator_margin" >
+
+        <TextView
+            android:id="@+id/fragment_income_list_header_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/fragment_income_list_header_code"
+            android:textSize="@dimen/h5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_income_list_header_partner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:layout_weight="1.3"
+            android:gravity="center_horizontal"
+            android:text="@string/fragment_income_list_header_partner"
+            android:textSize="@dimen/h5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_income_list_header_payment_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:layout_weight="1.2"
+            android:gravity="center_horizontal"
+            android:text="@string/fragment_income_list_header_payment_method"
+            android:textSize="@dimen/h5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_income_list_header_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:layout_weight="1.2"
+            android:gravity="center_horizontal"
+            android:text="@string/fragment_income_list_header_amount"
+            android:textSize="@dimen/h5"
+            android:textStyle="bold" />
+
+		<TextView
+            android:id="@+id/fragment_income_list_header_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/separator_margin"
+            android:layout_weight="0.9"
+            android:gravity="center_horizontal"
+            android:text="@string/fragment_income_list_header_state"
+            android:textSize="@dimen/h5"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_income_list_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_income_list_header" />
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/separator_margin" >
+
+    <CheckBox
+        android:id="@+id/invoice_list_item_check"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:focusable="false"
+        android:textColor="@color/midban_secondary_text_color"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/invoice_list_item_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.3"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:textColor="@color/midban_secondary_text_color"
+        android:textSize="@dimen/h4"
+        android:gravity="center_horizontal" />
+    
+    <TextView
+        android:id="@+id/invoice_list_item_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:layout_marginLeft="@dimen/separator_margin" 
+        android:textSize="@dimen/h4"
+        android:gravity="right"/>
+    
+    <TextView
+        android:id="@+id/invoice_list_item_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:layout_marginLeft="@dimen/separator_margin" 
+        android:textSize="@dimen/h4"
+        android:gravity="right" />
+    
+    <TextView
+        android:id="@+id/invoice_list_item_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:textSize="@dimen/h4"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:gravity="center_horizontal" />
+
+</LinearLayout>

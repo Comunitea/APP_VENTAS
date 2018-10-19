@@ -1,0 +1,147 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cafedered.midban.view.fragments.LastSalesFragment" >
+
+    <LinearLayout
+        android:id="@+id/fragment_last_sales_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <TextView
+            android:id="@+id/fragment_last_sales_partner_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/midban_text_color"
+            android:textSize="@dimen/h1"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_last_sales_partner_code_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/midban_text_color"
+            android:textSize="@dimen/h3" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_last_sales_subheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_last_sales_header"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <ImageView
+            android:id="@+id/fragment_last_sales_product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    	<TextView
+            android:id="@+id/fragment_last_sales_product_name_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_last_sales_product_image"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_last_sales_product_number_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_below="@+id/fragment_last_sales_product_name_value_tv"
+            android:layout_toRightOf="@+id/fragment_last_sales_product_image"
+            android:textColor="@color/midban_secondary_text_color"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_last_sales_lines_header"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/fragment_last_sales_subheader"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="1.2"
+            android:text="@string/fragment_last_sales_list_header_date"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.9"
+            android:text="@string/fragment_last_sales_list_header_quantity"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_last_sales_list_header_lines"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_last_sales_list_header_price"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_last_sales_list_header_discount"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_last_sales_list_header_total"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_last_sales_lines"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_last_sales_lines_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fragment_last_sales_back_to_cart_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_last_sales_back_to_cart" />
+
+    </LinearLayout>
+
+</RelativeLayout>

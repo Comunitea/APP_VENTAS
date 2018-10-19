@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_partner_edition_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/activity_partner_edition_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/MidbanButtonSecondary"
+            android:drawableStart="@drawable/general_cancelar_blanco"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:gravity="center"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/activity_partner_edition_save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/general_confirmar_blanco"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:gravity="center"
+            android:text="@string/save" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_partner_edition_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.cafedered.midban.view.activities.PartnerEditionActivity"
+        tools:ignore="MergeRootFrame" />
+
+</LinearLayout>

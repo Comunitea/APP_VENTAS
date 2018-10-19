@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    style="@style/DialogStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialog_partner_address_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/h1" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/partner_address_edition_popup_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true"
+        android:textSize="@dimen/text_xlarge" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/partner_address_edition_popup_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true"
+        android:textSize="@dimen/text_xlarge" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/partner_address_edition_popup_zip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:singleLine="true"
+        android:textSize="@dimen/text_xlarge" />
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    style="@style/DialogStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialog_single_field_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/h1"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+    <AutoCompleteTextView
+        android:dropDownHeight="280dp"
+        android:id="@+id/single_field_edition_popup_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="text"
+        android:textSize="@dimen/text_xlarge"
+        android:gravity="center_horizontal"
+        android:background="@color/midban_partner_header_bg"
+        android:drawableLeft="@drawable/general_buscar"
+        android:drawablePadding="@dimen/separator_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/separator_margin"
+        android:paddingTop="@dimen/separator_margin" />
+
+</LinearLayout>

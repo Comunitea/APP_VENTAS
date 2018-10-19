@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/white"
+    tools:context="com.cafedered.midban.view.activities.LoginActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/activity_login_midban_logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/activity_login_midban_logo"
+            android:src="@drawable/logo_midban" />
+
+        <org.droidparts.widget.ClearableEditText
+            android:drawableRight="@drawable/general_filtrar_borrar"
+            android:drawablePadding="12dp"
+            android:id="@+id/activity_login_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:layout_below="@+id/activity_login_midban_logo_iv"
+            android:hint="@string/activity_login_username"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <org.droidparts.widget.ClearableEditText
+            android:drawableRight="@drawable/general_filtrar_borrar"
+            android:drawablePadding="12dp"
+            android:id="@+id/activity_login_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_login_username"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:hint="@string/activity_login_password"
+            android:inputType="textPassword"
+            android:text="cmnt"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/activity_login_button_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_login_password"
+            android:layout_centerHorizontal="true"
+            android:gravity="right"
+            android:text="@string/enter" />
+
+    </RelativeLayout>
+</LinearLayout>

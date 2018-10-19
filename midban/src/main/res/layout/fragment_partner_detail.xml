@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/fragment_partner_detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_partner_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_partner_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="@dimen/one_line_margin_h3"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_header_favourites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/midban_partner_header_buttons_margin"
+                android:background="@drawable/partner_header_text_color_selector"
+                android:clickable="true"
+                android:drawableLeft="@drawable/header_cliente_cliente_header_favoritos"
+                android:drawablePadding="@dimen/midban_compound_drawable_padding"
+                android:text="@string/fragment_partner_detail_header_favoritos"
+                android:textColor="@color/midban_darker_grey"
+                android:textSize="@dimen/h4"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_header_cita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/midban_partner_header_buttons_margin"
+                android:background="@drawable/partner_header_text_color_selector"
+                android:clickable="true"
+                android:drawableLeft="@drawable/header_cliente_cliente_header_cita"
+                android:drawablePadding="@dimen/midban_compound_drawable_padding"
+                android:text="@string/fragment_partner_detail_header_cita"
+                android:textColor="@color/midban_darker_grey"
+                android:textSize="@dimen/h4"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_header_cesta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/partner_header_text_color_selector"
+                android:clickable="true"
+                android:drawableLeft="@drawable/header_cliente_cliente_header_cesta"
+                android:drawablePadding="@dimen/midban_compound_drawable_padding"
+                android:text="@string/fragment_partner_detail_header_cesta"
+                android:textColor="@color/midban_darker_grey"
+                android:textSize="@dimen/h4"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_partner_detail_header"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/fragment_partner_detail_tabs_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midban_grey" >
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:text="@string/fragment_partner_detail_tab_card" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:text="@string/fragment_partner_detail_tab_history" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_invoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:visibility="gone"
+                android:text="@string/fragment_partner_detail_tab_invoices" />
+            
+			<TextView
+                android:id="@+id/fragment_partner_detail_tab_deliverynote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:visibility="gone"
+                android:text="@string/fragment_partner_detail_tab_deliverynote" />
+
+			<TextView
+                android:id="@+id/fragment_partner_detail_tab_reservations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:visibility="gone"
+                android:text="@string/fragment_partner_detail_tab_reservations" />
+
+            <TextView
+                android:id="@+id/fragment_partner_detail_tab_catalog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:visibility="gone"
+                android:text="@string/fragment_partner_detail_tab_catalog" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_partner_detail_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</RelativeLayout>

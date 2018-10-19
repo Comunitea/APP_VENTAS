@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/fragment_today_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/separator_margin" >
+
+            <org.droidparts.widget.ClearableEditText
+                android:drawableRight="@drawable/general_filtrar_borrar"
+                android:drawablePadding="12dp"
+                android:id="@+id/fragment_today_date_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dp"
+                android:gravity="center_vertical|left"
+                android:textSize="@dimen/h3" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <TextView 
+                android:id="@+id/fragment_today_last_synchronization_date"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical|right"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/fragment_today_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@+id/fragment_today_header"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/fragment_today_tabs_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midban_grey" >
+
+            <TextView
+                android:id="@+id/fragment_today_tab_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:tag="orders"
+                android:text="@string/fragment_today_tab_orders" />
+
+            <TextView
+                android:id="@+id/fragment_today_tab_incomes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:visibility="gone"
+                android:tag="incomes"
+                android:text="@string/fragment_today_tab_incomes" />
+
+            <!-- TextView
+                android:id="@+id/fragment_today_tab_devolutions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/separator_margin"
+                android:tag="devolutions"
+                android:text="@string/fragment_today_tab_devolutions" /> -->
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_today_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    
+    <Button android:id="@+id/fragment_today_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.fragments.PartnerListFragment" >
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_partner_list_search_field"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:drawableStart="@drawable/midban_button_search"
+            android:hint="@string/fragment_partner_list_search_field_hint" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/midban_separator"
+            android:textColor="@color/midban_secondary_text_color" />
+
+        <TextView
+            android:id="@+id/fragment_partner_list_filter_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/midban_spinner_icon"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/fragment_partner_list_filtrar" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fragment_partner_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/midban_secondary_text_color" />
+
+    <ListView
+        android:id="@+id/fragment_partner_list_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_partner_separator"
+        android:layout_marginBottom="60dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:id="@+id/fragment_partner_geolocalization_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/portada_item_selector"
+        android:drawableLeft="@drawable/header_footer_geolocalizar"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:textSize="@dimen/h3"
+        android:text="@string/partners_geolocalization"
+        android:textColor="@color/midban_title_text_color" />
+
+</RelativeLayout>

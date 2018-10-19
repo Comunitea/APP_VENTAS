@@ -1,0 +1,125 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cafedered.midban.view.fragments.ConfigurationFragment">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/tv_configuration_version"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Versión: 3.6 - 22/12/2015" />
+
+        <TextView
+            android:id="@+id/tv_configuration_field_protocol"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_configuration_protocol_openerp" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_configuration_field_protocol"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:inputType="textUri"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_configuration_field_url"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_configuration_url_openerp" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_configuration_field_url"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:inputType="textUri"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_configuration_field_port"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_configuration_port_openerp" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_configuration_field_port"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:inputType="number"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_configuration_field_db"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_configuration_db_openerp" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_configuration_field_db"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:inputType="text"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_configuration_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_configuration_configuration_username" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_configuration_field_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:inputType="text"
+            android:singleLine="true"
+            />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_configuration_field_warehouse"
+            />
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_configuration_logemail"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/fragment_configuration_configuration_logemail" />-->
+
+        <!--<org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"-->
+            <!--android:id="@+id/fragment_configuration_field_logemail"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:singleLine="true"-->
+            <!--android:layout_marginBottom="@dimen/field_bottom_margin"-->
+        <!--/>-->
+
+        <Button
+            android:id="@+id/fragment_configuration_button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/save" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,396 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cafedered.midban.view.fragments.OrderFragment" >
+
+    <LinearLayout
+        android:id="@+id/fragment_order_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/button_vertical_padding" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/fragment_order_partner_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/midban_text_color"
+                android:textSize="@dimen/h1"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/fragment_order_partner_code_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/midban_text_color"
+                    android:textSize="@dimen/h3" />
+                <TextView
+                    android:id="@+id/fragment_order_risk_limit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textSize="@dimen/h5" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_order_header_favourites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/midban_partner_header_buttons_margin"
+            android:layout_weight="3"
+            android:background="@drawable/partner_header_text_color_selector"
+            android:clickable="true"
+            android:drawableLeft="@drawable/header_cliente_cliente_header_favoritos"
+            android:drawablePadding="@dimen/midban_compound_drawable_padding"
+            android:text="@string/fragment_partner_detail_header_favoritos"
+            android:textColor="@color/midban_darker_grey"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_order_subheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_order_header"
+        android:padding="@dimen/button_vertical_padding" >
+
+        <TextView
+            android:id="@+id/fragment_order_order_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_order_order_number_text"
+            android:textSize="@dimen/h3" />
+
+        <TextView
+            android:id="@+id/fragment_order_order_number_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_order_number_tv"
+            android:textColor="@color/midban_secondary_text_color"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fragment_order_delivery_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_order_order_number_tv"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/fragment_order_delivery_date_text"
+            android:textColor="@color/midban_dark_grey"
+            android:textSize="@dimen/h5" />
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_order_delivery_date_et"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_order_delivery_date_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_delivery_date_tv"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/fragment_order_delivery_date_tv"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@+id/fragment_order_delivery_date_et"
+            android:text="@string/fragment_order_address_text"
+            android:textColor="@color/midban_dark_grey"
+            android:textSize="@dimen/h5" />
+
+        <Spinner
+            android:id="@+id/fragment_order_address_sp"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_order_delivery_date_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_address_tv" />
+
+        <TextView
+            android:id="@+id/fragment_order_address_result_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fragment_order_address_sp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:lines="3"
+            android:textSize="@dimen/text_x_small" />
+
+        <TextView
+            android:id="@+id/fragment_order_total_lines_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fragment_order_delivery_date_tv"
+            android:layout_below="@+id/fragment_order_delivery_date_tv"
+            android:layout_marginTop="@dimen/separator_margin"
+            android:text="@string/fragment_order_total_lines_text"
+            android:textColor="@color/midban_dark_grey"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_total_lines_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_order_total_lines_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_total_lines_tv"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_amount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fragment_order_total_lines_data_tv"
+            android:layout_alignBottom="@+id/fragment_order_total_lines_data_tv"
+            android:layout_alignLeft="@+id/fragment_order_address_tv"
+            android:layout_marginTop="@dimen/separator_margin"
+            android:text="@string/fragment_order_amount_text"
+            android:textColor="@color/midban_dark_grey"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_amount_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_order_amount_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_amount_tv"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_margin_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fragment_order_amount_data_tv"
+            android:layout_alignBottom="@+id/fragment_order_amount_data_tv"
+            android:layout_marginTop="@dimen/separator_margin"
+            android:layout_alignLeft="@+id/fragment_order_address_result_tv"
+            android:text="@string/fragment_order_margin_text"
+            android:textColor="@color/midban_dark_grey"
+            android:textSize="@dimen/h5" />
+
+        <TextView
+            android:id="@+id/fragment_order_margin_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_order_margin_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_order_margin_tv"
+            android:textSize="@dimen/h5" />
+
+        <LinearLayout
+            android:id="@+id/fragment_order_quick_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/fragment_order_total_lines_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+            <AutoCompleteTextView
+                android:dropDownHeight="280dp"
+                android:id="@+id/single_field_edition_popup_textfield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/midban_compound_drawable_padding"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="3"
+                android:inputType="text"
+                android:textSize="@dimen/h5"
+                android:gravity="center_horizontal"
+                android:drawableLeft="@drawable/general_buscar"
+                android:drawablePadding="@dimen/activity_horizontal_margin" />
+
+            <TextView
+                android:id="@+id/fragment_order_add_quick_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/button_active_bg"
+                android:clickable="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:drawableLeft="@drawable/header_cliente_cliente_header_cesta"
+                android:drawablePadding="@dimen/midban_compound_drawable_padding"
+                android:padding="@dimen/midban_compound_drawable_padding"
+                android:text="@string/fragment_partner_append_quick_product"
+                android:textColor="@color/midban_text_color"
+                android:textSize="@dimen/h3" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fragment_order_false_drawer_notes_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_order_quick_product"
+            android:padding="@dimen/activity_vertical_margin" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/fragment_order_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_order_subheader"
+        android:layout_marginLeft="@dimen/button_horizontal_padding"
+        android:layout_marginRight="@dimen/button_horizontal_padding"
+        android:background="@color/midban_order_notes_bg"
+        android:padding="@dimen/button_vertical_padding"
+        android:tag="Notas"
+        android:text="@string/fragment_order_notes_text"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/fragment_order_lines_header"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/fragment_order_notes"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="3"
+            android:text="@string/fragment_order_list_header_product"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/fragment_order_list_header_quantity"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_order_list_header_price"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_order_list_header_discount"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_order_list_header_total"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_order_lines"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_order_lines_header" />
+
+    <LinearLayout
+        android:id="@+id/fragment_order_buttons_edit_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fragment_order_catalog_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_order_catalog_btn_text" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+        <Button
+            android:id="@+id/fragment_order_cancel_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+        <Button
+            android:id="@+id/fragment_order_confirm_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_order_buttons_read_only_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fragment_order_mail_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_order_send_mail" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3" />
+
+        <Button
+            android:id="@+id/fragment_order_repeat_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_order_repeat_btn" />
+    </LinearLayout>
+</RelativeLayout>

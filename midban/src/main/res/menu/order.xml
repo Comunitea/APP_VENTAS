@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/notes_item"
+        android:icon="@drawable/header_footer_edit"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="10"
+        android:title="@string/home">
+    </item>
+   <item
+      android:id="@+id/home_item"
+      android:icon="@drawable/header_footer_home"
+       app:showAsAction="ifRoom"
+      android:orderInCategory="10"
+      android:title="@string/home">
+   </item>
+</menu>

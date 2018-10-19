@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="@dimen/separator_margin" >
+
+    <TextView
+        android:id="@+id/partner_history_list_item_order_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
+        android:textColor="@color/midban_secondary_text_color"
+        android:textSize="@dimen/h5" />
+
+    <TextView
+        android:id="@+id/partner_history_list_item_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_weight="1.2"
+        android:gravity="right"
+        android:textSize="@dimen/h5" />
+
+    <TextView
+        android:id="@+id/partner_history_list_item_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="1.2"
+        android:gravity="right"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="@dimen/h5" />
+
+    <TextView
+        android:id="@+id/partner_history_list_item_lines"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="1.2"
+        android:gravity="center_horizontal"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="@dimen/h5" />
+
+    <TextView
+        android:id="@+id/partner_history_list_item_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="1.2"
+        android:gravity="center_horizontal"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="@dimen/h5" />
+
+    <CheckBox
+        android:id="@+id/partner_history_list_item_invoiced"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="1.2"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/h5" />
+
+    <CheckBox
+        android:id="@+id/partner_history_list_item_shipped"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_weight="1.2"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/h5" />
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <TextView
+        android:text="@string/loading_more_items"
+        android:id="@+id/footer_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/h3"
+        android:drawableLeft="@drawable/animated_wheel"
+        android:gravity="center_horizontal|center_vertical" />
+</LinearLayout>

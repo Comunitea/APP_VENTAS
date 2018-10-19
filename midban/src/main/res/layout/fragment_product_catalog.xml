@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.fragments.ProductCatalogFragment" >
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+
+        <org.droidparts.widget.ClearableEditText
+            android:drawableRight="@drawable/general_filtrar_borrar"
+            android:drawablePadding="12dp"
+            android:id="@+id/fragment_product_catalog_search_field"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:drawable="@drawable/midban_button_search"
+            android:hint="@string/fragment_product_catalog_search_field_hint" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/midban_separator"
+            android:textColor="@color/midban_secondary_text_color" />
+
+        <TextView
+            android:id="@+id/fragment_product_catalog_filter_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/midban_spinner_icon"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/fragment_product_catalog_filtrar" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fragment_partner_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/midban_secondary_text_color" />
+
+    <LinearLayout
+        android:id="@+id/list_footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/img_animated_wheel"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/animated_wheel"/>
+        <TextView
+            android:text="@string/loading_more_items"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="@dimen/h3"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_product_catalog_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_partner_separator"
+        android:paddingLeft="@dimen/separator_margin"
+        android:paddingRight="@dimen/separator_margin" />
+
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- general -->
+    <color name="midban_background">#ffffff</color>
+    <color name="midban_text_color">#333333</color>
+    <color name="midban_secondary_text_color">#cccccc</color>
+    <color name="midban_nogal_text_color">#3f5e48</color>
+
+    <!-- action bar -->
+    <color name="midban_actionbar_background">#222222</color>
+    <color name="midban_title_text_color">#ffffff</color>
+    
+    <!-- buttons -->
+    <color name="button_text_color">#111111</color>
+    <color name="button_inactive_bg">#cccccc</color>
+    <color name="button_active_bg">#2e7d32</color>
+    
+    <!-- Toasts -->
+    <color name="ok_background">#0B610B</color>
+    <color name="ok_background_light">#CFEFEF</color>
+    <color name="warn_background">#FFBF00</color>
+    <color name="warn_background_light">#FFEF55</color>
+    <color name="error_background">#DF0101</color>
+    <color name="error_background_light">#FFCCCC</color>
+    <color name="toast_text_color">#FFFFFF</color>
+    
+    <!-- by name -->
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="midban_lighter_grey">#FAFAFA</color>
+    <color name="midgan_light_grey">#EEEEEE</color>
+    <color name="midban_grey">#CCCCCC</color>
+    <color name="midban_dark_grey">#b2b2b2</color>
+    <color name="midban_darker_grey">#808080</color>
+    
+    <!-- synchronization_list -->
+    <color name="synchronization_background_list">#f9f9f9</color>
+    <color name="synchronization_background_list_header">#eeeeee</color>
+    <color name="synchronization_background_list_item_number">#dbdbdb</color>
+    
+    <!-- custom -->
+    <color name="midban_partner_header_bg">#E4E4E4</color>
+    
+    <!-- order -->
+    <color name="midban_order_notes_bg">#f8ecb8</color>
+    
+    <!-- transparent -->
+    <color name="transparent">#FFFFFFFF</color>
+</resources>

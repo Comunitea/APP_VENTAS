@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <dimen name="field_bottom_margin">30dp</dimen>
+    <dimen name="button_vertical_padding">15dp</dimen>
+    <dimen name="button_horizontal_padding">35dp</dimen>
+    <dimen name="midban_compound_drawable_padding">5dp</dimen>
+    <dimen name="label_to_value_margin">4dp</dimen>
+    <dimen name="separator_margin">8dp</dimen>
+    
+    <!-- Portada -->
+    <dimen name="portada_vertical_margin_bottom">32dp</dimen>
+    
+    <dimen name="xx_small">12sp</dimen>
+    <dimen name="text_x_small">14sp</dimen>
+    <dimen name="h5">16sp</dimen>
+    <dimen name="h4">18sp</dimen>
+    <dimen name="h3">20sp</dimen>
+    <dimen name="h2">22sp</dimen>
+    <dimen name="h1">24sp</dimen>
+    <dimen name="text_xlarge">38sp</dimen>
+    
+    <dimen name="h5h4_pair">40dp</dimen>
+    
+    <!-- Toasts -->
+    <dimen name="padding_messages">30dp</dimen>
+    
+    <!-- Tabs -->
+    <dimen name="padding_tabs_partner_detail">7dp</dimen>
+    
+    <dimen name="midban_partner_header_buttons_margin">15dp</dimen>
+    <dimen name="one_line_margin_h5">16dp</dimen>
+    <dimen name="one_line_margin_h4">18dp</dimen>
+    <dimen name="one_line_margin_h3">20dp</dimen>
+    <dimen name="one_line_margin_h2">22dp</dimen>
+    <dimen name="one_line_margin_h1">24dp</dimen>
+    <dimen name="h6">14sp</dimen>
+
+</resources>

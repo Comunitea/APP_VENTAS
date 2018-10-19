@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cafedered.midban.view.fragments.TaskDetailFragment" >
+
+    <LinearLayout
+        android:id="@+id/fragment_task_detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midban_partner_header_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/fragment_task_detail_partner_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fragment_task_detail_partner_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/fragment_task_detail_task_type_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_task_detail_task_type_label_tv"
+                android:textSize="@dimen/h3" />
+
+            <TextView
+                android:id="@+id/fragment_task_detail_task_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h3"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_task_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_task_detail_header"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin" >
+
+        <TextView
+            android:id="@+id/fragment_task_detail_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h1"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/fragment_task_detail_task_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/h1" />
+        
+        <TextView
+            android:id="@+id/fragment_task_detail_task_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h1" />
+        
+        <TextView
+            android:id="@+id/fragment_task_detail_task_complete_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/mapas_geolocalizacion"
+            android:drawablePadding="@dimen/separator_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/h1" />
+        
+        <TextView
+            android:id="@+id/fragment_task_detail_task_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/h2" />
+        
+    </LinearLayout>
+
+</RelativeLayout>

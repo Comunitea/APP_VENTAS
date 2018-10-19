@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cafedered.midban.view.activities.NewCalendarTaskActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_item"
+        android:icon="@drawable/header_footer_home"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom"
+        android:title="@string/home">
+    </item>
+
+</menu>

@@ -1,0 +1,172 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.view.fragments.NewTaskFragment" >
+
+    <LinearLayout
+        android:id="@+id/fragment_new_calendar_task_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fragment_new_calendar_task_cancel_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+        <Button
+            android:id="@+id/fragment_new_calendar_task_confirm_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_new_calendar_task_spinners_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_buttons"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/fragment_new_calendar_task_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="3"
+            android:entries="@array/task_types"
+            android:gravity="left" />
+
+        <TextView
+            android:id="@+id/fragment_new_calendar_task_partner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="3"
+            android:background="@drawable/midban_spinner_icon"
+            android:text="@string/fragment_new_calendar_task_partner" />
+    </LinearLayout>
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/fragment_new_calendar_task_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_spinners_container"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/fragment_new_calendar_task_new_task_title" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/fragment_new_calendar_task_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_title"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/fragment_new_calendar_task_new_task_address" />
+
+    <TextView
+        android:id="@+id/fragment_new_calendar_task_init_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_address"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/fragment_new_calendar_task_init_date"
+        android:textColor="@color/midban_dark_grey"
+        android:textSize="@dimen/h4" />
+
+    <LinearLayout
+        android:id="@+id/fragment_new_calendar_task_init_date_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_init_date_tv"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_new_calendar_task_init_date_et"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:textSize="@dimen/h5" />
+
+        <TimePicker
+            android:id="@+id/fragment_new_calendar_task_init_time_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:textSize="@dimen/h5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_new_calendar_task_end_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_init_date_container"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/fragment_new_calendar_task_end_date"
+        android:textColor="@color/midban_dark_grey"
+        android:textSize="@dimen/h4" />
+
+    <LinearLayout
+        android:id="@+id/fragment_new_calendar_task_end_date_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_end_date_tv"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_new_calendar_task_end_date_et"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_new_calendar_task_end_date_tv"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:textSize="@dimen/h5" />
+
+        <TimePicker
+            android:id="@+id/fragment_new_calendar_task_end_time_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/fragment_new_calendar_task_end_date_et"
+            android:layout_marginLeft="@dimen/label_to_value_margin"
+            android:layout_toRightOf="@+id/fragment_new_calendar_task_end_date_et"
+            android:textSize="@dimen/h5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_new_calendar_task_description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_end_date_container"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/fragment_new_calendar_task_description"
+        android:textColor="@color/midban_dark_grey"
+        android:textSize="@dimen/h4" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+        android:id="@+id/fragment_new_calendar_task_description_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_new_calendar_task_description_tv"
+        android:layout_marginLeft="@dimen/label_to_value_margin"
+        android:lines="5"
+        android:textSize="@dimen/h5" />
+
+</RelativeLayout>

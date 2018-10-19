@@ -1,0 +1,193 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_portada_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.view.activities.PortadaActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/activity_login_midban_logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/activity_login_midban_logo"
+            android:src="@drawable/logo_midban" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/portada_vertical_margin_bottom"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/activity_portada_clientes_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_clientes"
+            android:gravity="top|center_horizontal"
+            android:tag="clientes"
+            android:text="@string/activity_portada_clientes"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_pedidos_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_pedidos"
+            android:gravity="top|center_horizontal"
+            android:tag="pedidos"
+            android:text="@string/activity_portada_pedidos"
+            android:textColor="@color/midban_nogal_text_color" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/portada_vertical_margin_bottom"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/activity_portada_catalogo_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_catalogo"
+            android:gravity="top|center_horizontal"
+            android:tag="catalogo"
+            android:text="@string/activity_portada_catalogo"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_agenda_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_agenda"
+            android:gravity="top|center_horizontal"
+            android:tag="agenda"
+            android:text="@string/activity_portada_agenda"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_devoluciones_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_devoluciones"
+            android:gravity="top|center_horizontal"
+            android:visibility="gone"
+            android:tag="devoluciones"
+            android:text="@string/activity_portada_devoluciones"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_cobros_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_cobros"
+            android:gravity="top|center_horizontal"
+            android:tag="cobros"
+            android:text="@string/activity_portada_cobros"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_medios_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_medios"
+            android:gravity="top|center_horizontal"
+            android:tag="medios"
+            android:visibility="gone"
+            android:text="@string/activity_portada_medios"
+            android:textColor="@color/midban_nogal_text_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/portada_vertical_margin_bottom"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/activity_portada_reservas_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_reservar"
+            android:gravity="top|center_horizontal"
+            android:tag="reservar"
+            android:text="@string/activity_portada_reservas"
+            android:visibility="gone"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_hoy_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_hoy"
+            android:gravity="top|center_horizontal"
+            android:tag="hoy"
+            android:text="@string/activity_portada_hoy"
+            android:visibility="visible"
+            android:textColor="@color/midban_nogal_text_color" />
+
+        <TextView
+            android:id="@+id/activity_portada_sincronizacion_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/portada_sincronizar"
+            android:gravity="top|center_horizontal"
+            android:tag="sincronizar"
+            android:text="@string/activity_portada_sincronizar"
+            android:textColor="@color/midban_nogal_text_color" />
+    </LinearLayout>
+
+</LinearLayout>

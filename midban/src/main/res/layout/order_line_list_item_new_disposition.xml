@@ -1,0 +1,155 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal" android:gravity="center_vertical" >
+
+    <ImageView
+        android:id="@+id/order_line_list_item_new_disposition_product_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:layout_marginLeft="@dimen/separator_margin"
+        android:layout_marginRight="@dimen/separator_margin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/order_line_list_item_new_disposition_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/h6"
+            />
+        <TextView
+            android:id="@+id/order_line_list_item_new_disposition_product_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:textSize="@dimen/h6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/order_line_list_item_new_disposition_plus_icon_uom"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/general_flecha_arriba"/>
+            <TextView
+                android:id="@+id/order_line_list_item_new_disposition_quantity_uom"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/h5"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/order_line_list_item_new_disposition_less_icon_uom"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/general_flecha_abajo"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_line_list_item_new_disposition_unit_uom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/abc_search_url_text"
+            android:textSize="@dimen/h4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/order_line_list_item_new_disposition_plus_icon_uos"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/general_flecha_arriba"/>
+            <TextView
+                android:id="@+id/order_line_list_item_new_disposition_quantity_uos"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/h5"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/order_line_list_item_new_disposition_less_icon_uos"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/general_flecha_abajo"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_line_list_item_new_disposition_unit_uos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/abc_search_url_text"
+            android:textSize="@dimen/h4" />
+
+    </LinearLayout>
+
+    
+    <TextView
+            android:id="@+id/order_line_list_item_new_disposition_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="@dimen/h6"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/order_line_list_item_new_disposition_discount"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="right|center_horizontal"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
+        android:textSize="@dimen/h6"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/order_line_list_item_new_disposition_total"
+        android:layout_width="0dp"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:textSize="@dimen/h6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
+    <ImageView
+            android:id="@+id/order_line_list_item_new_disposition_delete_icon"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:src="@drawable/general_eliminar" />
+
+</LinearLayout>

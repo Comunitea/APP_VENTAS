@@ -1,0 +1,66 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/jaime/Workspace/elnogal.app/midban/build/intermediates/incremental/mergeX86DebugResources/merged.dir/values-v11/values-v11.xml",
+            "map": [
+                {
+                    "source": "/home/jaime/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7633f25dbf79251a3f28cbb62fe015af/res/values-v11/values-v11.xml",
+                    "from": {
+                        "startLines": "2,8,14,20,26,32,38,39,43,47,48,52,56,57,61,66,71,76,78,80,81,82,136,191",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,474,899,1327,1753,2180,2605,2694,2940,3189,3290,3542,3797,3900,4153,4561,4981,5403,5510,5639,5710,5793,9818,13986",
+                        "endLines": "7,13,19,25,31,37,38,42,46,47,51,55,56,60,65,70,75,77,79,80,81,135,190,191",
+                        "endColumns": "12,12,12,12,12,12,88,12,12,100,12,12,102,12,12,12,12,12,12,70,82,12,12,90",
+                        "endOffsets": "469,894,1322,1748,2175,2600,2689,2935,3184,3285,3537,3792,3895,4148,4556,4976,5398,5505,5634,5705,5788,9813,13981,14072"
+                    },
+                    "to": {
+                        "startLines": "6,12,18,24,30,36,42,43,47,51,52,56,60,61,65,70,75,80,82,84,85,86,140,195",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "190,609,1034,1462,1888,2315,2740,2829,3075,3324,3425,3677,3932,4035,4288,4696,5116,5538,5645,5774,5845,5928,9953,14121",
+                        "endLines": "11,17,23,29,35,41,42,46,50,51,55,59,60,64,69,74,79,81,83,84,85,139,194,195",
+                        "endColumns": "12,12,12,12,12,12,88,12,12,100,12,12,102,12,12,12,12,12,12,70,82,12,12,90",
+                        "endOffsets": "604,1029,1457,1883,2310,2735,2824,3070,3319,3420,3672,3927,4030,4283,4691,5111,5533,5640,5769,5840,5923,9948,14116,14207"
+                    }
+                },
+                {
+                    "source": "/home/jaime/.gradle/caches/transforms-1/files-1.1/play-services-appinvite-12.0.1.aar/4914d4af0999f4c4ab0909ba5df1228a/res/values-v11/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "172",
+                        "endLines": "5",
+                        "endColumns": "8",
+                        "endOffsets": "293"
+                    },
+                    "to": {
+                        "startLines": "196",
+                        "startColumns": "4",
+                        "startOffsets": "14212",
+                        "endLines": "197",
+                        "endColumns": "8",
+                        "endOffsets": "14333"
+                    }
+                },
+                {
+                    "source": "/home/jaime/Workspace/elnogal.app/midban/src/main/res/values-v11/styles.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "177",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "307"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "185"
+                    }
+                }
+            ]
+        }
+    ]
+}

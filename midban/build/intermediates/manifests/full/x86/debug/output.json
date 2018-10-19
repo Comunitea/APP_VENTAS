@@ -1,0 +1,1 @@
+[{"outputType":{"type":"MERGED_MANIFESTS"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":3,"versionName":"1.0","enabled":true,"outputFile":"midban-x86-debug.apk","fullName":"x86Debug","baseName":"x86-debug"},"path":"AndroidManifest.xml","properties":{"packageId":"com.cafedered.midban","split":"","minSdkVersion":"17"}}]

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/jaime/Workspace/elnogal.app/midban/src/main/shaders"/></dataSet><dataSet config="x86"><source path="/home/jaime/Workspace/elnogal.app/midban/src/x86/shaders"/></dataSet><dataSet config="debug"><source path="/home/jaime/Workspace/elnogal.app/midban/src/debug/shaders"/></dataSet><dataSet config="x86Debug"><source path="/home/jaime/Workspace/elnogal.app/midban/src/x86Debug/shaders"/></dataSet></merger>

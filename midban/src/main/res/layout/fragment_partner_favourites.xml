@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cafedered.midban.fragments.FavouritesPartnerFragment" >
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+
+        <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/fragment_partner_favourites_search_field"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:drawableStart="@drawable/midban_button_search"
+            android:hint="@string/fragment_partner_favourites_search_field_hint" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/midban_separator"
+            android:textColor="@color/midban_secondary_text_color" />
+
+        <TextView
+            android:id="@+id/fragment_partner_favourites_filter_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/midban_spinner_icon"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/fragment_partner_favourites_filtrar" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fragment_partner_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/search_bar"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/midban_secondary_text_color" />
+
+    <TextView
+        android:id="@+id/fragment_partner_favourites_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/separator_margin"
+        android:layout_below="@+id/fragment_partner_separator"
+        android:text="@string/fragment_partner_favourites_title"
+        android:textSize="@dimen/h1"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/fragment_partner_favourites_selectors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/separator_margin"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/fragment_partner_favourites_title_tv"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/fragment_partner_favourites_last_order_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/midban_darker_grey"
+            android:paddingBottom="@dimen/label_to_value_margin"
+            android:paddingLeft="@dimen/button_horizontal_padding"
+            android:paddingRight="@dimen/button_horizontal_padding"
+            android:paddingTop="@dimen/label_to_value_margin"
+            android:tag="1"
+            android:text="@string/fragment_partner_favourites_last_order_selector"
+            android:textSize="@dimen/h4" />
+
+        <TextView
+            android:id="@+id/fragment_partner_favourites_last_30_days_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/midban_grey"
+            android:paddingBottom="@dimen/label_to_value_margin"
+            android:paddingLeft="@dimen/button_horizontal_padding"
+            android:paddingRight="@dimen/button_horizontal_padding"
+            android:paddingTop="@dimen/label_to_value_margin"
+            android:tag="2"
+            android:text="@string/fragment_partner_favourites_last_30_days_selector"
+            android:textSize="@dimen/h4" />
+
+        <TextView
+            android:id="@+id/fragment_partner_favourites_last_year_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/midban_grey"
+            android:paddingBottom="@dimen/label_to_value_margin"
+            android:paddingLeft="@dimen/button_horizontal_padding"
+            android:paddingRight="@dimen/button_horizontal_padding"
+            android:paddingTop="@dimen/label_to_value_margin"
+            android:tag="3"
+            android:text="@string/fragment_partner_favourites_last_year_selector"
+            android:textSize="@dimen/h4" />
+        
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_partner_favourites_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_partner_favourites_selectors"
+        android:layout_marginBottom="60dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fragment_partner_favourites_catalog_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_partner_favourites_catalog_btn_text" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+        <Button
+            android:id="@+id/fragment_favourites_partner_cancel_btn"
+            style="@style/MidbanButtonSecondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+        <Button
+            android:id="@+id/fragment_partner_favourites_add_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:text="@string/fragment_partner_favourites_add_to_cart" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/midban_background"
+    android:padding="@dimen/activity_horizontal_margin" >
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/dialog_partner_history_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dialog_partner_history_date_from" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/dialog_partner_history_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dialog_partner_history_date_to" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/dialog_partner_history_amount_less_than"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/dialog_partner_history_amount_less_than" />
+
+    <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+            android:id="@+id/dialog_partner_history_amount_more_than"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/dialog_partner_history_amount_more_than" />
+
+    <Spinner
+        android:id="@+id/dialog_partner_history_filters_spinner_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <Button
+        android:id="@+id/dialog_partner_history_filters_button_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/filter"
+        android:layout_margin="@dimen/activity_horizontal_margin"/>
+
+    <TextView android:id="@+id/dialog_partner_history_filters_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/clear_filters"
+        android:drawableLeft="@drawable/general_filtrar_borrar"
+        android:drawablePadding="5dp"/>
+
+</LinearLayout>

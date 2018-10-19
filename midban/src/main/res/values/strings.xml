@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">El Nogal</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- configuration parameters -->
+    <string name="database_name">midban</string>
+
+    <string-array name="entity_classes">
+        <item>com.cafedered.midban.entities.Configuration</item>
+        <item>com.cafedered.midban.entities.Company</item>
+        <item>com.cafedered.midban.entities.Contact</item>
+        <item>com.cafedered.midban.entities.CustomerList</item>
+        <item>com.cafedered.midban.entities.PartnerCategory</item>
+        <item>com.cafedered.midban.entities.Partner</item>
+        <item>com.cafedered.midban.entities.Synchronization</item>
+        <item>com.cafedered.midban.entities.SynchronizationSummary</item>
+        <item>com.cafedered.midban.entities.PaymentMode</item>
+        <item>com.cafedered.midban.entities.AccountPaymentTerm</item>
+        <item>com.cafedered.midban.entities.PickingType</item>
+        <item>com.cafedered.midban.entities.ProductUl</item>
+        <item>com.cafedered.midban.entities.ProductUomCateg</item>
+        <item>com.cafedered.midban.entities.ProductUom</item>
+        <item>com.cafedered.midban.entities.ProductTemplate</item>
+        <item>com.cafedered.midban.entities.ProductCategory</item>
+        <item>com.cafedered.midban.entities.ProductPackaging</item>
+        <item>com.cafedered.midban.entities.ProductPartnerPrice</item>
+        <item>com.cafedered.midban.entities.PartnerProduct</item>
+        <item>com.cafedered.midban.entities.Product</item>
+        <item>com.cafedered.midban.entities.User</item>
+        <item>com.cafedered.midban.entities.Order</item>
+        <item>com.cafedered.midban.entities.OrderLine</item>
+        <item>com.cafedered.midban.entities.Invoice</item>
+        <item>com.cafedered.midban.entities.InvoiceLine</item>
+        <item>com.cafedered.midban.entities.Route</item>
+        <item>com.cafedered.midban.entities.RouteDetail</item>
+        <item>com.cafedered.midban.entities.State</item>
+        <item>com.cafedered.midban.entities.StockMove</item>
+        <item>com.cafedered.midban.entities.StockPickingOut</item>
+        <item>com.cafedered.midban.entities.AccountJournal</item>
+        <item>com.cafedered.midban.entities.Account</item>
+        <item>com.cafedered.midban.entities.AccountMoveLine</item>
+        <item>com.cafedered.midban.entities.Voucher</item>
+        <item>com.cafedered.midban.entities.VoucherLine</item>
+        <item>com.cafedered.midban.entities.Task</item>
+        <item>com.cafedered.midban.entities.Tax</item>
+        <item>com.cafedered.midban.entities.WeekDay</item>
+        <item>com.cafedered.midban.entities.Warehouse</item>
+    </string-array>
+
+    <string name="configuration_debug_enabled">false</string>
+    <string name="actualAppVersion">1</string>
+
+    <!-- error messages -->
+    <string name="transformer_error">Error en el transformer. Las propiedades no están bien anotadas?</string>
+    <string name="cannot_save">No se ha podido guardar.</string>
+    <string name="error_fragment_cannot_be_invoked">Error en la activity. El fragment indicado no puede ser iniciado.</string>
+
+    <!-- global values -->
+    <string name="save">Guardar</string>
+    <string name="saved">Guardado</string>
+    <string name="saving">Guardando...</string>
+    <string name="send">Enviar</string>
+    <string name="enter">Entrar</string>
+    <string name="edit">Editar</string>
+    <string name="home">Menú principal</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="mail_sent">Mensaje enviado</string>
+    <string name="mail_not_sent">El mensaje no se ha podido enviar</string>
+    <string name="todo_message">Funcionalidad aún no implementada.</string>
+    <string name="midban_separator">|</string>
+    <string name="filter">Filtrar</string>
+    <string name="loading">Cargando...</string>
+    <string name="clear_filters">Borrar filtros</string>
+    <string name="add">Añadir</string>
+    <string name="currency_symbol">€</string>
+    <string name="pdf_currency_symbol">&#x80;</string>
+    <string name="stock_not_available">El stock no está disponible</string>
+    <string name="price_under_min_limit">El precio fijado está por debajo del precio mínimo</string>
+    <string name="discount_not_valid">Descuento no válido</string>
+    <string name="invalid_data_entered">Datos incorrectos.</string>
+    <string name="cannot_create_pdf">No se puede crear el PDF.</string>
+    <string name="cannot_open_another_order_until_cancel_or_complete_opened">No se puede crear otro pedido hasta completar o cancelar el actual.</string>
+    <string name="synchronizing">Sincronizando...</string>
+    <string name="not_available">No disp.</string>
+    <string name="confirmation_dialog_generic_title">Confirmación</string>
+    <string name="sure_to_delete">Confirme que desea borrar el elemento</string>
+    <string name="deleted">Borrado</string>
+    <string name="cannot_delete">No se ha podido borrar</string>
+    <string name="delete">Borrar</string>
+    <string name="quit">Cerrar</string>
+    <string name="really_quit">¿Seguro que desea cerrar la aplicación?</string>
+
+    <!-- fragment_configuration -->
+    <string name="fragment_configuration_protocol_openerp">Protocol</string>
+    <string name="fragment_configuration_url_openerp">URL</string>
+    <string name="fragment_configuration_port_openerp">Puerto</string>
+    <string name="fragment_configuration_db_openerp">Nombre BDD</string>
+    <string name="fragment_configuration_configuration_username">Usuario por defecto</string>
+    <string name="activity_configuration_title">Configuración</string>
+
+    <!-- activity_portada -->
+    <string name="activity_portada_title"></string>
+    <string name="activity_portada_clientes">Clientes</string>
+    <string name="activity_portada_pedidos">Pedido</string>
+    <string name="activity_portada_catalogo">Catálogo</string>
+    <string name="activity_portada_devoluciones">Devoluciones</string>
+    <string name="activity_portada_cobros">Cobros</string>
+    <string name="activity_portada_agenda">Agenda</string>
+    <string name="activity_portada_reservas">Reservar</string>
+    <string name="activity_portada_hoy">Hoy</string>
+    <string name="activity_portada_sincronizar">Sincronizar</string>
+    <string name="activity_portada_new_order_dialog">Nuevo pedido</string>
+    <string name="activity_portada_incomes_dialog">Cobro a cliente</string>
+    <string name="activity_portada_new_reservation_dialog">Nueva reserva</string>
+
+    <!-- activity login -->
+    <string name="activity_login_username">Nombre de usuario</string>
+    <string name="activity_login_password">Contraseña</string>
+    <string name="activity_login_title">Identificación</string>
+    <string name="activity_login_ok">Credenciales correctas</string>
+    <string name="activity_login_ko">Credenciales incorrectas</string>
+    <string name="activity_login_midban_logo">Midban</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- activity partner list -->
+    <string name="activity_partner_title">Clientes</string>
+    <string name="fragment_partner_list_filtrar">Filtrar</string>
+    <string name="fragment_partner_list_search_field_hint">Buscar...</string>
+    <string name="partners_geolocalization">Geolocalizar clientes</string>
+
+    <!-- filter partner dialog -->
+    <string name="filter_partners_dialog_types">Tipo...</string>
+    <string name="filter_partners_dialog_cities">Localidad...</string>
+    <string name="filter_partners_dialog_states">Provincia...</string>
+    <string name="dialog_partner_filters_zip">Código postal</string>
+
+    <!-- activity_google_maps -->
+    <string name="maps_partner_location_cannot_be_retrieved">No se puede obtener la localización del cliente. Probablemente es errónea.</string>
+    <string name="activity_google_maps_title">Geolocalización Clientes</string>
+
+    <!-- activity synchronization -->
+    <string name="activity_synchronization_title">Sincronización</string>
+    <string name="activity_synchronization_synchronize">SINCRONIZAR AHORA</string>
+    <string name="fragment_synchronization_synchro_ok">Sincronización correcta</string>
+    <string name="fragment_synchronization_synchro_ko">Error al sincronizar</string>
+    <string name="fragment_synchronization_progress_bar_title">Sincronizar</string>
+    <string name="fragment_synchronization_progress_bar_progress">Sincronizando...</string>
+
+    <!-- activity partner detail -->
+    <string name="activity_partner_detail_title">Ficha cliente</string>
+    <string name="fragment_partner_detail_tab_card">Ficha</string>
+    <string name="fragment_partner_detail_tab_invoices">Facturas</string>
+    <string name="fragment_partner_detail_tab_history">Historial</string>
+    <string name="fragment_partner_detail_tab_devolutions">Devoluciones</string>
+    <string name="fragment_partner_detail_tab_deliverynote">Albaranes</string>
+    <string name="fragment_partner_detail_tab_payments">Cobrar</string>
+    <string name="fragment_partner_detail_tab_reservations">Reservado</string>
+    <string name="fragment_partner_detail_tab_catalog">Catal.</string>
+    <string name="fragment_partner_detail_tab_delivery_notes">Albaranes</string>
+    <string name="fragment_partner_detail_header_favoritos">Favoritos</string>
+    <string name="fragment_partner_detail_header_cita">Cita</string>
+    <string name="fragment_partner_detail_header_cesta">Cesta</string>
+
+    <!-- partner detail tab card -->
+    <string name="fragment_partner_detail_tab_card_typology">Tipología:</string>
+    <string name="fragment_partner_detail_tab_card_invoice_address">Dirección de facturación:</string>
+    <string name="fragment_partner_detail_tab_card_delivery_address">Dirección de entrega:</string>
+    <string name="fragment_partner_detail_tab_card_contact_name">Contacto:</string>
+    <string name="fragment_partner_detail_tab_card_phone">Teléfono:</string>
+    <string name="fragment_partner_detail_tab_card_fax">Fax:</string>
+    <string name="fragment_partner_detail_tab_card_email">Email:</string>
+    <string name="fragment_partner_detail_tab_card_payment_mode">Modo de pago:</string>
+    <string name="fragment_partner_detail_tab_card_account_payment_term">Plazo de pago:</string>
+
+    <!-- SynchronizationListItemAdapter -->
+    <string name="synchronization_list_item_adapter_invoice">Facturas</string>
+    <string name="synchronization_list_item_adapter_invoiceline">Líneas de facturas</string>
+    <string name="synchronization_list_item_adapter_order">Pedidos</string>
+    <string name="synchronization_list_item_adapter_orderline">Líneas de pedidos</string>
+    <string name="synchronization_list_item_adapter_partner">Clientes</string>
+    <string name="synchronization_list_item_adapter_partnercategory">Categorías de cliente</string>
+    <string name="synchronization_list_item_adapter_product">Productos</string>
+    <string name="synchronization_list_item_adapter_productcategory">Categorías de productos</string>
+    <string name="synchronization_list_item_adapter_productpackaging">Embalaje de productos</string>
+    <string name="synchronization_list_item_adapter_producttemplate">Plantillas de productos</string>
+    <string name="synchronization_list_item_adapter_productul">Formato de productos</string>
+    <string name="synchronization_list_item_adapter_state">Provincias</string>
+    <string name="synchronization_list_item_adapter_stockmove">StockMove</string>
+    <string name="synchronization_list_item_adapter_stockpickingout">StockPickingOut</string>
+    <string name="synchronization_list_item_adapter_voucher">Voucher</string>
+    <string name="synchronization_list_item_adapter_voucherline">VoucherLine</string>
+
+    <!-- partner edition -->
+    <string name="activity_partner_edition_title">Editar</string>
+    <string name="activity_partner_edition_saved_and_synchronized">Cliente guardado y sincronizado</string>
+    <string name="activity_partner_edition_not_synchronized">Cliente no sincronizado. Ha de realizar la sincronización manual.</string>
+
+    <!-- activity product catalog -->
+    <string name="activity_product_catalog_title">Catálogo</string>
+    <string name="fragment_product_catalog_search_field_hint">Buscar...</string>
+    <string name="fragment_product_catalog_filtrar">Filtrar</string>
+    <string name="fragment_product_catalog_stock">Stock: </string>
+    <string name="fragment_product_catalog_type_frozen">frozen</string>
+
+    <!-- select partner dialog -->
+    <string name="cannot_retrieve_partner">No se ha podido recuperar el cliente</string>
+    <string name="partner_has_no_ref">El cliente no tiene referencia asignada.</string>
+
+    <!-- activity order -->
+    <string name="activity_order_title">Pedido</string>
+    <string name="fragment_order_order_number_text">Nº de pedido:</string>
+    <string name="fragment_order_delivery_date_text">Fecha de entrega:</string>
+    <string name="fragment_order_address_text">Dirección:</string>
+    <string name="fragment_order_total_lines_text">Total Líneas:</string>
+    <string name="fragment_order_amount_text">Importe:</string>
+    <string name="fragment_order_margin_text">Margen:</string>
+    <string name="fragment_order_notes_text">Nota:</string>
+    <string name="fragment_order_catalog_btn_text">Catálogo</string>
+    <string name="fragment_order_list_header_product">Producto</string>
+    <string name="fragment_order_list_header_quantity">Cant.</string>
+    <string name="fragment_order_list_header_price">Precio</string>
+    <string name="fragment_order_list_header_discount">Desc.</string>
+    <string name="fragment_order_list_header_total">Total</string>
+    <string name="fragment_order_modify_line_option">Modificar línea</string>
+    <string name="fragment_order_last_sold_option">Últimas ventas</string>
+    <string name="fragment_order_view_product_card_option">Ver ficha de producto</string>
+
+    <!-- activity product card -->
+    <string name="activity_product_card_title">Ficha de producto</string>
+    <string name="fragment_product_card_code_text">Código</string>
+    <string name="fragment_product_card_stock_text">Stock</string>
+    <string name="fragment_product_card_price_text">Precio</string>
+    <string name="fragment_product_card_format_text">Formato</string>
+    <string name="fragment_product_card_send_card">Enviar ficha</string>
+    <string name="fragment_product_card_see_catalog">Volver</string>
+    <string name="fragment_product_card_general">General</string>
+    <string name="fragment_product_card_logistics">Logística</string>
+    <string name="fragment_product_card_relationed">Relacionados</string>
+    <string name="fragment_product_card_sustitutive">Sustitutivos</string>
+    <string name="fragment_product_card_mandatory_units">UNIDADES OBLIGATORIAS</string>
+    <string name="fragment_product_card_kg">Kilos</string>
+    <string name="fragment_product_card_per_unit">por Unidad:</string>
+    <string name="fragment_product_card_unit">Unidades</string>
+    <string name="fragment_product_card_per_box">por Caja:</string>
+    <string name="fragment_product_card_box">Cajas</string>
+    <string name="fragment_product_card_per_manto">por Manto:</string>
+    <string name="fragment_product_card_manto">Mantos</string>
+    <string name="fragment_product_card_per_palet">por Palet:</string>
+    <string name="fragment_product_unit_sizes">Unidad:</string>
+    <string name="fragment_product_box_sizes">Caja:</string>
+    <string name="fragment_product_manto_sizes">Manto:</string>
+    <string name="fragment_product_palet_sizes">Palet:</string>
+    <string name="fragment_product_card_width">Ancho:</string>
+    <string name="fragment_product_card_height">Alto:</string>
+    <string name="fragment_product_card_total_height">Alto total</string>
+    <string name="fragment_product_card_length">Largo:</string>
+    <string name="fragment_product_card_weights">PESOS:</string>
+    <string name="fragment_product_card_volume">Volumen:</string>
+    <string name="fragment_product_card_weight">Peso bruto</string>
+    <string name="fragment_product_card_type_of">Tipo de</string>
+    <string name="fragment_product_card_palet">palet:</string>
+    <string name="fragment_product_card_ean13">Ean13:</string>
+    <string name="fragment_product_card_dun14">Dun14:</string>
+
+
+    <!-- filter catalog dialog -->
+    <string name="dialog_product_catalog_filters_temperature">Temperatura</string>
+    <string name="dialog_product_catalog_filters_spinner_category">Categoría</string>
+    <string name="dialog_product_catalog_filters_spinner_subcategory">Subcategoría</string>
+
+    <!-- dialog product to cart -->
+    <string name="dialog_product_to_cart_stock">Stock:</string>
+    <string name="dialog_product_to_cart_sample">Muestra</string>
+    <string name="dialog_product_to_cart_quantity_text">Cantidad:</string>
+    <string name="dialog_product_to_cart_amount_text">Importe Total:</string>
+    <string name="dialog_product_to_cart_margin_text">Margen Bruto:</string>
+    <string name="dialog_product_to_cart_price_text">Precio:</string>
+    <string name="dialog_product_to_cart_discount_text">Descuento:</string>
+    <string name="dialog_product_to_cart_add_to_cart">Añadir a la cesta</string>
+    <string name="dialog_product_to_cart_line_added">Se ha añadido al pedido</string>
+
+    <!-- invoice activity -->
+    <string name="activity_invoice_title">Facturas</string>
+    <string name="fragment_invoice_list_search_field_hint">Buscar...</string>
+    <string name="fragment_invoice_list_filtrar">Filtrar</string>
+    <string name="fragment_invoice_list_item_code">Código</string>
+    <string name="fragment_invoice_list_item_date">Fecha</string>
+    <string name="fragment_invoice_list_item_amount">Importe</string>
+    <string name="fragment_invoice_list_item_state">Estado</string>
+    <string name="fragment_invoice_send_invoice">Enviar factura</string>
+    <string name="fragment_invoice_pay_invoice">Cobrar</string>
+    <string name="fragment_invoice_exactly_one_item_selected_to_pay">Tiene que haber exactamente una factura seleccionada para proceder al cobro</string>
+    <string name="dialog_invoice_date_from">Fecha desde</string>
+    <string name="dialog_invoice_date_to">Fecha desde</string>
+    <string name="dialog_invoice_amount_less_than">Importe &lt;</string>
+    <string name="dialog_invoice_amount_more_than">Importe &gt;</string>
+    <string name="filter_invoices_dialog_states">Estado</string>
+
+    <!-- invoice detail activity -->
+    <string name="activity_invoice_detail_invoice_cannot_be_showed">No se puede mostrar la factura</string>
+    <string name="activity_invoice_detail_invoice">FACTURA</string>
+    <string name="activity_invoice_detail_partner">Cliente:</string>
+    <string name="activity_invoice_detail_date">Fecha:</string>
+    <string name="activity_invoice_detail_quantity">Cantidad</string>
+    <string name="activity_invoice_detail_product">Producto</string>
+    <string name="activity_invoice_detail_unit_price">P. unit.</string>
+    <string name="activity_invoice_detail_unit_amount_without_taxes">Precio sin impuestos:</string>
+    <string name="activity_invoice_detail_unit_amount_taxes">Impuestos:</string>
+    <string name="activity_invoice_detail_unit_amount_total">TOTAL:</string>
+    <string name="activity_invoice_detail_title">Detalle factura</string>
+
+    <!-- dialog income registration -->
+    <string name="dialog_income_registration_amount_to_get">Importe a cobrar</string>
+    <string name="dialog_income_registration_check_number">Núm. cheque</string>
+    <string name="dialog_income_registration_title">COBRAR FACTURA</string>
+    <string name="dialog_income_registration_payment_done">"Ha emitido un pago de %1$s€ a MIDBAN, correspondiente a la factura: %2$s</string>
+    <string name="dialog_income_registration_payment_ticket">Justificante de pago</string>
+    <string name="dialog_income_registration_payment_registered_and_sent_to_server">Pago registrado y enviado al servidor</string>
+    <string name="dialog_income_registration_due_date">Vencimiento:</string>
+    <string name="dialog_income_registration_dialog_invoice_number_label">Nº de factura:</string>
+    <string name="dialog_income_registration_dialog_invoice_due_date_label">Vencimiento:</string>
+    <string name="dialog_income_registration_amount_to_really_get">Cantidad cobrada:</string>
+    <string name="dialog_income_registration_payment_method">Forma de pago:</string>
+    <string name="dialog_income_registration_check"># Talón:</string>
+    <string name="dialog_income_registration_check_due_date">Vencimiento:</string>
+    <string name="dialog_income_registration_account">Cuenta:</string>
+    <string name="dialog_income_registration_amount_not_correct">El importe a cobrar ha de ser mayor que cero y como máximo igual al importe a cobrar.</string>
+    <string name="dialog_income_registration_check_mandatory">El número de cheque es obligatorio cuando se paga con cheque.</string>
+    <string name="dialog_income_registration_check_due_date_mandatory">La fecha de vencimiento del cheque es obligatoria cuando se paga con cheque.</string>
+    <string name="dialog_income_registration_account_mandatory">La cuenta del cheque es obligatoria cuando se paga con cheque.</string>
+    <string name="dialog_income_registration_rest">Resto:</string>
+
+    <!-- Today activity -->
+    <string name="activity_today_title">Actividad hoy</string>
+    <string name="fragment_today_tab_orders">Pedidos</string>
+    <string name="fragment_today_tab_incomes">Cobros</string>
+    <string name="fragment_today_tab_devolutions">Devoluciones</string>
+    <string name="fragment_today_last_synchronization_date">Última sincr.: </string>
+
+    <!-- OrderListFragment -->
+    <string name="fragment_order_list_header_code">Pedido</string>
+    <string name="fragment_order_list_header_partner">Cliente</string>
+    <string name="fragment_order_list_header_date">Fecha</string>
+    <string name="fragment_order_list_header_amount">Importe</string>
+    <string name="fragment_order_list_header_lines">Lín.</string>
+    <string name="fragment_order_list_header_state">Estado</string>
+    <string name="fragment_order_list_num_orders">Número de pedidos:</string>
+    <string name="fragment_order_list_amount_orders">Importe pedidos:</string>
+    <string name="fragment_order_list_margin_orders">Margen pedidos:</string>
+
+    <!-- IncomeListFragment -->
+    <string name="fragment_income_list_header_code">Factura</string>
+    <string name="fragment_income_list_header_partner">Cliente</string>
+    <string name="fragment_income_list_header_payment_method">Método de pago</string>
+    <string name="fragment_income_list_header_amount">Importe</string>
+    <string name="fragment_income_list_header_state">Estado</string>
+    <string name="fragment_income_list_num_incomes">Número de cobros:</string>
+    <string name="fragment_income_list_amount_incomes">Total cobrado:</string>
+    <string name="fragment_income_list_check_amount_incomes">Importe talón:</string>
+    <string name="fragment_income_list_cash_amount_incomes">Importe efectivo:</string>
+
+    <!-- Income Activity -->
+    <string name="activity_income_title">Cobros</string>
+
+    <!-- Favourites Partner Fragment -->
+    <string name="fragment_partner_favourites_search_field_hint">Buscar...</string>
+    <string name="fragment_partner_favourites_filtrar">Filtrar</string>
+    <string name="fragment_partner_favourite_stock">Stock: </string>
+    <string name="fragment_partner_favourite_type_frozen">frozen</string>
+    <string name="fragment_partner_favourites_title">Favoritos:</string>
+    <string name="fragment_partner_favourites_last_order_selector">Último pedido</string>
+    <string name="fragment_partner_favourites_last_30_days_selector">30 días</string>
+    <string name="fragment_partner_favourites_last_year_selector">365 días</string>
+    <string name="fragment_partner_favourites_add_to_cart">Añadir cesta</string>
+    <string name="fragment_partner_favourites_catalog_btn_text">Catálogo</string>
+    <string name="fragment_partner_favourites_added_to_cart">Los productos se han añadido a la cesta</string>
+    <string name="fragment_partner_favourites_at_least_one_product_selected">Debe seleccionar al menos un producto</string>
+
+    <!-- Dialog Partner Favourites Filter -->
+    <string name="dialog_partner_favourite_filters_temperature">Temperatura</string>
+    <string name="dialog_partner_favourite_filters_spinner_category">Categoría</string>
+    <string name="dialog_partner_favourite_filters_spinner_subcategory">Subcategoría</string>
+
+    <!-- Fragment last sales -->
+    <string name="fragment_last_sales_back_to_cart">Volver a la cesta</string>
+    <string name="fragment_last_sales_list_header_date">Fecha</string>
+    <string name="fragment_last_sales_list_header_quantity">Cant.</string>
+    <string name="fragment_last_sales_list_header_lines">Líneas</string>
+    <string name="fragment_last_sales_list_header_price">Precio</string>
+    <string name="fragment_last_sales_list_header_discount">Desc.</string>
+    <string name="fragment_last_sales_list_header_total">Total</string>
+    <string name="activity_last_sales_title">Últimas ventas</string>
+
+    <!-- partner history fragment -->
+    <string name="fragment_partner_history_list_search_field_hint">Buscar...</string>
+    <string name="fragment_partner_history_list_filtrar">Filtrar</string>
+    <string name="fragment_partner_history_list_item_order">Pedido</string>
+    <string name="fragment_partner_history_list_item_date">Fecha</string>
+    <string name="fragment_partner_history_list_item_amount">Importe</string>
+    <string name="fragment_partner_history_list_item_lines">Líneas</string>
+    <string name="fragment_partner_history_list_item_state">Estado</string>
+    <string name="fragment_partner_history_list_item_invoiced">Pagado</string>
+    <string name="fragment_partner_history_list_item_shipped">Entregado</string>
+    <string name="dialog_partner_history_date_from">Fecha desde</string>
+    <string name="dialog_partner_history_date_to">Fecha desde</string>
+    <string name="dialog_partner_history_amount_less_than">Importe &lt;</string>
+    <string name="dialog_partner_history_amount_more_than">Importe &gt;</string>
+    <string name="filter_partner_history_dialog_states">Estado</string>
+    <string name="fragment_partner_history_order_detail_address">Dirección:</string>
+    <string name="fragment_partner_history_order_detail_list_item_product">Producto</string>
+    <string name="fragment_partner_history_order_detail_list_item_quantity">Cant.</string>
+    <string name="fragment_partner_history_order_detail_list_item_amount">Precio</string>
+    <string name="fragment_partner_history_order_detail_list_item_discount">Dto.</string>
+    <string name="fragment_partner_history_order_detail_list_item_total">Total</string>
+    <string name="fragment_partner_history_order_detail_order_number">Nº de pedido:</string>
+    <string name="fragment_partner_history_order_detail_lines">Líneas:</string>
+    <string name="fragment_partner_history_order_detail_date">Fecha de pedido:</string>
+    <string name="fragment_partner_history_order_detail_delivery_date">Fecha de entrega: </string>
+    <string name="fragment_partner_history_order_detail_amount">Importe: </string>
+    <string name="fragment_partner_history_order_detail_margin">Margen:</string>
+    <string name="fragment_partner_history_order_detail_send_order">Enviar pedido</string>
+    <string name="fragment_partner_history_order_detail_repeat_order">Repetir pedido</string>
+    <string name="pdf_order_title">Pedido</string>
+    <string name="pdf_order_date">Fecha</string>
+    <string name="pdf_order_quantity">Cantidad</string>
+    <string name="pdf_order_product">Producto</string>
+    <string name="pdf_order_unit_price">Precio Unit.</string>
+    <string name="pdf_order_amount_without_taxes">Importe (sin imp.):</string>
+    <string name="pdf_order_amount_taxes">Impuestos:</string>
+    <string name="pdf_order_amount_total">Total:</string>
+
+    <!-- Calendar -->
+    <string name="activity_calendar_title">Agenda</string>
+    <string name="fragment_calendar_new_task">+ Nueva tarea</string>
+    <string name="activity_new_calendar_task_title">Nueva tarea</string>
+    <string name="fragment_new_calendar_task_new_task_title">Título de la tarea</string>
+    <string name="fragment_new_calendar_task_new_task_address">Dirección</string>
+    <string name="fragment_new_calendar_task_init_date">Fecha inicio:</string>
+    <string name="fragment_new_calendar_task_end_date">Fecha fin:</string>
+    <string name="fragment_new_calendar_task_description">Descripción:</string>
+    <string name="fragment_calendar_new_task_end_date_less_than_init_date">La hora de finalización no puede ser menor que la de inicio</string>
+
+    <string-array name="task_types">
+        <item>Visita</item>
+        <item>Llamada</item>
+        <item>Tarea interna</item>
+    </string-array>
+
+    <string name="fragment_new_calendar_task_select_partner">Seleccionar cliente</string>
+    <string name="fragment_new_calendar_task_partner">Cliente</string>
+    <string name="fragment_new_calendar_task_select_date">Seleccionar fecha</string>
+    <string name="fragment_calendar_new_task_partner_null">Ha de seleccionar un cliente</string>
+    <string name="fragment_calendar_new_task_title_null">El título no puede estar vacío</string>
+    <string name="fragment_calendar_new_task_address_null">La dirección no puede estar vacía</string>
+    <string name="fragment_calendar_new_task_init_date_null">La fecha de inicio ha de tener el formato dd.MM.yyyy</string>
+    <string name="fragment_calendar_new_task_end_date_null">La fecha de fin ha de tener el formato dd.MM.yyyy</string>
+    <string name="fragment_calendar_new_task_init_hour_null">La hora de inicio ha de tener el formato hh:mm</string>
+    <string name="fragment_calendar_new_task_end_hour_null">La hora de fin ha de tener el formato hh:mm</string>
+    <string name="fragment_calendar_new_task_description_null">La descripción no puede estar vacía</string>
+    <string name="dialog_task_filters_free">Cliente...</string>
+    <string name="activity_task_detail_title">Tarea</string>
+    <string name="fragment_task_detail_task_type_label_tv">Tipo de tarea</string>
+
+    <!-- partner deliverynote fragment -->
+    <string name="fragment_partner_deliverynote_list_search_field_hint">Buscar...</string>
+    <string name="fragment_partner_deliverynote_list_filtrar">Filtrar</string>
+    <string name="fragment_partner_deliverynote_list_item_number">Número</string>
+    <string name="fragment_partner_deliverynote_list_item_date">Fecha</string>
+    <string name="fragment_partner_deliverynote_list_item_lines">Líneas</string>
+    <string name="fragment_partner_deliverynote_list_item_state">Estado</string>
+    
+    <!-- Delivery notes -->
+    <string name="fragment_partner_delivery_note_detail_address">Dirección:</string>
+    <string name="fragment_partner_delivery_note_detail_list_item_product">Producto</string>
+    <string name="fragment_partner_delivery_note_detail_list_item_quantity">Cant.</string>
+    <string name="fragment_partner_delivery_note_detail_list_item_amount">Precio</string>
+    <string name="fragment_partner_delivery_note_detail_list_item_discount">Dto.</string>
+    <string name="fragment_partner_delivery_note_detail_list_item_total">Total</string>
+    <string name="fragment_partner_delivery_note_detail_order_number">Nº de pedido:</string>
+    <string name="fragment_partner_delivery_note_detail_lines">Líneas:</string>
+    <string name="fragment_partner_delivery_note_detail_date">Fecha de pedido:</string>
+    <string name="fragment_partner_delivery_note_detail_delivery_date">Fecha de entrega: </string>
+    <string name="fragment_partner_delivery_note_detail_amount">Importe: </string>
+    <string name="fragment_partner_delivery_note_detail_margin">Margen:</string>
+    <string name="fragment_partner_delivery_note_detail_view_invoice">Ver factura</string>
+    <string name="fragment_partner_delivery_note_detail_issue_note">Anotar incid.</string>
+    <string name="fragment_partner_delivery_note_detail_accept_delivery_note">Aceptar alb.</string>
+    <string name="fragment_partner_delivery_note_detail_this_order_has_not_invoice_related">Este pedido no tiene todavía facturas asociadas</string>
+    
+    <string name="dialog_partner_delivery_note_date_from">Fecha desde</string>
+    <string name="dialog_partner_delivery_note_date_to">Fecha desde</string>
+    <string name="dialog_partner_delivery_note_amount_less_than">Importe &lt;</string>
+    <string name="dialog_partner_delivery_note_amount_more_than">Importe &gt;</string>
+    <string name="filter_partner_delivery_note_dialog_states">Estado</string>
+
+	<!-- partner reservations fragment -->
+	<string name="fragment_partner_reservations_list_product_filtrar">Filtrar</string>
+    <string name="fragment_partner_reservations_list_product_search_field_hint">Buscar...</string>
+    <string name="dialog_product_reservations_filters_temperature">Temperatura</string>
+    <string name="dialog_product_reservations_filters_spinner_category">Categoría</string>
+    <string name="dialog_product_reservations_filters_spinner_subcategory">Subcategoría</string>
+
+        <!-- dialog product to reservation -->
+    <string name="dialog_product_to_reservation_stock">Stock:</string>
+    <string name="dialog_product_to_reservation_quantity_text">Cantidad:</string>
+    <string name="dialog_product_to_reservation_amount_text">Importe Total:</string>
+    <string name="dialog_product_to_reservation_margin_text">Margen Bruto:</string>
+    <string name="dialog_product_to_reservation_price_text">Precio:</string>
+    <string name="dialog_product_to_reservation_discount_text">Descuento:</string>
+    <string name="dialog_product_to_reservation_add">Reservar</string>
+
+    <!-- activity reservation -->
+    <string name="activity_reservation_title">Reserva</string>
+    <string name="activity_portada_ruta">Ruta</string>
+    <string name="title_activity_route">RouteActivity</string>
+    <string name="activity_route_title">Rutas</string>
+    <string name="route_list_item_make_order_tv">Pedido</string>
+    <string name="route_list_item_make_income_tv">Cobro</string>
+    <string name="route_list_item_close_visit_tv">Res. visita</string>
+    <string name="route_list_item_income_pending">Pend. cobro:</string>
+    <string name="route_list_item_orders_made">Pedidos:</string>
+    <string name="activity_portada_medios">Gestión de medios</string>
+    <string name="route_list_item_visit_tv">Visita:</string>
+    <string name="route_list_item_opening_hours_tv">Horario:</string>
+    <string name="hyphen">-</string>
+    <string name="route_list_item_orders_tv">Pedidos</string>
+    <string name="route_list_item_income_tv">Deuda</string>
+    <string name="route_list_item_medium_tv">Medios</string>
+    <string name="fragment_route_error_obtaining_routes">No se han podido obtener las rutas</string>
+    <string name="order_must_have_items">El pedido ha de tener al menos un producto</string>
+    <string name="order_must_have_a_date">El pedido ha de tener una fecha válida</string>
+    <string name="order_must_have_an_address">El pedido ha de tener una dirección válida</string>
+    <string name="fragment_configuration_configuration_logemail">E-Mail Logs</string>
+    <string name="dialog_income_done_title">COBRO REALIZADO CORRECTAMENTE</string>
+    <string name="ok">Aceptar</string>
+    <string name="fragment_order_repeat_btn">Repetir pedido</string>
+    <string name="fragment_order_send_mail">Enviar por e-mail</string>
+    <string name="ordenar_categoria">Ord. categoría</string>
+    <string name="ordenar_alfabeticamente">Ord. alfabético</string>
+    <string name="loading_more_items">cargando...</string>
+    <string name="fragment_partner_append_quick_product">Añadir</string>
+    <string name="cannot_retrieve_product">No se puede recuperar el producto.</string>
+    <string name="activity_portada_select_product_dialog">Seleccionar producto</string>
+    <string name="product_not_selected">Ha de seleccionar un producto</string>
+    <string name="fragment_order_new_disposition_delivery_date_tv">Entrega:</string>
+    <string name="fragment_order_new_disposition_product_favourites">Favoritos</string>
+    <string name="fragment_order_new_disposition_all_catalog">Todo el catálogo</string>
+    <string name="fragment_order_new_disposition_lines_header_product">Producto</string>
+    <string name="fragment_order_new_disposition_lines_header_quantity">Cant.</string>
+    <string name="fragment_order_new_disposition_lines_header_unit_price">P. Unit.</string>
+    <string name="fragment_order_new_disposition_lines_header_total">Total</string>
+    <string name="fragment_order_new_disposition_lines_header_discount">Desc.</string>
+    <string name="logout">Salir</string>
+    <string name="configuration">Configuración</string>
+    <string name="order_catalog">Ordenar</string>
+    <string name="loading_new_line">calculando precios</string>
+    <string name="cannot_confirm_while_calculating_prices">No se puede confirmar un pedido mientras se están calculando precios</string>
+    <string name="units_cannot_be_modified_when_read_only_mode">No se pueden cambiar las unidades de este pedido. Está en modo lectura.</string>
+    <string name="product_was_already_added">El producto ya se había añadido. Sólo puede haber dos líneas para el mismo producto y una de ellas ha de tener precio = 0.</string>
+    <string name="cancelacion_pedido">Cancelación de pedido</string>
+    <string name="realmente_desea_cancelar_pedido">¿Desea realmente cancelar el pedido?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="confirmacion_pedido">Confirmación de pedido</string>
+    <string name="realmente_desea_confirmar_pedido">¿Desea confirmar el pedido?</string>
+    <string name="confirmar_configuracion">Confirmar guardado</string>
+    <string name="realmente_desea_confirmar_configuracion">¿Desea guardar la configuración con este almacén? NO podrá cambiar de almacén sin borrar los datos de la aplicación.</string>
+    <string name="error_saving_order">Error al guardar el pedido. Si es una edición, probablemente el pedido ya no pueda editarse.</string>
+    <string name="income_not_saved">No se ha podido conectar con el servidor para registrar el cobro.</string>
+    <string name="error_irrecuperable_en_pedido">ERROR IRRECUPERABLE EN PEDIDO. Contacta con un administrador.</string>
+    <string name="error_recuperable_en_pedido">PENDIENTE: el pedido no se ha sincronizado por un fallo de red. Se intentará su reenvío más tarde.</string>
+    <string name="error_al_anadir_producto">ERROR al añadir producto. Si persiste cierre la aplicación y vuelva a intentarlo.</string>
+</resources>
