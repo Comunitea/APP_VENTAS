@@ -117,20 +117,22 @@ public class OrderListItemAdapter extends BaseAdapter {
 //            holder = (ViewHolder) vi.getTag();
 
         final Order order = orders.get(position);
-        if (order.getPendingSynchronization() == null || order.getPendingSynchronization() != 1L) {
-            holder.partnerName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    OrderRepository.setCurrentOrder(order);
-                    OrderRepository.getCurrentOrder().setLines(order.getLinesPersisted());
-                    MidbanApplication.putValueInContext(ContextAttributes.READ_ONLY_ORDER_MODE,
-                            Boolean.TRUE);
-                    Intent intent = new Intent(v.getContext(),
-                            OrderActivity.class);
-                    intent.putExtras(new Bundle());
-                    v.getContext().startActivity(intent);
-                }
-            });
+        if (order.getState() != null && !order.getState().contains("draft")) {
+            if (order.getPendingSynchronization() == null || order.getPendingSynchronization() != 1L) {
+                holder.partnerName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderRepository.setCurrentOrder(order);
+                        OrderRepository.getCurrentOrder().setLines(order.getLinesPersisted());
+                        MidbanApplication.putValueInContext(ContextAttributes.READ_ONLY_ORDER_MODE,
+                                Boolean.TRUE);
+                        Intent intent = new Intent(v.getContext(),
+                                OrderActivity.class);
+                        intent.putExtras(new Bundle());
+                        v.getContext().startActivity(intent);
+                    }
+                });
+            }
         }
         if (!(order.getState().equals("manual") || order.getState().equals("progress") || order.getState().equals("wait_risk"))) {
             holder.edit.setVisibility(View.GONE);
@@ -165,7 +167,7 @@ public class OrderListItemAdapter extends BaseAdapter {
             try {
                 holder.date
                         .setText(DateUtil.toFormattedString(DateUtil.parseDate(
-                                        order.getDatePlanned(), "yyyy-MM-dd HH:mm:ss"),
+                                        order.getRequestedDate(), "yyyy-MM-dd HH:mm:ss"),
                                 "dd.MM.yyyy"));
             } catch (Exception ex) {
                 holder.date.setText("");

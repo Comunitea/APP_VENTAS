@@ -18,12 +18,16 @@
 package com.cafedered.midban.view.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cafedered.cafedroidlitedao.extractor.Restriction;
@@ -63,6 +67,7 @@ public class LoginActivity extends BaseSupportActivity {
     private EditText password;
 
     private Configuration configuration;
+
 
     @Override
     protected void onResume() {
@@ -122,6 +127,8 @@ public class LoginActivity extends BaseSupportActivity {
             MidbanApplication.putValueInContext(ContextAttributes.LOGGED_USER, UserRepository.getInstance().getLastUserLogged());
             startActivity(getNextIntent(new Bundle(), LoginActivity.this, PortadaActivity.class));
         }
+        ImageView iv = findViewById(R.id.activity_login_midban_logo_iv);
+        iv.setImageResource(MidbanApplication.getResourceLogo());
     }
 
     @Override
@@ -152,9 +159,12 @@ public class LoginActivity extends BaseSupportActivity {
 //            showDialog = true)
     @Click(view = R.id.activity_login_button_enter)
     public void login() throws ServiceException, UserNotFoundException {
+        final String usernameString = username.getText().toString();
+        final String paswordString = password.getText().toString();
         new AsyncTask<Void, Void, Boolean>() {
 
             ProgressDialog progress;
+
 
             @Override
             protected void onPreExecute() {
@@ -167,27 +177,32 @@ public class LoginActivity extends BaseSupportActivity {
             protected Boolean doInBackground(
                     Void... params) {
                 try {
-                    SessionFactory.getInstance(username.getText().toString(), password
-                            .getText().toString());
-                    if (UserRepository.getInstance().getByExample(User.create(username.getText().toString(),
-                            null, null), Restriction.AND, true, 0, 1) == null || UserRepository.getInstance().getByExample(User.create(username.getText().toString(),
+                    SessionFactory.getInstance(usernameString, paswordString);
+                    if (UserRepository.getInstance().getByExample(User.create(usernameString,
+                            null, null), Restriction.AND, true, 0, 1) == null || UserRepository.getInstance().getByExample(User.create(usernameString,
                             null, null), Restriction.AND, true, 0, 1).size() == 0)
-                        UserRepository.getInstance().synchronizeUsers(username.getText().toString(), password
-                            .getText().toString());
+                        UserRepository.getInstance().synchronizeUsers(usernameString, paswordString);
                     MidbanApplication.putValueInContext(ContextAttributes.LOGGED_USER,
                             User.create(
-                                    username.getText().toString(), password.getText()
-                                            .toString(), SessionFactory.getInstance(username.getText().toString(),
-                                            password.getText().toString()).getUserId(username.getText().toString(),
-                                            password.getText().toString())));
+                                    usernameString, paswordString, SessionFactory.getInstance(usernameString,
+                                            paswordString).getUserId(usernameString,
+                                            paswordString)));
                     User user = new User();
-                    user.setLogin(username.getText().toString());
+                    user.setLogin(usernameString);
                     List<User> users =  UserRepository.getInstance().getByExample(user, Restriction.AND, true, 0, 100);
                     if  (users != null && users.size() > 0)
                         user = users.get(0);
-                    user.setPasswd(password
-                            .getText().toString());
+                    user.setPasswd(paswordString);
                     user.setFechaLogin(DateUtil.toFormattedString(new Date(), "ddMMyyyyHHmmss"));
+
+                    // comprobación de si el usuario pertenece a la compañía
+/*
+                    if (!(MidbanApplication.activeCompany == user.getCompanyId().intValue())){
+                        return false;
+                    }
+*/
+
+
                     UserRepository.getInstance().saveOrUpdate(user);
                     return true;
                 } catch (Exception e) {
@@ -196,8 +211,8 @@ public class LoginActivity extends BaseSupportActivity {
                     boolean userOk = false;
                     try {
                         userOk = UserRepository.getInstance().authenticateUserInDB(
-                                username.getText().toString(),
-                                password.getText().toString());
+                                usernameString,
+                                paswordString);
                     } catch (ServiceException e1) {
                         if (LoggerUtil.isDebugEnabled())
                             e1.printStackTrace();
@@ -206,10 +221,10 @@ public class LoginActivity extends BaseSupportActivity {
                     if (userOk) {
                         try {
                             User user = User.create(
-                                    username.getText().toString(),
-                                    password.getText().toString(),
+                                    usernameString,
+                                    paswordString,
                                     UserRepository.getInstance().getByExample(
-                                            User.create(username.getText().toString(),null, null),
+                                            User.create(usernameString,null, null),
                                             Restriction.AND,
                                             true,
                                             0,

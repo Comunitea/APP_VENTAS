@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageView
+<!--        <ImageView
             android:id="@+id/activity_login_midban_logo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +28,15 @@
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/activity_login_midban_logo"
             android:src="@drawable/logo_midban" />
+-->
+        <ImageView
+            android:id="@+id/activity_login_midban_logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/activity_login_midban_logo"
+             />
 
     </LinearLayout>
 

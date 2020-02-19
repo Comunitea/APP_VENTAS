@@ -203,8 +203,9 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
         });
         if (line.getPriceUnit() != null && line.getPriceUnit().floatValue() != 0.0000000001)
             // DAVID - CAMBIÉ getPriceUdv por getPriceUnit
+            // cambio a 3 decimales
             holder.price.setText(new BigDecimal(line.getPriceUnit()
-                    .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
+                    .doubleValue()).setScale(3, RoundingMode.HALF_UP) + "");
         else
             holder.price.setText("cargando...");
 
@@ -239,11 +240,12 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
             holder.lessIconUos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (line.getProductUosQuantity().floatValue() >= 1.0){
+
                     // de esta forma redondeo
-                    if (line.getProductUosQuantity().floatValue() == line.getProductUosQuantity().longValue()){
+                    if (line.getProductUosQuantity().floatValue() == line.getProductUosQuantity().longValue()) {
                         line.setProductUosQuantity(line.getProductUosQuantity().floatValue() - 1.0);
-                    }
-                    else{
+                    } else {
                         line.setProductUosQuantity(line.getProductUosQuantity().longValue());
                     }
 
@@ -266,6 +268,7 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                                 .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
 
                     fragment.loadOnResume();
+                }
                 }
             });
             holder.plusIconUos.setOnClickListener(new View.OnClickListener() {
@@ -303,26 +306,28 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
             holder.lessIconUom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    line.setProductUomQuantity(line.getProductUomQuantity().floatValue() - 1.0);
+                    if (line.getProductUomQuantity().floatValue() >= 1.0) {
+                        line.setProductUomQuantity(line.getProductUomQuantity().floatValue() - 1.0);
 
-                    if (line.getProductUosQuantity() != null) {
-                        String quantityUos = line.getProductUosQuantity().toString();
-                        if (quantityUos != null && quantityUos.endsWith(".0"))
-                            quantityUos = quantityUos.replace(".0", "");
-                        holder.quantityUos.setText(quantityUos);
+                        if (line.getProductUosQuantity() != null) {
+                            String quantityUos = line.getProductUosQuantity().toString();
+                            if (quantityUos != null && quantityUos.endsWith(".0"))
+                                quantityUos = quantityUos.replace(".0", "");
+                            holder.quantityUos.setText(quantityUos);
+                        }
+
+                        line.setPriceSubtotal(line.getProductUomQuantity().floatValue()
+                                * line.getPriceUnit().floatValue()
+                                - (line.getProductUomQuantity().floatValue()
+                                * line.getPriceUnit().floatValue()
+                                * line.getDiscount().floatValue() / 100F));
+
+                        if (line.getPriceSubtotal() != null)
+                            holder.total.setText(new BigDecimal(line.getPriceSubtotal()
+                                    .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
+
+                        fragment.loadOnResume();
                     }
-
-                    line.setPriceSubtotal(line.getProductUomQuantity().floatValue()
-                            * line.getPriceUnit().floatValue()
-                            - (line.getProductUomQuantity().floatValue()
-                            * line.getPriceUnit().floatValue()
-                            * line.getDiscount().floatValue() / 100F));
-
-                    if (line.getPriceSubtotal() != null)
-                        holder.total.setText(new BigDecimal(line.getPriceSubtotal()
-                                .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
-
-                    fragment.loadOnResume();
                 }
             });
             holder.plusIconUom.setOnClickListener(new View.OnClickListener() {

@@ -266,7 +266,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     public List<Order> getOrdersWithFilters(String state, String dateFrom,
             String dateTo, Float amountLessThan, Float amountMoreThan,
-            Long partnerId) {
+            Long partnerId, boolean orderByName) {
         String query;
         List<Order> result = new ArrayList<Order>();
         try {
@@ -303,6 +303,11 @@ public class OrderDAO extends BaseDAO<Order> {
                 args[count] = "" + amountMoreThan;
                 count++;
             }
+
+            if (orderByName){
+                query += " ORDER BY name DESC ";
+            }
+
             String[] params = new String[count];
             for (int i = 0; i < count; i++)
                 params[i] = args[i];

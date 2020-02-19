@@ -114,7 +114,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/separator_margin"
-                android:visibility="gone"
                 android:text="@string/fragment_partner_detail_tab_invoices" />
             
 			<TextView

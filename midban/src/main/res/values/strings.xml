@@ -47,6 +47,8 @@
         <item>com.cafedered.midban.entities.Tax</item>
         <item>com.cafedered.midban.entities.WeekDay</item>
         <item>com.cafedered.midban.entities.Warehouse</item>
+        <item>com.cafedered.midban.entities.Shop</item>
+        <item>com.cafedered.midban.entities.PricelistPrices</item>
     </string-array>
 
     <string name="configuration_debug_enabled">false</string>
@@ -121,7 +123,7 @@
     <string name="activity_login_password">Contraseña</string>
     <string name="activity_login_title">Identificación</string>
     <string name="activity_login_ok">Credenciales correctas</string>
-    <string name="activity_login_ko">Credenciales incorrectas</string>
+    <string name="activity_login_ko">Credenciales incorrectas o el usuario no pertenece a la empresa</string>
     <string name="activity_login_midban_logo">Midban</string>
     <string name="hello_world">Hello world!</string>
 
@@ -533,18 +535,22 @@
     <string name="order_must_have_items">El pedido ha de tener al menos un producto</string>
     <string name="order_must_have_a_date">El pedido ha de tener una fecha válida</string>
     <string name="order_must_have_an_address">El pedido ha de tener una dirección válida</string>
+    <string name="order_must_have_associated_shop">El pedido ha de tener una tienda asociada</string>
     <string name="fragment_configuration_configuration_logemail">E-Mail Logs</string>
     <string name="dialog_income_done_title">COBRO REALIZADO CORRECTAMENTE</string>
     <string name="ok">Aceptar</string>
     <string name="fragment_order_repeat_btn">Repetir pedido</string>
     <string name="fragment_order_send_mail">Enviar por e-mail</string>
     <string name="ordenar_categoria">Ord. categoría</string>
+    <string name="ordenar_referencia">Ord. referencia</string>
     <string name="ordenar_alfabeticamente">Ord. alfabético</string>
     <string name="loading_more_items">cargando...</string>
     <string name="fragment_partner_append_quick_product">Añadir</string>
     <string name="cannot_retrieve_product">No se puede recuperar el producto.</string>
     <string name="activity_portada_select_product_dialog">Seleccionar producto</string>
     <string name="product_not_selected">Ha de seleccionar un producto</string>
+    <string name="fragment_order_new_disposition_ref_tv">Referencia:</string>
+    <string name="fragment_order_new_disposition_shop_tv">Tienda:</string>
     <string name="fragment_order_new_disposition_delivery_date_tv">Entrega:</string>
     <string name="fragment_order_new_disposition_product_favourites">Favoritos</string>
     <string name="fragment_order_new_disposition_all_catalog">Todo el catálogo</string>

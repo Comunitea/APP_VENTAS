@@ -50,8 +50,12 @@ import com.cafedered.midban.annotations.Wire;
 import com.cafedered.midban.async.CancelAsyncTaskListener;
 import com.cafedered.midban.conf.ContextAttributes;
 import com.cafedered.midban.conf.MidbanApplication;
+import com.cafedered.midban.entities.Company;
+import com.cafedered.midban.entities.Order;
 import com.cafedered.midban.entities.Partner;
 import com.cafedered.midban.entities.Product;
+import com.cafedered.midban.service.repositories.CompanyRepository;
+import com.cafedered.midban.service.repositories.OrderRepository;
 import com.cafedered.midban.service.repositories.ProductRepository;
 import com.cafedered.midban.utils.LoggerUtil;
 import com.cafedered.midban.utils.exceptions.ConfigurationException;
@@ -83,6 +87,22 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    private String priceListToFilter(){
+        String priceListId = "";
+
+        if (OrderRepository.getInstance().isOrderInitialized()
+                && OrderRepository.getCurrentOrder().getPartnerId() != null){
+            priceListId = (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF);
+            //priceListId = OrderRepository.getCurrentOrder().getPartner().getPricelistId().toString();
+        }
+        if ((priceListId == null) || ("".equals(priceListId))){
+            if (!MidbanApplication.priceListIdActualCompany().equals("")) {
+                priceListId = MidbanApplication.priceListIdActualCompany();
+            }
+        }
+        return priceListId;
     }
 
     @Override
@@ -121,7 +141,8 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                 allProducts = ProductRepository.getInstance()
                         .getAllForPartner(partner.getId(), 0, 15, ordenarPorCategoria, ordenarAlfabeticamente);
             }
-            allProducts =  ProductRepository.getInstance().getAll(0, 20, ordenarPorCategoria, ordenarAlfabeticamente);
+            allProducts =  ProductRepository.getInstance().getAll(0, 20, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
+
         } catch (ConfigurationException e) {
             if (LoggerUtil.isDebugEnabled())
                 e.printStackTrace();
@@ -148,7 +169,8 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                     @Override
                     protected List<Product> doInBackground(Void... params) {
                         try {
-                            return ProductRepository.getInstance().getByExample(new Product(), Restriction.OR, false, 15, page * 15, true, false);
+                             return ProductRepository.getInstance().getByExample(new Product(), Restriction.OR, false, 15, (page-1) * 15, true, false, priceListToFilter());
+
                         } catch (ServiceException e) {
                             e.printStackTrace();
                             return new ArrayList<Product>();
@@ -211,7 +233,7 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                     if (LoggerUtil.isDebugEnabled())
                         Log.d(ProductCatalogFragment.class.getName(), "Búsqueda: " + ordenarAlfabeticamente + ", categoria: " + ordenarPorCategoria);
                     currentProducts.addAll(ProductRepository.getInstance().getByExample(
-                            productSearch, Restriction.OR, false, 15, 0, ordenarPorCategoria, ordenarAlfabeticamente));
+                            productSearch, Restriction.OR, false, 15, 0, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter()));
                 } catch (ServiceException e) {
                     e.printStackTrace();
                 }
@@ -245,7 +267,7 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                                 }
                                 try {
                                     result = ProductRepository.getInstance().getByExample(
-                                            productSearch, Restriction.OR, false, 15, page * 15, ordenarPorCategoria, ordenarAlfabeticamente);
+                                            productSearch, Restriction.OR, false, 15, (page-1) * 15, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
                                 } catch (ServiceException e) {
                                     e.printStackTrace();
                                 }

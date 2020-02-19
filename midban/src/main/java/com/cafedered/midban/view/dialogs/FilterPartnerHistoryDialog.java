@@ -146,7 +146,7 @@ public class FilterPartnerHistoryDialog extends Dialog {
                 list.setAdapter(new PartnerHistoryListItemAdapter(fragment,
                         OrderRepository.getInstance().getOrdersWithFilters(
                                 state, dateFrom, dateTo, amountLessThan,
-                                amountMoreThan, partner.getId())));
+                                amountMoreThan, partner.getId(), true)));
                 instance.cancel();
             }
         });

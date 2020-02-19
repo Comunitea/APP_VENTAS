@@ -162,9 +162,9 @@ public class OrderRepository extends BaseRepository<Order, OrderDAO> {
 
     public List<Order> getOrdersWithFilters(String state, String dateFrom,
             String dateTo, Float amountLessThan, Float amountMoreThan,
-            Long partnerId) {
+            Long partnerId, boolean orderByName) {
         return dao.getOrdersWithFilters(state, dateFrom, dateTo,
-                amountLessThan, amountMoreThan, partnerId);
+                amountLessThan, amountMoreThan, partnerId, orderByName);
     }
 
     public File getOrderAsPdf(Order order) throws ConfigurationException,

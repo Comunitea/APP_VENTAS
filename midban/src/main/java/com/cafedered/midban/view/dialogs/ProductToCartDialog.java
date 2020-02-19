@@ -170,6 +170,7 @@ public class ProductToCartDialog extends Dialog   {
                         .getCalculatedPrice(
                                 ProductToCartDialog.this.product,
                                 partner,
+                                (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF),
                                 ((User) MidbanApplication
                                         .getValueFromContext(ContextAttributes.LOGGED_USER))
                                         .getLogin(),

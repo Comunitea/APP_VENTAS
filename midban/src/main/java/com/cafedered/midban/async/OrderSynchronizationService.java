@@ -7,10 +7,12 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.cafedered.midban.conf.MidbanApplication;
+import com.cafedered.midban.entities.Company;
 import com.cafedered.midban.entities.Order;
 import com.cafedered.midban.entities.OrderLine;
 import com.cafedered.midban.service.repositories.OrderLineRepository;
 import com.cafedered.midban.service.repositories.OrderRepository;
+import com.cafedered.midban.service.repositories.SynchronizationRepository;
 import com.cafedered.midban.utils.LoggerUtil;
 import com.cafedered.midban.utils.SessionFactory;
 import com.cafedered.midban.utils.exceptions.ConfigurationException;
@@ -47,9 +49,9 @@ public class OrderSynchronizationService extends Service {
         public void run() {
             try {
                 OrderRepository.getInstance().getRemoteObjects(new Order(), MidbanApplication.getLoggedUser().getLogin(),
-                        MidbanApplication.getLoggedUser().getPasswd());
+                        MidbanApplication.getLoggedUser().getPasswd(), false);
                 OrderLineRepository.getInstance().getRemoteObjects(new OrderLine(), MidbanApplication.getLoggedUser().getLogin(),
-                        MidbanApplication.getLoggedUser().getPasswd());
+                        MidbanApplication.getLoggedUser().getPasswd(), false);
             } catch (ConfigurationException e) {
                 if (LoggerUtil.isDebugEnabled()) {
                     e.printStackTrace();
@@ -62,11 +64,22 @@ public class OrderSynchronizationService extends Service {
     private TimerTask updateTask = new TimerTask() {
         @Override
         public void run() {
+
+            if (LoggerUtil.isDebugEnabled()) {
+                System.out.println("Fase previa al trabajo de sincronización de pedidos...");
+                appendLog(new Date().toString() + "Fase previa al trabajo de sincronización de pedidos...");
+            }
+            String maxDateOld = SynchronizationRepository.getInstance().getMaxDateFor(Company.class);
+
+
             if (LoggerUtil.isDebugEnabled()) {
                 System.out.println("Timer for orders doing work");
                 appendLog(new Date().toString() + "Servicio en funcionamiento...");
             }
-            if (!anotherThreadSynchronizing) {
+            // el maxDateOld != null es una forma de comprobar que al menos se haya sincronizado por primera vez
+            // pues no tiene sentido hacer nada si no hubo ni siquiera una sincronización
+            // también miro que la app esté en primer plano, sino no sincronizo
+            if ((!anotherThreadSynchronizing) && (!"0001-01-01 00:00:00".equals(maxDateOld)) && (MidbanApplication.appInForeground)) {
                 anotherThreadSynchronizing = true;
                 if (LoggerUtil.isDebugEnabled()) {
                     System.out.println("Iniciando trabajo de sincronización de pedidos...");
@@ -118,18 +131,23 @@ public class OrderSynchronizationService extends Service {
                                 e.printStackTrace();
                             }
                             try {
-                            commandConfirm.callObjectFunction("sale.order",
-                                    "create_and_confirm", new Object[]{anOrder});
+                                SessionFactory
+                                        .getInstance(MidbanApplication.getLoggedUser().getLogin(),
+                                                MidbanApplication.getLoggedUser().getPasswd()).getSession().executeCommand("sale.order", "create_and_confirm", new Object[]{anOrder});
+
+                            // dejo lo de arriba para probar lo del context
+                            // commandConfirm.callObjectFunction("sale.order", "create_and_confirm", new Object[]{anOrder});
+                            // si ha ido bien la elimino
+                                itOrders.remove();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
-                        itOrders.remove();
                     }
 
                     OrderRepository.getInstance().getRemoteObjects(new Order(),
                             MidbanApplication.getLoggedUser().getLogin(),
-                            MidbanApplication.getLoggedUser().getPasswd());
+                            MidbanApplication.getLoggedUser().getPasswd(), false);
 
                     if (size > 0) {
                         try {

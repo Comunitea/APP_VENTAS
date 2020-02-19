@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,10 @@ import com.cafedered.midban.view.base.BaseSupportFragment;
 
 @Fragment(R.layout.fragment_partner_history_order_detail)
 public class PartnerHistoryOrderDetailFragment extends BaseSupportFragment {
+
+
+    @Wire(view = R.id.nsvScrollView)
+    private NestedScrollView nsvScrollView;
 
     @Wire(view = R.id.fragment_partner_history_order_detail_notes)
     private TextView orderNotes;
@@ -91,6 +96,9 @@ public class PartnerHistoryOrderDetailFragment extends BaseSupportFragment {
         View rootView = super.onCreateView(inflater, container,
                 savedInstanceState);
         setHasOptionsMenu(true);
+
+        nsvScrollView.setNestedScrollingEnabled(true);
+
         partner = ((Partner) MidbanApplication
                 .getValueFromContext(ContextAttributes.PARTNER_TO_DETAIL));
         if (partner == null)
@@ -98,7 +106,7 @@ public class PartnerHistoryOrderDetailFragment extends BaseSupportFragment {
                     .getValueFromContext(ContextAttributes.PARTNER_TO_INCOME));
         order = (Order) MidbanApplication
                 .getValueFromContext(ContextAttributes.ORDER_TO_DETAIL);
-        orderNumber.setText(order.getId().toString());
+        orderNumber.setText(order.getName().toString());
 
         if (order.getNote() != null && order.getNote().length() > 0)
             orderNotes.setText(order.getNote());

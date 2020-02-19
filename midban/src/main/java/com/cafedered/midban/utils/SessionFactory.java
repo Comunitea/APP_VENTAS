@@ -62,6 +62,7 @@ public class SessionFactory {
         this.setLoggedUsername(loggedUsername);
         try {
             session.startSession();
+            session.getContext().put("app_company_id", MidbanApplication.activeCompany);
         } catch (Exception e) {
             throw e;
         }

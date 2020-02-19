@@ -11,6 +11,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -28,6 +29,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -55,17 +57,23 @@ import com.cafedered.midban.entities.Order;
 import com.cafedered.midban.entities.OrderLine;
 import com.cafedered.midban.entities.Partner;
 import com.cafedered.midban.entities.PaymentMode;
+import com.cafedered.midban.entities.PricelistPrices;
 import com.cafedered.midban.entities.Product;
 import com.cafedered.midban.entities.ProductUom;
+import com.cafedered.midban.entities.Shop;
 import com.cafedered.midban.entities.Tax;
 import com.cafedered.midban.entities.User;
+import com.cafedered.midban.pdf.pdfwriter.Array;
 import com.cafedered.midban.service.repositories.AccountPaymentTermRepository;
 import com.cafedered.midban.service.repositories.ConfigurationRepository;
 import com.cafedered.midban.service.repositories.OrderLineRepository;
 import com.cafedered.midban.service.repositories.OrderRepository;
+import com.cafedered.midban.service.repositories.PartnerRepository;
 import com.cafedered.midban.service.repositories.PaymentModeRepository;
+import com.cafedered.midban.service.repositories.PricelistPricesRepository;
 import com.cafedered.midban.service.repositories.ProductRepository;
 import com.cafedered.midban.service.repositories.ProductUomRepository;
+import com.cafedered.midban.service.repositories.ShopRepository;
 import com.cafedered.midban.service.repositories.TaxRepository;
 import com.cafedered.midban.utils.DateUtil;
 import com.cafedered.midban.utils.LoggerUtil;
@@ -114,6 +122,7 @@ import java.util.concurrent.Executor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  * Created by nacho on 18/10/15.
  */
@@ -121,6 +130,14 @@ import java.util.logging.Logger;
 public class OrderNewDispositionFragment extends BaseSupportFragment implements CancelAsyncTaskListener,
         ProductOrderItemAdapter.IProductSelectable, OrderLinesNewDispositionAdapter.OrderLineUnitChangedListener, OrderLinesNewDispositionAdapter.OrderLineSelected {
 
+    private boolean mostrarFavoritos = false;
+
+    @Wire(view = R.id.fragment_order_shop_tv)
+    private TextView shopView;
+    @Wire(view = R.id.fragment_order_new_disposition_button_shop)
+    private FloatingActionButton fragment_order_new_disposition_button_shop;
+    @Wire(view = R.id.fragment_order_ref_et)
+    private ClearableEditText refView;
     @Wire(view = R.id.fragment_order_delivery_date_et)
     private ClearableEditText deliveryDateView;
     @Wire(view = R.id.fragment_order_new_disposition_amount_total)
@@ -155,6 +172,8 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     private TextView paymentMode;
     @Wire(view = R.id.fragment_order_new_disposition_payment_term)
     private TextView paymentTerm;
+    @Wire(view = R.id.fragment_order_new_disposition_textview_loading_items)
+    private TextView loadingItems;
 
     private Float availableDebitOnline;
 
@@ -179,14 +198,30 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     int topListAllCatalog = -1;
     List<OrderLine> oldLines;
 
+    String _tarifaActual = "";
+
+    void setTarifaActual(String t){
+        _tarifaActual = t;
+        OrderRepository.getCurrentOrder().setPricelistId(Long.parseLong(_tarifaActual));
+        MidbanApplication.putValueInContext(ContextAttributes.ACTUAL_TARIFF, _tarifaActual);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = super.onCreateView(inflater, container,
                 savedInstanceState);
+
+
+        if (!mostrarFavoritos) {
+            favouritesToggle.setVisibility(View.GONE);
+            favouriteProductsListView.setVisibility(View.GONE);
+        }
+
         setHasOptionsMenu(true);
         productSearchField.addTextChangedListener(new SearchTextChangedListener());
+        // oculto la casilla de búsqueda al abrir la ventana, se mostrará al cargar datos
+        productSearchField.setVisibility(View.GONE);
         footerView = (LinearLayout) rootView.findViewById(R.id.list_footer);
         ImageView imgWheel = (ImageView) rootView.findViewById(R.id.img_animated_wheel);
         AnimationDrawable frameAnimation = (AnimationDrawable) imgWheel.getDrawable();
@@ -206,10 +241,10 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         } else if (OrderRepository.getInstance().isOrderInitialized()
                 && OrderRepository.getCurrentOrder().getPartnerId() != null)
             partner = OrderRepository.getCurrentOrder().getPartner();
-        if (partner == null || partner.getName() == null || partner.getRef() == null)
+        if (partner == null || partner.getName() == null /* || partner.getRef() == null*/)
             partner = (Partner) MidbanApplication
                     .getValueFromContext(ContextAttributes.PARTNER_TO_ORDER);
-        if (partner == null || partner.getName() == null || partner.getRef() == null) // it came from partner detail
+        if (partner == null || partner.getName() == null /*|| partner.getRef() == null*/) // it came from partner detail
             partner = (Partner) MidbanApplication
                     .getValueFromContext(ContextAttributes.PARTNER_TO_DETAIL);
         if (partner == null) {
@@ -245,6 +280,22 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                     e.printStackTrace();
                 }
             }
+
+            if (OrderRepository.getCurrentOrder().getShopId() != null) {
+                try {
+                    Shop shop = ShopRepository.getInstance().getById(OrderRepository.getCurrentOrder().getShopId().longValue());
+                    if (shop != null) {
+                        shopView.setText(shop.getName());
+                        reloadProducts = true;
+                        loadOnResume();
+                    }
+                } catch (ConfigurationException e) {
+                    e.printStackTrace();
+                } catch (ServiceException e) {
+                    e.printStackTrace();
+                }
+            }
+
             oldLines = new ArrayList<OrderLine>();
             oldLines.addAll(OrderRepository.getCurrentOrder().getLines());
             adapterLines = new OrderLinesNewDispositionAdapter(getActivity(),
@@ -260,21 +311,26 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 amountUntaxedView.setText("Base: " + OrderRepository.getCurrentOrder()
                         .getAmountUntaxed().toString()
                         + getResources().getString(R.string.currency_symbol));
-            if (OrderRepository.getCurrentOrder().getDateOrder() != null) {
+            refView.setText(OrderRepository.getCurrentOrder().getClientOrderRef());
+            if (OrderRepository.getCurrentOrder().getRequestedDate() != null) {
                 try {
-                    deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getDateOrder()), "dd.MM.yyyy"));
+                    deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getRequestedDate()), "dd.MM.yyyy"));
                 } catch (ParseException e) {
                     //do nothing
                 }
             } else {
-                OrderRepository.getCurrentOrder().setDateOrder(getDeliveryDate());
-                if (OrderRepository.getCurrentOrder().getDateOrder() != null) {
+                // else nada, no se quiere que se cubra automáticamente así que comento este trozo
+                // https://bitbucket.org/noroestesoluciones/odoo-app/issues/103/correcciones-en-la-operativa-de-la-fecha
+                /*
+                OrderRepository.getCurrentOrder().setRequestedDate(getDeliveryDate());
+                if (OrderRepository.getCurrentOrder().getRequestedDate() != null) {
                     try {
-                        deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getDateOrder()), "dd.MM.yyyy"));
+                        deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getRequestedDate()), "dd.MM.yyyy"));
                     } catch (ParseException e) {
                         //do nothing
                     }
                 }
+                hasta aquí */
             }
 //        adapterLines = new OrderLinesNewDispositionAdapter(getActivity(),
 //                OrderRepository.getCurrentOrder().getLines(), this);
@@ -305,31 +361,42 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             buttonOk.setVisibility(View.VISIBLE);
             buttonRepeat.setVisibility(View.GONE);
         }
-        reloadProducts = true;
+
+        reloadProducts =
+                (OrderRepository.getCurrentOrder() != null) &&
+                (OrderRepository.getCurrentOrder().getShopId() != null) &&
+                ((allProducts == null) ||((allProducts != null) && (allProducts.size() == 0)));
         loadOnResume();
     }
 
     public void loadOnResume() {
-        if (isAdded()) {
-            if (OrderRepository.getCurrentOrder().getDateOrder() != null) {
-                try {
-                    deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getDateOrder()), "dd.MM.yyyy"));
-                } catch (ParseException e) {
-                    //do nothing
-                }
-            }
 
-            numberOfLinesView.setText("Núm. Líneas: "
-                    + OrderRepository.getCurrentOrder().getLines().size());
-            adapterLines.notifyDataSetChanged();
-            calculateAmounts();
-            amountTotalView.setText("Total: " + OrderRepository.getCurrentOrder()
-                    .getAmountTotal().toString()
-                    + getResources().getString(R.string.currency_symbol));
-            if (OrderRepository.getCurrentOrder().getAmountUntaxed() != null)
-                amountUntaxedView.setText("Base: " + OrderRepository.getCurrentOrder()
-                        .getAmountUntaxed().toString()
-                        + getResources().getString(R.string.currency_symbol));
+        loadingItems.setVisibility(View.VISIBLE);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                if (isAdded()) {
+                    if (OrderRepository.getCurrentOrder().getRequestedDate() != null) {
+                        try {
+                            deliveryDateView.setText(DateUtil.toFormattedString(DateUtil.parseDate(OrderRepository.getCurrentOrder().getRequestedDate()), "dd.MM.yyyy"));
+                        } catch (ParseException e) {
+                            //do nothing
+                        }
+                    }
+
+                    numberOfLinesView.setText("Núm. Líneas: "
+                            + OrderRepository.getCurrentOrder().getLines().size());
+                    adapterLines.notifyDataSetChanged();
+                    calculateAmounts();
+                    amountTotalView.setText("Total: " + OrderRepository.getCurrentOrder()
+                            .getAmountTotal().toString()
+                            + getResources().getString(R.string.currency_symbol));
+                    if (OrderRepository.getCurrentOrder().getAmountUntaxed() != null)
+                        amountUntaxedView.setText("Base: " + OrderRepository.getCurrentOrder()
+                                .getAmountUntaxed().toString()
+                                + getResources().getString(R.string.currency_symbol));
 //        if (OrderRepository.getCurrentOrder().getAmountUntaxed().floatValue() != 0)
 //            orderMarginAmount.setText(new BigDecimal((OrderRepository
 //                    .getCurrentOrder().getAmountUntaxed().floatValue()
@@ -344,20 +411,25 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
 //                    / OrderRepository.getCurrentOrder()
 //                    .getAmountUntaxed().floatValue()).setScale(
 //                    2, RoundingMode.HALF_UP).toString() + "%)");
-            if (readOnlyMode) {
-                deliveryDateView.setEnabled(false);
+                    if (readOnlyMode) {
+                        deliveryDateView.setEnabled(false);
 //            editButtons.setVisibility(View.GONE);
 //            readOnlyButtons.setVisibility(View.VISIBLE);
-            } else {
-                deliveryDateView.setEnabled(true);
+                    } else {
+                        deliveryDateView.setEnabled(true);
 //            editButtons.setVisibility(View.VISIBLE);
 //            readOnlyButtons.setVisibility(View.GONE);
-            }
+                    }
 //
-            if (reloadProducts)
-                obtainProductsForPartner(partner);
-            calculateRiskLimit(partner);
-        }
+                    if (reloadProducts)
+                        obtainProductsForPartner(partner);
+                    calculateRiskLimit(partner);
+                }
+
+                loadingItems.setVisibility(View.GONE);
+            }
+        }, 200 );//time in milisecond
+
     }
 
     public boolean isEditable() {
@@ -365,21 +437,117 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     }
 
     private void obtainProductsForPartner(Partner partner) {
-        if (favouriteProducts == null) {
-            favouriteProducts = OrderRepository.getInstance().getProductFavouritesForPartner(partner.getId());
-            currentFavouriteProducts.addAll(favouriteProducts);
-            adapterFavourite = new ProductOrderItemAdapter(this, currentFavouriteProducts);
-            favouriteProductsListView.setAdapter(adapterFavourite);
-        }
-        if (allProducts == null && indexListAllCatalog == -1) {
-            try {
-                allProducts = ProductRepository.getInstance().getByExample(new Product(), Restriction.OR, false, 20, 0, true, false);
-            } catch (ServiceException e) {
-                e.printStackTrace();
+        if (mostrarFavoritos) {
+            if (favouriteProducts == null) {
+                favouriteProducts = OrderRepository.getInstance().getProductFavouritesForPartner(partner.getId());
+                currentFavouriteProducts.addAll(favouriteProducts);
+                adapterFavourite = new ProductOrderItemAdapter(this, currentFavouriteProducts);
+                favouriteProductsListView.setAdapter(adapterFavourite);
             }
+        }
+        // si recargo tengo que limpiar la lista anterior
+        if (allProducts != null) {
+            allProducts.clear();
+            allProducts = null;
+            indexListAllCatalog = -1;
+        }
+
+        if (allProducts == null && indexListAllCatalog == -1) {
+            boolean loaded = false;
+
+            allProducts = new ArrayList<Product>();
+
+            String info = "";
+            if (OrderRepository.getCurrentOrder().getShopId() != null) {
+                /*
+- Se selecciona tienda:
+
+ - Si indirect_invoicing = True
+    - En primer lugar busca la tarifa de indirectos en el campo del cliente "property_product_pricelist_indirect_invoicing" (si fuese una direccion lo buscaría en su "parent_id")
+    - Si no hay nada en ese campo:
+    - Si en la tienda está informado  "pricelist_id" , cargaria productos y precios de esta tarifa
+    - Si no está informado "pricelist_id" , caería en el caso de indirect_invoicing = False
+
+  - Si indirect_invoicing = False
+    - Si el partner seleccionado no es una dirección carga su tarifa (productos y precios)
+    - Si es una dirección busca su parent_id, coge la tarifa de este y carga estos productos y tarifas
+        */
+                try {
+                    Shop shop = ShopRepository.getInstance().getById(OrderRepository.getCurrentOrder().getShopId().longValue());
+                    if (shop != null) {
+                        Partner p = PartnerRepository.getInstance().getById(partner.getId().longValue());
+                        Partner parent = null;
+                        // - Si indirect_invoicing = True
+                        if (shop.getIndirectInvoicing()) {
+                            if ((p != null) && (p.getType() != null) && (p.getType().equals("delivery")) && (p.getParentId().longValue() > 0)) {
+                                parent = PartnerRepository.getInstance().getById(p.getParentId().longValue());
+                            }
+
+                            // - En primer lugar busca la tarifa de indirectos en el campo del cliente "property_product_pricelist_indirect_invoicing" (si fuese una direccion lo buscaría en su "parent_id")
+                            if ((parent != null) && (parent.getPricelistIndirectId() != null)) {
+                                loaded = true;
+                                info = "Es dirección de entrega. Carga indirecta del cliente " + parent.getName();
+                                setTarifaActual(parent.getPricelistIndirectId().toString());
+                            } else {
+                                if (p.getPricelistIndirectId() != null) {
+                                    loaded = true;
+                                    info = "NO es dirección de entrega. Carga indirecta del cliente " + p.getName();
+                                    setTarifaActual(p.getPricelistIndirectId().toString());
+                                }
+                            }
+
+                            // - Si en la tienda está informado  "pricelist_id" , cargaria productos y precios de esta tarifa
+                            if (!loaded) {
+                                if (shop.getPricelistId() != null) {
+                                    info = "Carga indirecta tienda " + shop.getName();
+                                    loaded = true;
+                                    setTarifaActual(shop.getPricelistId().toString());
+                                }
+                            }
+                        }
+
+
+                        // - Si es una dirección busca su parent_id, coge la tarifa de este y carga estos productos y tarifas
+                        if (!loaded) {
+                            if ((parent != null) && (parent.getPricelistId() != null)) {
+                                loaded = true;
+                                info = "Es dirección de entrega. Carga directa cliente " + parent.getName();
+                                setTarifaActual(parent.getPricelistId().toString());
+                            }
+                        }
+
+                        // - Si el partner seleccionado no es una dirección carga su tarifa (productos y precios)
+                        if (!loaded) {
+                            if ((p != null) && (p.getPricelistId() != null)) {
+                                info = "NO es dirección de entrega. Carga directa cliente " + p.getName();
+                                setTarifaActual(p.getPricelistId().toString());
+                            }
+                        }
+
+                    }
+
+                } catch (ConfigurationException e) {
+                    e.printStackTrace();
+                } catch (ServiceException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            info = info + " Tarifa: " + _tarifaActual;
+            Toast.makeText(getContext(), info, Toast.LENGTH_LONG).show();
+
             currentAllProducts.addAll(allProducts);
             adapterAll = new ProductOrderItemAdapter(this, currentAllProducts);
             allCatalogListView.setAdapter(adapterAll);
+
+            productSearchField.setText("");
+            //onSearchTextChanged();
+
+            // vuelvo a mostrar la opción de búsqueda
+            productSearchField.setVisibility(View.VISIBLE);
+
+
+ /* DAVID - con lo de que sólo cargue los productos de la tarifa del cliente voy a retirar el scroll para que no siga cargando productos
             allCatalogListView.setOnScrollListener(new InfiniteScrollListener(15) {
                 @Override
                 public void loadMore(final int page, final int totalItemsCount) {
@@ -404,6 +572,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
 
                 }
             });
+*/
         } else {
             if (indexListAllCatalog != -1 && topListAllCatalog != -1) {
                 allCatalogListView.setSelectionFromTop(indexListAllCatalog, topListAllCatalog);
@@ -500,6 +669,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                             .getCalculatedPrice(
                                     product,
                                     partner,
+                                    _tarifaActual,
                                     ((User) MidbanApplication
                                             .getValueFromContext(ContextAttributes.LOGGED_USER))
                                             .getLogin(),
@@ -601,6 +771,64 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         }
     }
 
+    @Click(view = R.id.fragment_order_new_disposition_button_shop)
+    public void clickSelectShop(){
+
+        try {
+            List<Shop> shops = ShopRepository.getInstance().getAll(0, 100000);
+
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
+            builderSingle.setIcon(R.drawable.ic_launcher);
+            builderSingle.setTitle("Tienda:");
+
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_single_choice); //  select_dialog_singlechoice
+            for (Shop shop: shops){
+               arrayAdapter.add(shop.getName());
+            }
+
+            builderSingle.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    Shop shop = new Shop();
+                    shop.setName(strName);
+                    try {
+                        List<Shop> shopList = ShopRepository.getInstance().getByExample(shop, Restriction.AND, true, 0, 1);
+
+                        if (shopList.size() == 1) {
+                            Long id = shopList.get(0).getId();
+                            OrderRepository.getCurrentOrder().setShopId(id);
+                            shopView.setText(strName);
+                            reloadProducts = true;
+                            loadOnResume();
+
+                        }
+
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            builderSingle.show();
+
+
+
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Click(view = R.id.fragment_order_new_disposition_favourites_toggle)
     public void clickFavourites() {
         if (favouriteProductsListView.getVisibility() == View.GONE) {
@@ -677,8 +905,8 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                                             partner.getId());
                                     OrderRepository.getCurrentOrder().setState("draft");
                                     calculateAmounts();
-                                    OrderRepository.getCurrentOrder().setPricelistId(
-                                            partner.getPricelistId());
+                                    OrderRepository.getCurrentOrder().setPricelistId(Long.parseLong(_tarifaActual));
+                                    OrderRepository.getCurrentOrder().setClientOrderRef(refView.getText().toString());
                                     if (OrderRepository.getCurrentOrder().getName() == null)
                                         OrderRepository.getCurrentOrder().setName("/");
                                     OrderRepository.getCurrentOrder().setChanel("tablet");
@@ -718,8 +946,15 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             if (sendLines) {
                 fillLineParamsWithOrderLines(linesOrderOdoo, confirmOrder.getLines(), false);
             }
+            // DAVID - vamos a enviar el company_id ya que en el contexto no les llega a servidor
+            orderOdoo.put("app_company_id", MidbanApplication.activeCompany);
+
             // DAVID - por petición del integrador campo "delay" con valor a 5 en cabecera
             //orderOdoo.put("delay", 5);
+            orderOdoo.put("client_order_ref", confirmOrder.getClientOrderRef());
+            if (confirmOrder.getShopId() != null) {
+                orderOdoo.put("shop_id", confirmOrder.getShopId().intValue());
+            }
             orderOdoo.put("partner_id", confirmOrder.getPartnerId().intValue());
             orderOdoo.put("order_line", linesOrderOdoo.toArray());
             orderOdoo.put("warehouse_id", ConfigurationRepository.getInstance().getConfiguration().getWarehouseId().intValue());
@@ -734,7 +969,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             if (confirmOrder.getAmountTotal() != null)
                 orderOdoo.put("amount_total", confirmOrder.getAmountTotal().doubleValue());
             if (confirmOrder.getPartnerShippingId() != null)
-                orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().doubleValue());
+                orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().intValue());
             if (confirmOrder.getCreateDate() != null)
                 orderOdoo.put("create_date", confirmOrder.getCreateDate());
             orderOdoo.put("chanel", "tablet");
@@ -748,8 +983,8 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 orderOdoo.put("state", confirmOrder.getState());
             if (confirmOrder.getDateOrder() != null)
                 orderOdoo.put("date_order", confirmOrder.getDateOrder());
-            if (confirmOrder.getDatePlanned() != null)
-                orderOdoo.put("date_planned", confirmOrder.getDatePlanned());
+            if (confirmOrder.getRequestedDate() != null)
+                orderOdoo.put("requested_date", confirmOrder.getRequestedDate());
 
         } else {
             //Estamos guardando la edición del pedido
@@ -760,6 +995,10 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             }
             // DAVID - por petición del integrador campo "delay" con valor a 5 en cabecera
             orderOdoo.put("delay", 5);
+            if (confirmOrder.getShopId() != null) {
+                orderOdoo.put("shop_id", confirmOrder.getShopId().intValue());
+            }
+            orderOdoo.put("client_order_ref", confirmOrder.getClientOrderRef());
             orderOdoo.put("id", confirmOrder.getId().intValue());
             orderOdoo.put("partner_id", confirmOrder.getPartnerId().intValue());
             orderOdoo.put("order_line", linesOrderOdoo.toArray());
@@ -775,7 +1014,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             if (confirmOrder.getAmountTotal() != null)
                 orderOdoo.put("amount_total", confirmOrder.getAmountTotal().doubleValue());
             if (confirmOrder.getPartnerShippingId() != null)
-                orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().doubleValue());
+                orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().intValue());
             if (confirmOrder.getCreateDate() != null)
                 orderOdoo.put("create_date", confirmOrder.getCreateDate());
             orderOdoo.put("chanel", "tablet");
@@ -789,8 +1028,9 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 orderOdoo.put("state", confirmOrder.getState());
             if (confirmOrder.getDateOrder() != null)
                 orderOdoo.put("date_order", confirmOrder.getDateOrder());
-            if (confirmOrder.getDatePlanned() != null)
-                orderOdoo.put("date_planned", confirmOrder.getDatePlanned());
+            if (confirmOrder.getRequestedDate() != null)
+                orderOdoo.put("requested_date", confirmOrder.getRequestedDate());
+
         }
 
         return orderOdoo;
@@ -845,7 +1085,12 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        command.callObjectFunction("sale.order", "create_and_confirm", new Object[]{orderOdoo});
+                        // lo cambio por esto
+                        SessionFactory
+                                .getInstance(user[0].getLogin(),
+                                        user[0].getPasswd()).getSession().executeCommand("sale.order", "create_and_confirm", new Object[]{orderOdoo});
+
+                       // command.callObjectFunction("sale.order", "create_and_confirm", new Object[]{orderOdoo});
                     } else {
                         //Estamos guardando la edición del pedido
                         id = (Integer) orderOdoo.get("id");
@@ -892,6 +1137,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                     }
                     return "PENDIENTE";
                 }
+
                 return "OK";
             }
 
@@ -920,9 +1166,9 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                                 try{
                                     try {
                                             OrderRepository.getInstance().getRemoteObjects(new Order(), user.getLogin(),
-                                                    user.getPasswd());
+                                                    user.getPasswd(), false);
                                             OrderLineRepository.getInstance().getRemoteObjects(new OrderLine(), user.getLogin(),
-                                                    user.getPasswd());
+                                                    user.getPasswd(), false);
                                     } catch (ConfigurationException e) {
                                         e.printStackTrace();
                                     }
@@ -1017,6 +1263,8 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     private void clearContext() {
         MidbanApplication
                 .removeValueInContext(ContextAttributes.PARTNER_TO_ORDER);
+        // restablecemos la tarifa actual al valor por defecto
+        MidbanApplication.putValueInContext(ContextAttributes.ACTUAL_TARIFF, "");
         OrderRepository.clearCurrentOrder();
     }
 
@@ -1033,9 +1281,18 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             validationMessages.append(getResources().getString(R.string.order_must_have_items));
             validationMessages.append("\n");
         }
+        // no se quiere que sea obligatoria
+        // https://bitbucket.org/noroestesoluciones/odoo-app/issues/103/correcciones-en-la-operativa-de-la-fecha
+        /*
         if (deliveryDateView.getText() == null || deliveryDateView.getText().toString().length() == 0) {
             validated = false;
             validationMessages.append(getResources().getString(R.string.order_must_have_a_date));
+            validationMessages.append("\n");
+        }
+        hasta aquí */
+        if ((shopView.getText() == null) || ("".equals(shopView.getText().toString()))){
+            validated = false;
+            validationMessages.append(getResources().getString(R.string.order_must_have_associated_shop));
             validationMessages.append("\n");
         }
         if (validationMessages.length() > 0)
@@ -1067,7 +1324,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         if (task != null)
             task.cancel(true);
         task = new SearchTask();
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, productSearchField.getText().toString());
     }
 
     @Override
@@ -1106,7 +1363,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         return ProductUomRepository.getInstance().getById(line.getProductUos().longValue());
     }
 
-    class SearchTask extends AsyncTask<Void, Map<String, List<Product>>, Map<String, List<Product>>> {
+    class SearchTask extends AsyncTask<String, Map<String, List<Product>>, Map<String, List<Product>>> {
 
         Product productSearchScroll;
 
@@ -1130,17 +1387,18 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         }
 
         @Override
-        protected Map<String, List<Product>> doInBackground(Void... params) {
+        protected Map<String, List<Product>> doInBackground(String... params) {
             System.out.println("DO-SEARCH");
             Map<String, List<Product>> result = new HashMap<String, List<Product>>();
             if (!isCancelled()) {
                 Product productSearch = new Product();
-                if (productSearchField.getText().length() > 2) {
-                    productSearch.setNameTemplate(productSearchField.getText().toString());
-                    productSearch.setCode(productSearchField.getText().toString());
+                String productSearchF = params[0];
+                if (productSearchF.length() > 2) {
+                    productSearch.setNameTemplate(productSearchF.toString());
+                    productSearch.setCode(productSearchF.toString());
                     try {
                         productSearch.setId(Long
-                                .parseLong(productSearchField.getText().toString()));
+                                .parseLong(productSearchF.toString()));
                     } catch (NumberFormatException e) {
                         // do nothing
                     }
@@ -1153,7 +1411,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                             asyncFavourites.add(product);
                     }
                 try {
-                    asyncAll.addAll(ProductRepository.getInstance().getByExample(productSearch, Restriction.OR, false, 20, 0, true, false));
+                    asyncAll.addAll(ProductRepository.getInstance().getByExample(productSearch, Restriction.OR, false, 15, 0, true, false, _tarifaActual));
                 } catch (ServiceException e) {
                     e.printStackTrace();
                 }
@@ -1169,19 +1427,25 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             System.out.println("POST-SEARCH");
             currentFavouriteProducts.clear();
             currentAllProducts.clear();
-            currentFavouriteProducts.addAll(result.get("favoritos"));
+            if (mostrarFavoritos) {
+                currentFavouriteProducts.addAll(result.get("favoritos"));
+            }
             currentAllProducts.addAll(result.get("todos"));
             footerView.setVisibility(View.GONE);
-            adapterFavourite.notifyDataSetChanged();
+            if (mostrarFavoritos) {
+                adapterFavourite.notifyDataSetChanged();
+            }
             adapterAll.notifyDataSetChanged();
             allCatalogListView.setOnScrollListener(new InfiniteScrollListener(15) {
                 @Override
                 public void loadMore(final int page, final int totalItemsCount) {
                     new AsyncTask<Void, List<Product>, List<Product>>() {
+
                         @Override
                         protected List<Product> doInBackground(Void... params) {
                             try {
-                                return ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 15, page * 15, true, false);
+                                List<Product> a = ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 15, (page-1) * 15, true, false, _tarifaActual);
+                                return a;
                             } catch (ServiceException e) {
                                 e.printStackTrace();
                                 return new ArrayList<Product>();
@@ -1499,7 +1763,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                             if (previousTotalItemCount <= params[0]) {
                                 previousTotalItemCount = params[0];
                                 try {
-                                    currentAllProducts.addAll(ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 20, params[0], true, false));
+                                    currentAllProducts.addAll(ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 15, params[0], true, false, _tarifaActual));
                                 } catch (ServiceException e) {
                                     e.printStackTrace();
                                 }
@@ -1599,7 +1863,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                     + String.format("%02d", (month + 1)) + "."
                     + String.valueOf(year));
             try {
-                OrderRepository.getCurrentOrder().setDatePlanned(
+                OrderRepository.getCurrentOrder().setRequestedDate(
                         DateUtil.toFormattedString(DateUtil.parseDate(
                                 editText.getText().toString(),
                                 "dd.MM.yyyy")));

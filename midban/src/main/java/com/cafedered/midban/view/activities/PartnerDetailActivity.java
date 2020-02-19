@@ -18,6 +18,7 @@
 package com.cafedered.midban.view.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.cafedered.midban.R;
 import com.cafedered.midban.annotations.Activity;
@@ -45,4 +46,9 @@ public class PartnerDetailActivity extends BaseSupportActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
+    }
 }

@@ -123,7 +123,7 @@ public class PartnerReservationsFragment extends BaseSupportFragment implements 
                         return ProductRepository.getInstance()
                                 .getAllForPartner(partner.getId(), 0, 10, ordenarPorCategoria, ordenarAlfabeticamente);
                     }
-                    return ProductRepository.getInstance().getAll(0, 10, ordenarPorCategoria, ordenarAlfabeticamente);
+                    return ProductRepository.getInstance().getAll(0, 10, ordenarPorCategoria, ordenarAlfabeticamente, MidbanApplication.priceListIdActualCompany());
                 } catch (ConfigurationException e) {
                     if (LoggerUtil.isDebugEnabled())
                         e.printStackTrace();
@@ -209,7 +209,7 @@ public class PartnerReservationsFragment extends BaseSupportFragment implements 
                     if (LoggerUtil.isDebugEnabled())
                         Log.d(ProductCatalogFragment.class.getName(), "Búsqueda: " + ordenarAlfabeticamente + ", categoria: " + ordenarPorCategoria);
                     currentProducts.addAll(ProductRepository.getInstance().getByExample(
-                            productSearch, Restriction.OR, false, 10, 0, ordenarPorCategoria, ordenarAlfabeticamente));
+                            productSearch, Restriction.OR, false, 10, 0, ordenarPorCategoria, ordenarAlfabeticamente, MidbanApplication.priceListIdActualCompany()));
                 } catch (ServiceException e) {
                     e.printStackTrace();
                 }

@@ -22,6 +22,7 @@ import java.util.List;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,6 +59,9 @@ import com.cafedered.midban.view.dialogs.FilterPartnerHistoryDialog;
 @Fragment(R.layout.fragment_partner_history)
 public class PartnerHistoryFragment extends BaseSupportFragment {
 
+    @Wire(view = R.id.nsvScrollView)
+    private NestedScrollView nsvScrollView;
+
     @Wire(view = R.id.fragment_partner_history_list_listview)
     ListView list;
     @Wire(view = R.id.fragment_partner_history_list_search_field)
@@ -74,6 +78,9 @@ public class PartnerHistoryFragment extends BaseSupportFragment {
         View rootView = super.onCreateView(inflater, container,
                 savedInstanceState);
         setHasOptionsMenu(true);
+
+        nsvScrollView.setNestedScrollingEnabled(true);
+
         partner = ((Partner) MidbanApplication
                 .getValueFromContext(ContextAttributes.PARTNER_TO_DETAIL));
         if (partner == null)

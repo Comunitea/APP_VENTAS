@@ -14,7 +14,7 @@
        app:showAsAction="always"
        android:icon="@drawable/sort_alphabetical">
       <menu >
-         <item android:id="@+id/category_order" android:title="@string/ordenar_categoria" android:icon="@drawable/ic_action_accept_holo_dark"/>
+         <item android:id="@+id/category_order" android:title="@string/ordenar_referencia" android:icon="@drawable/ic_action_accept_holo_dark"/>
          <item android:id="@+id/alphabetical_order" android:title="@string/ordenar_alfabeticamente" />
       </menu>
    </item>

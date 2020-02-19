@@ -32,6 +32,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,6 +96,9 @@ public class PortadaActivity extends BaseSupportActivity implements OnClickListe
         sincronizacionTv.setOnClickListener(this);
 //        rutaTv.setOnClickListener(this);
         mediosTv.setOnClickListener(this);
+
+        ImageView iv = findViewById(R.id.activity_login_midban_logo_iv);
+        iv.setImageResource(MidbanApplication.getResourceLogo());
     }
 
     @Override

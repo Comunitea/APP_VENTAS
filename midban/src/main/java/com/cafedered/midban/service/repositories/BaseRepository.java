@@ -35,6 +35,7 @@ import com.cafedered.cafedroidlitedao.exceptions.DatabaseException;
 import com.cafedered.cafedroidlitedao.extractor.Restriction;
 import com.cafedered.midban.annotations.Remote;
 import com.cafedered.midban.annotations.RemoteProperty;
+import com.cafedered.midban.conf.MidbanApplication;
 import com.cafedered.midban.dao.BaseDAO;
 import com.cafedered.midban.entities.AccountJournal;
 import com.cafedered.midban.entities.AccountMoveLine;
@@ -69,7 +70,7 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
     public void saveOrUpdate(E entity) throws ServiceException {
         try {
             dao.saveOrUpdate(entity);
-            cache.put(entity.getId(), entity);
+            // DAVID - DESACTIVO CACHE TEMPORALMENTE cache.put(entity.getId(), entity);
         } catch (DatabaseException e) {
             e.printStackTrace();
             throw new ServiceException("Cannot access data.", e);
@@ -147,7 +148,7 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
     private void addToCache(Long id, E value) {
         if (cache.size() == MAX_CACHE_SIZE)
             cache.clear();
-        cache.put(id, value);
+        // DAVID - DESACTIVO CACHE TEMPORALMENTE  cache.put(id, value);
     }
 
     public List<E> getByExample(E entity, Restriction restriction,
@@ -163,7 +164,8 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
 
     @SuppressWarnings("unchecked")
     public int getRemoteObjects(BaseRemoteEntity entity, String login,
-            String passwd) throws ConfigurationException {
+            String passwd, boolean doDeletes) throws ConfigurationException {
+
         int result = 0;
         Long initDate = new Date().getTime();
         String error = "";
@@ -190,10 +192,52 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
             String maxDateOld = SynchronizationRepository.getInstance().getMaxDateFor(
                     entity.getClass());
             String utcDate = DateUtil.convertToUTC(maxDateOld);
+            // PETICIÓN EXPRESA DEL INTEGRADOR. No enviar la fecha en la primera sincronización
+            if ("0001-01-01 00:00:00".equals(utcDate)){
+                utcDate = null;
+            }
             entities = adapter.searchAndReadObject(
                     filters,
                     fieldsRemote,
                     utcDate);
+            // en la primera sincronización no hay que comprobar los eliminados, no tiene sentido
+            if ((utcDate != null) && doDeletes) {
+                String[] fieldId = new String[1];
+                fieldId[0] = "id";
+                // obtengo todos los ids de servidor
+                RowCollection serverIds = adapter.searchAndReadObject(
+                        entity.getRemoteFilters(),
+                        fieldId,
+                        null);
+                try {
+                        // obtengo todos los ids en local
+                        List<E> localIds = dao.getAll(0, 1000000);
+                        // para cada id en local ...
+                        for (int i = 0; i < localIds.size(); i++) {
+                            boolean exists = false;
+                            Long id = localIds.get(i).getId();
+                            // ... lo busco en la lista que me llegó de servidor
+                            for (Row row : serverIds) {
+                                // si lo encuentro dejo una marca como que sigue existiendo
+                                if (id == ((Integer) row.get("id"))
+                                        .longValue()){
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                            // si no lo ha encontrado lo elimino de local
+                            if (!exists) {
+                                try {
+                                    dao.delete(id);
+                                } catch (ReflectionException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                } catch (DatabaseException e) {
+                    e.printStackTrace();
+                }
+            }
             List<E> toSave = new ArrayList<E>();
             if (LoggerUtil.isDebugEnabled()) {
                 System.out.println("Procesada petición de red. " + entities.size() + " elementos. Tiempo: " + (new Date().getTime() - timeInit) / 1000L);
@@ -379,6 +423,8 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
                     Remote.class);
             openERPSession = SessionFactory.getInstance(login, passwd)
                     .getSession();
+            // petición del integrador, quiere que se envíe este campo siempre
+            openERPSession.getContext().put("app_company_id", MidbanApplication.activeCompany);
             ObjectAdapter adapter = openERPSession
                     .getObjectAdapter(remoteAnnotation.object());
             Map<String, String> remoteFields = getRemoteFields((BaseRemoteEntity)entity);

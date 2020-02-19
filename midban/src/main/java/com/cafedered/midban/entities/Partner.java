@@ -156,6 +156,12 @@ public class Partner extends BaseRemoteEntity {
     @RemoteProperty(name = "property_product_pricelist")
     private Number pricelistId;
 
+    @Property(columnName = "pricelist_indirect_id")
+    @RemoteProperty(name = "property_product_pricelist_indirect_invoicing")
+    private Number pricelistIndirectId;
+
+
+
     @Property(columnName = "user_id")
     @RemoteProperty(name = "user_id")
     private Number userId;
@@ -410,11 +416,26 @@ public class Partner extends BaseRemoteEntity {
 
     @Override
     public FilterCollection getRemoteFilters() {
+        // https://stackoverflow.com/questions/45715062/odoo-domain-filter-isnt-working
+        // Odoo uses the polish notation. If you'd like to use the logical expression (A) AND (B OR C) as a domain, that means you will have to use: AND A OR B C.
+
         FilterCollection filters = new FilterCollection();
         try {
-            filters.add("customer", "=", true);
-            filters.add("is_company", "=", true);
-            // DAVID - LO RETIRO filters.add("user_id", "=", ((User)MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER)).getId());
+            Long uId = ((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER)).getId();
+            /*if (uId == 23){
+                filters.add("customer", "=", true);
+            }
+            else
+             */
+            {
+                filters.add(FilterCollection.FilterOperator.AND);
+                filters.add(FilterCollection.FilterOperator.AND);
+                filters.add("customer", "=", true);
+                filters.add("user_id", "=", uId);
+                filters.add(FilterCollection.FilterOperator.OR);
+                filters.add("is_company", "=", true);
+                filters.add("type", "=", "delivery");
+            }
         } catch (OpeneERPApiException e) {
             e.printStackTrace();
         }
@@ -458,5 +479,13 @@ public class Partner extends BaseRemoteEntity {
 
     public void setPropertyPaymentTerm(Number propertyPaymentTerm) {
         this.propertyPaymentTerm = propertyPaymentTerm;
+    }
+
+    public Number getPricelistIndirectId() {
+        return pricelistIndirectId;
+    }
+
+    public void setPricelistIndirectId(Number pricelistIndirectId) {
+        this.pricelistIndirectId = pricelistIndirectId;
     }
 }

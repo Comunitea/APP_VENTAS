@@ -29,6 +29,7 @@ import com.cafedered.midban.utils.LoggerUtil;
 import com.cafedered.midban.utils.exceptions.ConfigurationException;
 import com.cafedered.midban.utils.exceptions.ServiceException;
 import com.debortoliwines.openerp.api.FilterCollection;
+import com.debortoliwines.openerp.api.OpeneERPApiException;
 
 import java.math.BigDecimal;
 
@@ -99,6 +100,10 @@ public class Product extends BaseRemoteEntity {
     @Property(columnName = "sale_ok")
     @RemoteProperty(name = "sale_ok")
     private Boolean saleOk;
+
+    @Property(columnName = "sale_app")
+    @RemoteProperty(name = "sale_app")
+    private Boolean saleApp;
 
     @Property(columnName = "purchase_ok")
     @RemoteProperty(name = "purchase_ok")
@@ -1186,6 +1191,14 @@ public class Product extends BaseRemoteEntity {
         this.saleOk = saleOk;
     }
 
+    public Boolean getSaleApp() {
+        return saleApp;
+    }
+
+    public void setSaleApp(Boolean saleApp) {
+        this.saleApp = saleApp;
+    }
+
     public Boolean getPurchaseOk() {
         return purchaseOk;
     }
@@ -1336,7 +1349,13 @@ public class Product extends BaseRemoteEntity {
 
     @Override
     public FilterCollection getRemoteFilters() {
-        return null;
+        FilterCollection filters = new FilterCollection();
+        try {
+            filters.add("sale_ok", "=", true);
+        } catch (OpeneERPApiException e) {
+            e.printStackTrace();
+        }
+        return filters;
     }
 
     @Override

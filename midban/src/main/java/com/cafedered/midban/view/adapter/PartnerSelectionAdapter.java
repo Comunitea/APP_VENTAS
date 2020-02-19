@@ -31,7 +31,7 @@ public class PartnerSelectionAdapter extends ArrayAdapter<Partner> {
     private Filter mFilter = new Filter() {
         @Override
         public String convertResultToString(Object resultValue) {
-            return ((Partner)resultValue).getRef() + " - " + ((Partner)resultValue).getName();
+            return ((Partner)resultValue).getId().toString() + " - " + ((Partner)resultValue).getName();
         }
 
         @Override
@@ -102,7 +102,7 @@ public class PartnerSelectionAdapter extends ArrayAdapter<Partner> {
         Partner customer = getItem(position);
 
         TextView name = (TextView) view.findViewById(android.R.id.text1);
-        name.setText(customer.getRef() + " - " + customer.getName());
+        name.setText(customer.getId().toString() + " - " + customer.getName());
 
         return view;
     }

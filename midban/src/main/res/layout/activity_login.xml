@@ -17,14 +17,16 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
+
+
         <ImageView
             android:id="@+id/activity_login_midban_logo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:contentDescription="@string/activity_login_midban_logo"
-            android:src="@drawable/logo_midban" />
+            android:contentDescription="@string/activity_login_midban_logo" />
+        <!--  android:src="@drawable/valquin" /> -->
 
         <org.droidparts.widget.ClearableEditText
             android:drawableRight="@drawable/general_filtrar_borrar"

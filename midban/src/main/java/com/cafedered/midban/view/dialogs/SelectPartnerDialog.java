@@ -112,7 +112,7 @@ public class SelectPartnerDialog extends Dialog {
                                 }
                                 if (partnerId != 0L) {
                                     Partner example = new Partner();
-                                    example.setRef(partnerId.toString());
+                                    example.setId(partnerId);
                                     example.setUserId(((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER)).getId());
                                     partner = PartnerRepository.getInstance().getByExampleUser(example, Restriction.OR, true, 1, 0).get(0);
                                     MidbanApplication.putValueInContext(attr, partner);

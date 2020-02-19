@@ -119,6 +119,7 @@ public class ProductToReservationDialog extends Dialog {
                         .getCalculatedPrice(
                                 ProductToReservationDialog.this.product,
                                 partner,
+                                (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF),
                                 ((User) MidbanApplication
                                         .getValueFromContext(ContextAttributes.LOGGED_USER))
                                         .getLogin(),

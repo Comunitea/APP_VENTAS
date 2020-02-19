@@ -32,26 +32,68 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Application;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cafedered.cafedroidlitedao.exceptions.BadConfigurationException;
 import com.cafedered.midban.R;
 import com.cafedered.midban.dao.ContextDAO;
+import com.cafedered.midban.entities.Company;
 import com.cafedered.midban.entities.User;
+import com.cafedered.midban.service.repositories.CompanyRepository;
 import com.cafedered.midban.service.repositories.UserRepository;
 import com.cafedered.midban.utils.GMailSender;
 import com.cafedered.midban.utils.LoggerUtil;
+import com.cafedered.midban.utils.exceptions.ConfigurationException;
+import com.cafedered.midban.utils.exceptions.ServiceException;
 
-public class MidbanApplication extends Application {
+public class MidbanApplication extends Application implements LifecycleObserver {
 
     public static MidbanApplication instance;
     private static Context context;
     private Map<String, Object> values = new HashMap<String, Object>();
     public final static String PREFIX = "HORECA_";
     public static Boolean debugEnabled;
+//    public static int activeCompany = 1; // EL NOGAL
+//  public static int activeCompany = 2; // VALQUIN
+    public static int activeCompany = 3; // QUIVAL
+    public static boolean appInForeground = true;
+
+    public static int getResourceLogo(){
+        // VALQUIN
+        if (MidbanApplication.activeCompany == 2){
+            return R.drawable.valquin;
+        }
+        else{
+            return R.drawable.logo_midban;
+        }
+    }
+
+    public static String priceListIdActualCompany() {
+        String result = "";
+        Company actualCompany = null;
+        try {
+            actualCompany = CompanyRepository.getInstance().getById(new Long(activeCompany));
+        } catch (ConfigurationException
+                e1) {
+            e1.printStackTrace();
+        } catch (ServiceException e1) {
+            e1.printStackTrace();
+        }
+        if ((actualCompany != null) && (actualCompany.getSalesAppProductPricelist() != null) && (!"".equals(actualCompany.getSalesAppProductPricelist().toString()))) {
+            result = actualCompany.getSalesAppProductPricelist().toString();
+        }
+        return result;
+    }
 
     public Map<String, Object> getValues() {
         return values;
@@ -82,10 +124,10 @@ public class MidbanApplication extends Application {
 //                    }
                     if (!LoggerUtil.isDebugEnabled()) {
                         sender.set_subject("Error en APP MIDBAN");
-                        sender.set_to(new String[]{"email@domain.com"});
+                        sender.set_to(new String[]{"abdaleon@gmail.com"});
                     } else {
                         sender.set_subject("Error en APP MIDBAN - debug local CafedeRed");
-                        sender.set_to(new String[]{"email@domain.com"});
+                        sender.set_to(new String[]{"abdaleon@gmail.com"});
                     }
                     sender.set_body("Se ha producido un error en MIDBAN.\n Traza:\n " + stackTrace);
                     new AsyncTask<Void, Void, Void>() {
@@ -130,10 +172,21 @@ public class MidbanApplication extends Application {
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onAppBackgrounded() {
+        appInForeground = false;
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onAppForegrounded() {
+        appInForeground = true;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         instance = this;
         try {
             ContextDAO dao = ContextDAO.getInstance();

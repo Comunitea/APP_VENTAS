@@ -115,8 +115,8 @@ public class PartnerDetailFragment extends BaseSupportFragment {
                 R.color.midban_grey));
         tabIds.put(tabCard.getId(), fragment);
         tabIds.put(tabHistory.getId(), new PartnerHistoryFragment());
-        /* DAVID - SE OCULTA
         tabIds.put(tabInvoices.getId(), new InvoiceFragment());
+        /* DAVID - SE OCULTA
         tabIds.put(tabDeliveryNote.getId(), new PartnerDeliveryNoteFragment());
         tabIds.put(tabCatalog.getId(), new ProductCatalogFragment());
         tabIds.put(tabReservations.getId(), new PartnerReservationsFragment());

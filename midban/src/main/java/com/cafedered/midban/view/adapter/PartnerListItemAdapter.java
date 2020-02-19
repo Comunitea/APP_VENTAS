@@ -24,6 +24,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -115,6 +116,14 @@ public class PartnerListItemAdapter extends BaseAdapter {
                 view.getContext().startActivity(intent);
             }
         });
+        // Resaltar cuando is_company=true
+        // https://bitbucket.org/noroestesoluciones/odoo-app/issues/66/poder-hacer-pedido-a-una-direci-n-de
+        if (partner.getIsCompany()){
+            holder.name.setTextColor(holder.name.getContext().getResources().getColor(android.R.color.holo_red_dark));
+        }
+        else {
+            holder.name.setTextColor(holder.name.getContext().getResources().getColor(android.R.color.black));
+        }
         holder.name.setText(partner.getName());
         holder.name.setTag(partner.getId());
         holder.code.setText(partner.getRef());

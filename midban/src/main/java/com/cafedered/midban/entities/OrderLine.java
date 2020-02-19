@@ -140,7 +140,8 @@ public class OrderLine extends BaseRemoteEntity {
         try {
             if ((getProductUos() != null) && (getPriceUnit() != null)){
                 ProductUom productUom = ProductUomRepository.getInstance().getById(getProductUos().longValue());
-                result = new BigDecimal(getPriceUnit().floatValue() * productUom.getFactor_inv().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                // cambio a 3 decimales
+                result = new BigDecimal(getPriceUnit().floatValue() * productUom.getFactor_inv().floatValue()).setScale(3, BigDecimal.ROUND_HALF_UP);
             }
         } catch (ConfigurationException e) {
             if (LoggerUtil.isDebugEnabled())

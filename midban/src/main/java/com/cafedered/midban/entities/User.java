@@ -41,6 +41,12 @@ public class User extends BaseRemoteEntity {
     @Property(columnName = "fecha_login")
     private String fechaLogin;
 
+
+    @RemoteProperty(name = "company_id")
+    @Property(columnName = "company_id")
+    private Number companyId;
+
+
     public static User create(String login, String password, Integer idUsuario) {
         return new User(login, password, idUsuario);
     }
@@ -89,6 +95,10 @@ public class User extends BaseRemoteEntity {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Number getCompanyId() { return companyId; }
+
+    public void setCompanyId(Number companyId) { this.companyId = companyId; }
 
     @Override
     public FilterCollection getRemoteFilters() {

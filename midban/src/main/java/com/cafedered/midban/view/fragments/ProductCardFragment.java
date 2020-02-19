@@ -211,7 +211,17 @@ public class ProductCardFragment extends BaseSupportFragment {
             if (partner == null)
                 partner = (Partner) MidbanApplication
                         .getValueFromContext(ContextAttributes.PARTNER_TO_RESERVATION);
-            productPrice.setText(ProductRepository.getInstance().getDefaultPriceForProduct(product, partner).toString());
+
+            productPrice.setText(ProductRepository.getInstance().getCalculatedPrice(
+                    product,
+                    partner,
+                    (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF),
+                    ((User) MidbanApplication
+                            .getValueFromContext(ContextAttributes.LOGGED_USER))
+                            .getLogin(),
+                    ((User) MidbanApplication
+                            .getValueFromContext(ContextAttributes.LOGGED_USER))
+                            .getPasswd()).toString());
             new AsyncTask<String, Void, String>() {
                 @Override
                 protected String doInBackground(String... params) {
@@ -228,6 +238,7 @@ public class ProductCardFragment extends BaseSupportFragment {
                             .getCalculatedPrice(
                                     product,
                                     partner,
+                                    (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF),
                                     ((User) MidbanApplication
                                             .getValueFromContext(ContextAttributes.LOGGED_USER))
                                             .getLogin(),

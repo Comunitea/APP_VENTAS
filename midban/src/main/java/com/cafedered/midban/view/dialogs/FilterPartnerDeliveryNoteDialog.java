@@ -154,7 +154,7 @@ public class FilterPartnerDeliveryNoteDialog extends Dialog {
                 for (Order order : OrderRepository
                         .getInstance()
                         .getOrdersWithFilters(state, dateFrom, dateTo,
-                                amountLessThan, amountMoreThan, partner.getId())) {
+                                amountLessThan, amountMoreThan, partner.getId(), true)) {
                     StockPickingOut pickingOutEx = new StockPickingOut();
                     pickingOutEx.setSaleId(order.getId());
                     try {

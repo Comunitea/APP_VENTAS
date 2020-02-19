@@ -98,9 +98,9 @@ public class ConfigurationFragment extends BaseSupportFragment {
                 configurationTransformer.toUi(configuration, this);
             else {
                 // FIXME delete this hardcoded test data
-                protocol.setText("https");
+                protocol.setText("http");
                 openErpServer.setText("elnapp.livingodoo.com");
-                openErpPort.setText("443");
+                openErpPort.setText("80");
                 openErpDatabase.setText("elnapp");
                 defaultUser.setText("cmnt");
             }
@@ -192,14 +192,22 @@ public class ConfigurationFragment extends BaseSupportFragment {
             // do nothing
         }
         if (warehouses.size() == 0) {
+
+            Warehouse wh3 = new Warehouse();
+            wh3.setId(1L);
+            wh3.setName("Quival");
+            warehouses.add(wh3);
+
             Warehouse wh1 = new Warehouse();
             wh1.setId(4L);
             wh1.setName("Depósito Valquin");
             warehouses.add(wh1);
+
             Warehouse wh2 = new Warehouse();
             wh2.setId(6L);
             wh2.setName("Valquin");
             warehouses.add(wh2);
+
         }
         Warehouse[] result = new Warehouse[warehouses.size()];
         result = warehouses.toArray(result);

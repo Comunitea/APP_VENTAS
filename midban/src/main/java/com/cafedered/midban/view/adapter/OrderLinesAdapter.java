@@ -138,8 +138,9 @@ public class OrderLinesAdapter extends BaseAdapter {
             //do nothing
         }
         if (line.getPriceUnit() != null)
+            // cambio a 3 decimales
             holder.price.setText(new BigDecimal(line.getPriceUdv()
-                    .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "€");
+                    .doubleValue()).setScale(3, RoundingMode.HALF_UP) + "€");
         if (line.getDiscount() != null)
             holder.discount.setText(line.getDiscount() + "%");
         if (line.getPriceSubtotal() != null)

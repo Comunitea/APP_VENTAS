@@ -166,7 +166,8 @@ public class ProductOrderItemAdapter extends BaseAdapter {
                  https://bitbucket.org/noroestesoluciones/odoo-app/issues/20/en-la-lista-de-art-culos-cambiar-la-forma
                 holder.eurKg.setText("€/Kg: " + new BigDecimal(product.getLstPrice().floatValue() / product.getWeight().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
                 */
-                holder.eurKg.setText("P. unit.: " + new BigDecimal(product.getLstPrice().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
+                // cambio a 3 decimales
+                holder.eurKg.setText("P. unit.: " + new BigDecimal(product.getLstPrice().floatValue()).setScale(3, BigDecimal.ROUND_HALF_UP));
             if (null != product.getProductUl() && (Long) product.getUl() != 0) {
                 holder.packaging.setText(product.getProductUl().getName());
             }

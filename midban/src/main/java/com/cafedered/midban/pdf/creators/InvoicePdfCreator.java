@@ -82,7 +82,8 @@ public class InvoicePdfCreator {
                 StandardFonts.WIN_ANSI_ENCODING);
         writer.addImage(MARGIN_LEFT, 780, BitmapFactory.decodeResource(
                 MidbanApplication
-                .getContext().getResources(), R.drawable.logo_midban));
+                        .getContext().getResources(), R.drawable.valquin));
+//                .getContext().getResources(), R.drawable.logo_midban));
         writer.setFont(StandardFonts.SUBTYPE, StandardFonts.HELVETICA_BOLD,
                 StandardFonts.WIN_ANSI_ENCODING);
         writer.addText(600, 780, TEXT_SIZE, "Foodservice business");

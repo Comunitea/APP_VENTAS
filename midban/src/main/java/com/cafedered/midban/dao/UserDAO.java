@@ -63,6 +63,7 @@ public class UserDAO extends BaseDAO<User> {
 			User user = User.create(cursor.getString(cursor.getColumnIndex("login")), cursor.getString(cursor.getColumnIndex("passwd")), cursor.getInt(cursor.getColumnIndex("id")));
 			user.setRouteIds(cursor.getString(cursor.getColumnIndex("route_ids")));
 			user.setFechaLogin(cursor.getString(cursor.getColumnIndex("fecha_login")));
+			user.setCompanyId(cursor.getLong(cursor.getColumnIndex("company_id")));
 			return user;
 		}
 		return null;

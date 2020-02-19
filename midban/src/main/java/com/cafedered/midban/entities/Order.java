@@ -109,9 +109,9 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
     @RemoteProperty(name = "date_order")
     private String dateOrder;
 
-    @Property(columnName = "date_planned")
-    @RemoteProperty(name = "date_planned")
-    private String datePlanned;
+    @Property(columnName = "requested_date")
+    @RemoteProperty(name = "requested_date")
+    private String requestedDate;
 
     @Property(columnName = "invoiced")
     @RemoteProperty(name = "invoiced")
@@ -121,6 +121,13 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
     @RemoteProperty(name = "shipped")
     private Boolean shipped;
 
+    @Property(columnName = "client_order_ref")
+    @RemoteProperty(name = "client_order_ref")
+    private String clientOrderRef;
+
+    @Property(columnName = "shop_id")
+    @RemoteProperty(name = "shop_id")
+    private Number shopId;
 
 
     private String addressSelected;
@@ -247,12 +254,12 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         this.dateOrder = dateOrder;
     }
 
-    public String getDatePlanned() {
-        return datePlanned;
+    public String getRequestedDate() {
+        return requestedDate;
     }
 
-    public void setDatePlanned(String datePlanned) {
-        this.datePlanned = datePlanned;
+    public void setRequestedDate(String requestedDate) {
+        this.requestedDate = requestedDate;
     }
 
     public Boolean getShipped(){return null;}
@@ -274,6 +281,10 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
     public void setInvoiced(Boolean invoiced) {
         this.invoiced = invoiced;
     }
+
+    public String getClientOrderRef() { return clientOrderRef; }
+
+    public void setClientOrderRef(String clientOrderRef) { this.clientOrderRef = clientOrderRef; }
 
 
     public Partner getPartner() {
@@ -298,7 +309,9 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             filters.add("date_order", ">", formatter.format(calendar.getTime()));
-            filters.add("create_uid", "=", ((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER)).getId());
+            // se quieren todos, no sólo los de usuario logueado
+            // https://bitbucket.org/noroestesoluciones/odoo-app/issues/74/cambios-en-la-pesta-a-historial
+            // filters.add("create_uid", "=", ((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER)).getId());
         } catch (OpeneERPApiException e) {
             e.printStackTrace();
         }
@@ -363,4 +376,12 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         return 0;
     }
 
+
+    public Number getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Number shopId) {
+        this.shopId = shopId;
+    }
 }

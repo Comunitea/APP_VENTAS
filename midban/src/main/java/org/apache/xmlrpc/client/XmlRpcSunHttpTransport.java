@@ -140,10 +140,14 @@ public class XmlRpcSunHttpTransport extends XmlRpcHttpTransport {
     public Object sendRequest(XmlRpcRequest pRequest) throws XmlRpcException {
 		XmlRpcHttpClientConfig config = (XmlRpcHttpClientConfig) pRequest.getConfig();
 		try {
-            //TODO comprobar http o https y decidir cuál usar
-            final URLConnection c = conn = setUpHttpsConnection(config
-                    .getServerURL());
-//            final URLConnection c = conn = newURLConnection(config.getServerURL());
+            URLConnection c = conn = null;
+            if (config.getServerURL().getProtocol().equals("https")){
+                c = conn = setUpHttpsConnection(config
+                        .getServerURL());
+            }
+            else{
+                c = conn = newURLConnection(config.getServerURL());
+            }
 			c.setUseCaches(false);
 			c.setDoInput(true);
 			c.setDoOutput(true);

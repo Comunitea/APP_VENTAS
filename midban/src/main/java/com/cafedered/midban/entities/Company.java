@@ -68,6 +68,10 @@ public class Company extends BaseRemoteEntity {
     @RemoteProperty(name = "zip")
     private String zip;
 
+    @Property(columnName = "sales_app_product_pricelist")
+    @RemoteProperty(name = "sales_app_product_pricelist")
+    private Number salesAppProductPricelist;
+
     public String getCity() {
         return city;
     }
@@ -166,4 +170,11 @@ public class Company extends BaseRemoteEntity {
         this.id = id;
     }
 
+    public Number getSalesAppProductPricelist() {
+        return salesAppProductPricelist;
+    }
+
+    public void setSalesAppProductPricelist(Number salesAppProductPricelist) {
+        this.salesAppProductPricelist = salesAppProductPricelist;
+    }
 }

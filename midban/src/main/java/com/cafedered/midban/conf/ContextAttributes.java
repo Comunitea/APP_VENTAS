@@ -34,4 +34,5 @@ public class ContextAttributes {
     public static final String STOCK_PICKING_OUT = "stock_picking_out";
     public static final String READ_ONLY_ORDER_MODE = "read_only_order_mode";
     public static final String PRODUCT_SELECTED = "product_selected";
+    public static final String ACTUAL_TARIFF = "actual_tariff";
 }

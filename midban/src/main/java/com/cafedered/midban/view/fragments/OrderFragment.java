@@ -271,6 +271,7 @@ public class OrderFragment extends BaseSupportFragment implements IProductSelect
             protected Void doInBackground(Void... params) {
                 ProductRepository.getInstance().getCalculatedPrice(OrderFragment.this.product,
                         partner,
+                        (String) MidbanApplication.getValueFromContext(ContextAttributes.ACTUAL_TARIFF),
                         MidbanApplication.getLoggedUser().getLogin(),
                         MidbanApplication.getLoggedUser().getPasswd());
                 return null;
@@ -791,11 +792,15 @@ public class OrderFragment extends BaseSupportFragment implements IProductSelect
             validationMessages.append(getResources().getString(R.string.order_must_have_items));
             validationMessages.append("\n");
         }
+        // no se quiere que sea obligatoria
+        // https://bitbucket.org/noroestesoluciones/odoo-app/issues/103/correcciones-en-la-operativa-de-la-fecha
+        /*
         if (orderDeliveryDate.getText() == null || orderDeliveryDate.getText().toString().length() == 0) {
             validated = false;
             validationMessages.append(getResources().getString(R.string.order_must_have_a_date));
             validationMessages.append("\n");
         }
+        hasta aquí */
         if (orderAddressSelected.getText() == null || orderAddressSelected.getText().toString().length() == 0) {
             validated = false;
             validationMessages.append(getResources().getString(R.string.order_must_have_an_address));

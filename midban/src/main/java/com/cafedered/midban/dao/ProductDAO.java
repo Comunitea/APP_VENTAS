@@ -27,7 +27,10 @@ import com.cafedered.cafedroidlitedao.extractor.JDBCQueryMaker;
 import com.cafedered.cafedroidlitedao.extractor.Restriction;
 import com.cafedered.midban.R;
 import com.cafedered.midban.conf.MidbanApplication;
+import com.cafedered.midban.entities.PricelistPrices;
 import com.cafedered.midban.entities.Product;
+import com.cafedered.midban.service.repositories.PricelistPricesRepository;
+import com.cafedered.midban.utils.exceptions.ServiceException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class ProductDAO extends BaseDAO<Product> {
 
     public List<Product> getByExample(Product productSearch, Restriction restriction,
                                       boolean exactMatching, Integer numItems, Integer offset,
-                                      boolean ordenarPorCategoria, boolean ordenarAlfabeticamente) throws DatabaseException {
+                                      boolean ordenarPorCategoria, boolean ordenarAlfabeticamente, String tarifaPorLaQueFiltrar) throws DatabaseException {
 
         ArrayList<Product> result = new ArrayList<Product>();
         Cursor cursor = null;
@@ -65,12 +68,18 @@ public class ProductDAO extends BaseDAO<Product> {
                 e = " WHERE 1=1 ";
             e = "SELECT p.* FROM product_product p, product_template t, product_category c " + e;
             e = e + " AND p.product_tmpl_id = t.id AND t.categ_id = c.id ";
+            if (!"".equals(tarifaPorLaQueFiltrar)) {
+                e = e + " AND (p.id in (SELECT plp.product_id FROM table_pricelist_prices plp WHERE plp.pricelist_id = " + tarifaPorLaQueFiltrar + "))";
+            }
             if (ordenarPorCategoria) {
-                e = e + " ORDER BY c.name ";
+//                e = e + " ORDER BY c.name ";sale
+                // el orden por categoría ahora es orden por "default_code"
+                e = e + " ORDER BY p.default_code ";
             } else if (ordenarAlfabeticamente) {
                 e = e + " ORDER BY p.name_template ";
             }
             if(numItems != null && offset != null) {
+                // DAVID : ojo, por algún motivo que desconozco esto está intercambiado
                 e = e + " LIMIT " + numItems + ", " + offset;
             }
 
@@ -83,7 +92,23 @@ public class ProductDAO extends BaseDAO<Product> {
                 cursor.moveToFirst();
 
                 while(!cursor.isAfterLast()) {
-                    result.add((Product)JDBCQueryMaker.getObjectFromCursor(cursor, productSearch));
+                    Product p = (Product)JDBCQueryMaker.getObjectFromCursor(cursor, productSearch);
+                    // si hemos pasado tarifa para obtener datos voy a cambiar el precio que hay en la tabla
+                    // de producto por el precio que tiene el producto en la tarifa que se pasó a la llamada
+                    if (!"".equals(tarifaPorLaQueFiltrar)) {
+                        PricelistPrices pl = new PricelistPrices();
+                        pl.setPricelistId(Long.parseLong(tarifaPorLaQueFiltrar));
+                        pl.setProductId(p.getId().longValue());
+                        try {
+                            List<PricelistPrices> list = PricelistPricesRepository.getInstance().getByExample(pl, Restriction.AND, true, 0, 1);
+                            if (list.size() == 1){
+                                p.setLstPrice(list.get(0).getPrice());
+                            }
+                        } catch (ServiceException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    result.add(p);
                     cursor.move(1);
                 }
             }

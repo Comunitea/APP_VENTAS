@@ -33,8 +33,10 @@ import com.cafedered.cafedroidlitedao.extractor.Restriction;
 import com.cafedered.midban.conf.ContextAttributes;
 import com.cafedered.midban.conf.MidbanApplication;
 import com.cafedered.midban.dao.ProductDAO;
+import com.cafedered.midban.entities.Company;
 import com.cafedered.midban.entities.Partner;
 import com.cafedered.midban.entities.PartnerProduct;
+import com.cafedered.midban.entities.PricelistPrices;
 import com.cafedered.midban.entities.Product;
 import com.cafedered.midban.entities.ProductPartnerPrice;
 import com.cafedered.midban.entities.User;
@@ -64,9 +66,26 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
         dao = ProductDAO.getInstance();
     }
 
-    public BigDecimal getCalculatedPrice(Product instance, Partner partner,
+    public BigDecimal getCalculatedPrice(Product instance, Partner partner, String tariff,
                                          String login, String passwd) {
         Long initTime = new Date().getTime();
+
+        // si tengo tarifa me voy directamente a ella
+        if ((instance != null) && (tariff != null) && (!"".equals(tariff))) {
+            PricelistPrices pl = new PricelistPrices();
+            pl.setPricelistId(Long.parseLong(tariff));
+            pl.setProductId(instance.getId().longValue());
+            try {
+                List<PricelistPrices> list = PricelistPricesRepository.getInstance().getByExample(pl, Restriction.AND, true, 0, 1);
+                if (list.size() == 1){
+                  return new BigDecimal(list.get(0).getPrice().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+                }
+            } catch (ServiceException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        // sino voy a mirar en la tarifa del partner
         if (partner != null && instance != null) {
             ProductPartnerPrice example = new ProductPartnerPrice();
             example.setDateCalculated(null);
@@ -79,7 +98,8 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                     Date exampleDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(example.getDateCalculated());
                     Long now = new Date().getTime();
                     if ((now - exampleDate.getTime()) < 60000)
-                        return new BigDecimal(example.getPrice().doubleValue()).setScale(2, RoundingMode.HALF_UP);
+                        // cambio a 3 decimales
+                        return new BigDecimal(example.getPrice().doubleValue()).setScale(3, RoundingMode.HALF_UP);
                 }
             } catch (ServiceException e) {
                 e.printStackTrace();
@@ -87,9 +107,30 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                 e.printStackTrace();
             }
         }
+
+
+        // sino pues la de la empresa
+        tariff = MidbanApplication.priceListIdActualCompany();
+        if ((instance != null) && (tariff != null) && (!"".equals(tariff))) {
+            PricelistPrices pl = new PricelistPrices();
+            pl.setPricelistId(Long.parseLong(tariff));
+            pl.setProductId(instance.getId().longValue());
+            try {
+                List<PricelistPrices> list = PricelistPricesRepository.getInstance().getByExample(pl, Restriction.AND, true, 0, 1);
+                if (list.size() == 1){
+                    return new BigDecimal(list.get(0).getPrice().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+                }
+            } catch (ServiceException e1) {
+                e1.printStackTrace();
+            }
+        }
         System.out.println("Time bdd: " + (new Date().getTime() - initTime) + " ms.");
-        initTime = new Date().getTime();
+
         BigDecimal result = null;
+
+/*
+VOY A COMENTAR TODA LA PARTE QUE VA A BUSCAR EL PRECIO A SERVIDOR, AHORA YA NO FUNCIONA
+        initTime = new Date().getTime();
         // if online, we try to get prices in specific.customer.pvp
         Session openERPSession = null;
         try {
@@ -129,8 +170,20 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                                     if (partner != null && partner.getPricelistId() != null)
                                         filtersPrecioTarifa.add("pricelist_id", "=",
                                                 partner.getPricelistId());
-                                    else
-                                        filtersPrecioTarifa.add("pricelist_id", "=", "1");
+                                    else {
+                                        Company actualCompany = CompanyRepository.getInstance().getById(new Long(MidbanApplication.activeCompany));
+                                        if (actualCompany == null) {
+                                            filtersPrecioTarifa.add("pricelist_id", "=", "1");
+                                        }
+                                        else{
+                                            if ((actualCompany.getSalesAppProductPricelist() != null) && (!"".equals(actualCompany.getSalesAppProductPricelist().toString()))){
+                                                filtersPrecioTarifa.add("pricelist_id", "=", actualCompany.getSalesAppProductPricelist().toString());
+                                            }
+                                            else{
+                                                filtersPrecioTarifa.add("pricelist_id", "=", "1");
+                                            }
+                                        }
+                                    }
                                     filtersPrecioTarifa.add("product_id", "=", instance.getId());
                                 } catch (OpeneERPApiException e) {
                                     e.printStackTrace();
@@ -152,7 +205,8 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                                             toSave.setPrice(result.doubleValue() * discount / 100);
                                             toSave.setPartnerId(partner.getId());
                                         }
-                                        result = BigDecimal.valueOf((toSave.getPrice().floatValue())).setScale(2, RoundingMode.HALF_UP);
+                                        // cambio a 3 decimales
+                                        result = BigDecimal.valueOf((toSave.getPrice().floatValue())).setScale(3, RoundingMode.HALF_UP);
                                         ProductPartnerPriceRepository.getInstance()
                                                 .saveForProductAndPartner(toSave);
                                     }
@@ -178,8 +232,20 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                         if (partner != null && partner.getPricelistId() != null)
                             filters.add("pricelist_id", "=",
                                     partner.getPricelistId());
-                        else
-                            filters.add("pricelist_id", "=", "1");
+                        else{
+                            Company actualCompany = CompanyRepository.getInstance().getById(new Long(MidbanApplication.activeCompany));
+                            if (actualCompany == null) {
+                                filters.add("pricelist_id", "=", "1");
+                            }
+                            else{
+                                if ((actualCompany.getSalesAppProductPricelist() != null) && (!"".equals(actualCompany.getSalesAppProductPricelist().toString()))){
+                                    filters.add("pricelist_id", "=", actualCompany.getSalesAppProductPricelist().toString());
+                                }
+                                else{
+                                    filters.add("pricelist_id", "=", "1");
+                                }
+                            }
+                        }
                         filters.add("product_id", "=", instance.getId());
                     } catch (OpeneERPApiException e) {
                         e.printStackTrace();
@@ -207,6 +273,9 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
             }
         }
         System.out.println("Time network: " + (new Date().getTime() - initTime) + " ms.");
+
+
+// TODA ESTA PARTE AHORA TAMPOCO TIENE YA SENTIDO
         initTime = new Date().getTime();
         if (result == null) {
             ProductPartnerPrice savedPrice = new ProductPartnerPrice();
@@ -265,9 +334,12 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
                 e.printStackTrace();
             }
         }
+
+*/
         System.out.println("Time BDD result: " + (new Date().getTime() - initTime) + " ms.");
         if (result != null) {
-            return result.setScale(2, RoundingMode.HALF_UP);
+            // cambio a 3 decimales
+            return result.setScale(3, RoundingMode.HALF_UP);
         }
         else
             return BigDecimal.ZERO;
@@ -322,7 +394,8 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
         }
 
         if (result != null)
-            return result.setScale(2, RoundingMode.HALF_UP);
+            // cambio a 3 decimales
+            return result.setScale(3, RoundingMode.HALF_UP);
         else
             return BigDecimal.ZERO;
     }
@@ -357,7 +430,18 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
 //            }
 //        } else {
             try {
-                return getByExample(new Product(), Restriction.OR, false, numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente);
+                Partner partner = null;
+                try {
+                    partner = PartnerRepository.getInstance().getById(id);
+                } catch (ConfigurationException e) {
+                    e.printStackTrace();
+                }
+                if (partner != null){
+                    return getByExample(new Product(), Restriction.OR, false, numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente, partner.getPricelistId().toString());
+                }
+                else{
+                    return getByExample(new Product(), Restriction.OR, false, numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente, "");
+                }
             } catch (ServiceException e1) {
                 e1.printStackTrace();
             }
@@ -425,26 +509,28 @@ public class ProductRepository extends BaseRepository<Product, ProductDAO> {
 
     @Override
     public List<Product> getAll(Integer numElements, Integer offset) throws ConfigurationException, ServiceException {
-        return getAll(numElements, offset, true, false);
+        return getAll(numElements, offset, true, false, "");
     }
 
-    public List<Product> getAll(Integer numElements, Integer offset, boolean ordenarPorCategoria, boolean ordenarAlfabeticamente)
+    public List<Product> getAll(Integer numElements, Integer offset, boolean ordenarPorCategoria, boolean ordenarAlfabeticamente, String tarifaPorLaQueFiltrar)
             throws ConfigurationException, ServiceException {
         try {
             User user =
                 ((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER));
             Product entity = new Product();
             entity.setSaleOk(true);
+            entity.setSaleApp(true);
+            entity.setActive(true);
             return dao.getByExample(entity, Restriction.OR, true,
-                    numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente);
+                    numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente, tarifaPorLaQueFiltrar);
         } catch (DatabaseException e) {
             throw new ServiceException("Cannot retrieve all objects", e);
         }
     }
 
-    public List<Product> getByExample(Product productSearch, Restriction restriction, boolean exactMatching, int offset, int limit, boolean ordenarPorCategoria, boolean ordenarAlfabeticamente) throws ServiceException {
+    public List<Product> getByExample(Product productSearch, Restriction restriction, boolean exactMatching, int offset, int limit, boolean ordenarPorCategoria, boolean ordenarAlfabeticamente, String tarifaPorLaQueFiltrar) throws ServiceException {
         try {
-            return dao.getByExample(productSearch, restriction, exactMatching, limit, offset, ordenarPorCategoria, ordenarAlfabeticamente);
+            return dao.getByExample(productSearch, restriction, exactMatching, limit, offset, ordenarPorCategoria, ordenarAlfabeticamente, tarifaPorLaQueFiltrar);
         } catch (DatabaseException e) {
             throw new ServiceException(e.getMessage(), e);
         }

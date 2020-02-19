@@ -18,6 +18,7 @@
 package com.cafedered.midban.service.repositories;
 
 import com.cafedered.cafedroidlitedao.extractor.Restriction;
+import com.cafedered.midban.conf.MidbanApplication;
 import com.cafedered.midban.dao.UserDAO;
 import com.cafedered.midban.entities.Route;
 import com.cafedered.midban.entities.User;
@@ -54,7 +55,15 @@ public class UserRepository extends BaseRepository<User, UserDAO> {
             throws ServiceException {
 		User user = User.create(username, pass, null);
 		try {
-            return getByExample(user, Restriction.AND, true, 0, 100000).size() >= 1;
+			List<User> users = getByExample(user, Restriction.AND, true, 0, 100000);
+			if (users != null && users.size() > 0) {
+				User actualUser = users.get(0);
+				// comprobación de si el usuario pertenece a la compañía
+				if (!(MidbanApplication.activeCompany == actualUser.getCompanyId().intValue())){
+					return false;
+				}
+			}
+            return users.size() >= 1;
 		} catch (ServiceException e) {
             throw e;
 		}
@@ -78,7 +87,7 @@ public class UserRepository extends BaseRepository<User, UserDAO> {
 			}
 			FilterCollection filters = new User().getRemoteFilters();
 			RowCollection entities;
-			String[] fieldsRemote = {"id", "login", "route_ids"};
+			String[] fieldsRemote = {"id", "login", "route_ids", "company_id"};
 			try {
 				entities = adapter.searchAndReadObject(filters, fieldsRemote,
 						"1900-01-01 00:00:00");
@@ -100,6 +109,9 @@ public class UserRepository extends BaseRepository<User, UserDAO> {
 					}
 					detail.setId(Long.valueOf(row.getID()));
 					detail.setLogin((String)row.get("login"));
+					detail.setCompanyId(((Integer)((Object[])row.get("company_id"))[0]).longValue());
+
+
 					User example = new User();
 					example.setLogin(detail.getLogin());
 					List<User> users = getByExample(example, Restriction.AND, true, 0, 1);

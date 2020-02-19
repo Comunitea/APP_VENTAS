@@ -102,7 +102,10 @@ public class PartnerHistoryListItemAdapter extends BaseAdapter {
         } else
             holder = (ViewHolder) vi.getTag();
         final Order order = orders.get(position);
-        holder.orderCode.setText(order.getId().toString());
+        holder.orderCode.setText(order.getName().toString());
+        if ("".equals(holder.orderCode.getText())) {
+            holder.orderCode.setText(order.getId().toString());
+        }
         try {
             if (order.getDateOrder() != null)
                 holder.date

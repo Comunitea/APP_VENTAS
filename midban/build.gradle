@@ -7,9 +7,9 @@ android {
     }
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.cafedered.midban"
+        applicationId "com.cafedered.midban_quival"
         minSdkVersion 17
-        targetSdkVersion 19
+        targetSdkVersion 27
         versionCode 1
         multiDexEnabled true
     }
@@ -33,7 +33,7 @@ android {
     applicationVariants.all { variant ->
         def abiVersion = variant.productFlavors.get(0).versionCode
 
-        variant.mergedFlavor.versionCode = abiVersion * 100000 + defaultConfig.versionCode
+    // NO SOPORTADO    variant.mergedFlavor.versionCode = abiVersion * 100000 + defaultConfig.versionCode
     }
     buildTypes {
         release {
@@ -57,9 +57,10 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.0'
     implementation 'com.android.support:design:27.1.0'
     implementation 'com.google.android.gms:play-services:+'
+    implementation "android.arch.lifecycle:extensions:1.1.0"
     implementation files('libs/cafedroid-lite-dao-1.1.jar')
     implementation files('libs/openerp-java-api-1.5.0.jar')
-    implementation files('libs/ws-commons-util-1.0.2.jar')
+    //implementation files('libs/ws-commons-util-1.0.2.jar')
     implementation files('libs/mail.jar')
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')

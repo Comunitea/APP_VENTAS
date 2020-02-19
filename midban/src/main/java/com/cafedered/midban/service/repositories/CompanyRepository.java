@@ -23,6 +23,7 @@ import com.cafedered.midban.entities.Company;
 public class CompanyRepository extends BaseRepository<Company, CompanyDAO> {
     private static CompanyRepository instance = null;
 
+
     public static CompanyRepository getInstance() {
         if (instance == null)
             instance = new CompanyRepository();
