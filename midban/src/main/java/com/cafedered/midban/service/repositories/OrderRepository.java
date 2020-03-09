@@ -137,7 +137,6 @@ public class OrderRepository extends BaseRepository<Order, OrderDAO> {
                                     .contains(code.toLowerCase())))) {
                         PartnerFavouritesDecorator toResult = new PartnerFavouritesDecorator(
                                 product);
-                        toResult.setProductPackaging(product.getMinUnit());
                         toResult.setUomQty(productIds.get(productId)[0]);
                         result.add(toResult);
                     }

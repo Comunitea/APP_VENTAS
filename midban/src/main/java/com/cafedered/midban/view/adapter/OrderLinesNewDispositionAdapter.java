@@ -189,12 +189,12 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     try {
                         float descuento = Float.parseFloat(v.getText().toString());
-                        if (descuento < 0 || descuento > 100)
+                        if (descuento < 0 || descuento > line.getProduct().getMaxDiscount())
                             throw new Exception("Descuento incorrecto");
                         line.setDiscount(descuento);
                         OrderLinesNewDispositionAdapter.this.fragment.loadOnResume();
                     } catch (Exception e) {
-                        MessagesForUser.showMessage(OrderLinesNewDispositionAdapter.this.fragment.getView(), "Descuento ha de ser un valor entre 0 y 100", 3000, Level.SEVERE);
+                        MessagesForUser.showMessage(OrderLinesNewDispositionAdapter.this.fragment.getView(), "Descuento ha de ser un valor entre 0.0 y " + line.getProduct().getMaxDiscount().toString(), 3000, Level.SEVERE);
                     }
                     return true;
                 }
@@ -207,9 +207,7 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
             holder.price.setText(new BigDecimal(line.getPriceUnit()
                     .doubleValue()).setScale(3, RoundingMode.HALF_UP) + "");
         else
-            holder.price.setText("cargando...");
-
-
+            holder.price.setText("Cargando...");
         if (line.getPriceSubtotal() != null)
             holder.total.setText(new BigDecimal(line.getPriceSubtotal()
                     .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
@@ -241,32 +239,26 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     if (line.getProductUosQuantity().floatValue() >= 1.0){
-
                     // de esta forma redondeo
                     if (line.getProductUosQuantity().floatValue() == line.getProductUosQuantity().longValue()) {
                         line.setProductUosQuantity(line.getProductUosQuantity().floatValue() - 1.0);
                     } else {
                         line.setProductUosQuantity(line.getProductUosQuantity().longValue());
                     }
-
-
                     if (line.getProductUomQuantity() != null) {
                         String quantityUom = line.getProductUomQuantity().toString();
                         if (quantityUom != null && quantityUom.endsWith(".0"))
                             quantityUom = quantityUom.replace(".0", "");
                         holder.quantityUom.setText(quantityUom);
                     }
-
                     line.setPriceSubtotal(line.getProductUosQuantity().floatValue()
                             * line.getPriceUdv().floatValue()
                             - (line.getProductUosQuantity().floatValue()
                             * line.getPriceUdv().floatValue()
                             * line.getDiscount().floatValue() / 100F));
-
                     if (line.getPriceSubtotal() != null)
                         holder.total.setText(new BigDecimal(line.getPriceSubtotal()
                                 .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
-
                     fragment.loadOnResume();
                 }
                 }
@@ -277,29 +269,23 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                     // de esta forma redondeo
                     if (line.getProductUosQuantity().floatValue() == line.getProductUosQuantity().longValue()){
                         line.setProductUosQuantity(line.getProductUosQuantity().floatValue() + 1.0);
-                    }
-                    else{
+                    } else {
                         line.setProductUosQuantity(line.getProductUosQuantity().longValue() + 1);
                     }
-
-
                     if (line.getProductUomQuantity() != null) {
                         String quantityUom = line.getProductUomQuantity().toString();
                         if (quantityUom != null && quantityUom.endsWith(".0"))
                             quantityUom = quantityUom.replace(".0", "");
                         holder.quantityUom.setText(quantityUom);
                     }
-
                     line.setPriceSubtotal(line.getProductUosQuantity().floatValue()
                             * line.getPriceUdv().floatValue()
                             - (line.getProductUosQuantity().floatValue()
                             * line.getPriceUdv().floatValue()
                             * line.getDiscount().floatValue() / 100F));
-
                     if (line.getPriceSubtotal() != null)
                         holder.total.setText(new BigDecimal(line.getPriceSubtotal()
                                 .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
-
                     fragment.loadOnResume();
                 }
             });
@@ -308,24 +294,20 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     if (line.getProductUomQuantity().floatValue() >= 1.0) {
                         line.setProductUomQuantity(line.getProductUomQuantity().floatValue() - 1.0);
-
                         if (line.getProductUosQuantity() != null) {
                             String quantityUos = line.getProductUosQuantity().toString();
                             if (quantityUos != null && quantityUos.endsWith(".0"))
                                 quantityUos = quantityUos.replace(".0", "");
                             holder.quantityUos.setText(quantityUos);
                         }
-
                         line.setPriceSubtotal(line.getProductUomQuantity().floatValue()
                                 * line.getPriceUnit().floatValue()
                                 - (line.getProductUomQuantity().floatValue()
                                 * line.getPriceUnit().floatValue()
                                 * line.getDiscount().floatValue() / 100F));
-
                         if (line.getPriceSubtotal() != null)
                             holder.total.setText(new BigDecimal(line.getPriceSubtotal()
                                     .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
-
                         fragment.loadOnResume();
                     }
                 }
@@ -334,14 +316,12 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     line.setProductUomQuantity(line.getProductUomQuantity().floatValue() + 1.0);
-
                     if (line.getProductUosQuantity() != null) {
                         String quantityUos = line.getProductUosQuantity().toString();
                         if (quantityUos != null && quantityUos.endsWith(".0"))
                             quantityUos = quantityUos.replace(".0", "");
                         holder.quantityUos.setText(quantityUos);
                     }
-
                     line.setPriceSubtotal(line.getProductUomQuantity().floatValue()
                             * line.getPriceUnit().floatValue()
                             - (line.getProductUomQuantity().floatValue()
@@ -351,7 +331,6 @@ public class OrderLinesNewDispositionAdapter extends BaseAdapter {
                     if (line.getPriceSubtotal() != null)
                         holder.total.setText(new BigDecimal(line.getPriceSubtotal()
                                 .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "");
-
                     fragment.loadOnResume();
                 }
             });

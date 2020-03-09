@@ -100,11 +100,11 @@ public class LastSalesListItemAdapter extends BaseAdapter {
             holder.unit.setImageResource(R.drawable.ficha_producto_caja);
         // TODO falta imagen de "both" ambos formatos
         if (line.getPrice() != null)
-            holder.price.setText(line.getPrice() + "€");
+            holder.price.setText(line.getPrice() + " €");
         if (line.getDiscount() != null)
             holder.discount.setText(line.getDiscount() + "%");
         if (line.getTotal() != null)
-            holder.total.setText(line.getTotal() + "€");
+            holder.total.setText(line.getTotal() + " €");
         return vi;
     }
 

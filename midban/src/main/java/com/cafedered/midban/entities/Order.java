@@ -85,9 +85,9 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
     @RemoteProperty(name = "create_date")
     private String createDate;
 
-//    @Property(columnName = "chanel")
-    @RemoteProperty(name = "chanel")
-    private String chanel;
+    @Property(columnName = "channel")
+    @RemoteProperty(name = "channel")
+    private String channel;
 
     @Property(columnName = "note")
     @RemoteProperty(name = "note")
@@ -129,6 +129,10 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
     @RemoteProperty(name = "shop_id")
     private Number shopId;
 
+    @Property(columnName = "user_id")
+    @RemoteProperty(name = "user_id")
+    private Number userId;
+
 
     private String addressSelected;
 
@@ -140,12 +144,12 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         this.addressSelected = addressSelected;
     }
 
-    public String getChanel() {
-        return chanel;
+    public String getChannel() {
+        return channel;
     }
 
-    public void setChanel(String chanel) {
-        this.chanel = chanel;
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     private List<OrderLine> lines = new ArrayList<OrderLine>();
@@ -262,7 +266,9 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         this.requestedDate = requestedDate;
     }
 
-    public Boolean getShipped(){return null;}
+    public Boolean getShipped() {
+        return shipped;
+    }
 
     public boolean isShipped() {
         return shipped;
@@ -272,7 +278,9 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         this.shipped = shipped;
     }
 
-    public Boolean getInvoiced(){return null;}
+    public Boolean getInvoiced() {
+        return invoiced;
+    }
 
     public boolean isInvoiced() {
         return invoiced;
@@ -282,10 +290,13 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         this.invoiced = invoiced;
     }
 
-    public String getClientOrderRef() { return clientOrderRef; }
+    public String getClientOrderRef() {
+        return clientOrderRef;
+    }
 
-    public void setClientOrderRef(String clientOrderRef) { this.clientOrderRef = clientOrderRef; }
-
+    public void setClientOrderRef(String clientOrderRef) {
+        this.clientOrderRef = clientOrderRef;
+    }
 
     public Partner getPartner() {
         try {
@@ -376,12 +387,19 @@ public class Order extends BaseRemoteEntity implements Comparable<Order> {
         return 0;
     }
 
-
     public Number getShopId() {
         return shopId;
     }
 
     public void setShopId(Number shopId) {
         this.shopId = shopId;
+    }
+
+    public Number getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Number userId) {
+        this.userId = userId;
     }
 }

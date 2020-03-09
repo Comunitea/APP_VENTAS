@@ -53,18 +53,10 @@ public class PartnerDAO extends BaseDAO<Partner> {
 			if (MidbanApplication.getContext().getApplicationContext().getString(R.string.configuration_debug_enabled).equals("true")) {
 				Log.i(this.getClass().getName(), "Antes proceso: " + e);
 			}
-
-//			if (ordenarPorCategoria) {
-//				e = e + " ORDER BY c.name ";
-//			} else if (ordenarAlfabeticamente) {
-//				e = e + " ORDER BY p.name_template ";
-//			}
 			String[] conditions = e.substring(e.indexOf("WHERE") + 6).split(restriction.getCondition());
 			e = e.substring(0, e.indexOf("WHERE"));
-/* DAVID - según el integrador debo ignorar el campo user_id
+			// String where = "WHERE 1=1 AND (";
  			String where = "WHERE user_id = " + partner.getUserId() + " AND (";
-*/
-            String where = "WHERE 1=1 AND (";
 			if (conditions.length > 2) {
 				for (String condition : conditions) {
 					if (!condition.contains("user_id"))
@@ -79,6 +71,7 @@ public class PartnerDAO extends BaseDAO<Partner> {
 				where = where + "1=1)";
 			}
 			e = e + where;
+			e = e + " ORDER BY name";
 			if(limit != null && offset != null) {
 				e = e + " LIMIT " + limit + ", " + offset;
 			}

@@ -141,7 +141,7 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                 allProducts = ProductRepository.getInstance()
                         .getAllForPartner(partner.getId(), 0, 15, ordenarPorCategoria, ordenarAlfabeticamente);
             }
-            allProducts =  ProductRepository.getInstance().getAll(0, 20, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
+            allProducts =  ProductRepository.getInstance().getAll(0, 15, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
 
         } catch (ConfigurationException e) {
             if (LoggerUtil.isDebugEnabled())
@@ -169,8 +169,7 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                     @Override
                     protected List<Product> doInBackground(Void... params) {
                         try {
-                             return ProductRepository.getInstance().getByExample(new Product(), Restriction.OR, false, 15, (page-1) * 15, true, false, priceListToFilter());
-
+                            return ProductRepository.getInstance().getByExample(new Product(), Restriction.OR, false, 15, (page - 1) * 15, true, false, priceListToFilter());
                         } catch (ServiceException e) {
                             e.printStackTrace();
                             return new ArrayList<Product>();
@@ -267,7 +266,7 @@ public class ProductCatalogFragment extends BaseSupportFragment implements Cance
                                 }
                                 try {
                                     result = ProductRepository.getInstance().getByExample(
-                                            productSearch, Restriction.OR, false, 15, (page-1) * 15, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
+                                            productSearch, Restriction.OR, false, 15, (page - 1) * 15, ordenarPorCategoria, ordenarAlfabeticamente, priceListToFilter());
                                 } catch (ServiceException e) {
                                     e.printStackTrace();
                                 }

@@ -36,7 +36,7 @@ public class User extends BaseRemoteEntity {
     private String login;
     @Property(columnName = "passwd")
     private String passwd;
-    @Property(columnName = "route_ids")
+    //@Property(columnName = "route_ids")
     private String routeIds;
     @Property(columnName = "fecha_login")
     private String fechaLogin;

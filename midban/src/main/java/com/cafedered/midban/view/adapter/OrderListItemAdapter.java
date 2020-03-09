@@ -174,14 +174,16 @@ public class OrderListItemAdapter extends BaseAdapter {
             }
         }
         holder.amount.setText("Total: " + new BigDecimal(order.getAmountTotal().floatValue()).setScale(2, RoundingMode.HALF_UP).toString()
-                + holder.amount.getResources().getString(
+                + " " + holder.amount.getResources().getString(
                         R.string.currency_symbol));
         if (order.getAmountUntaxed() != null) {
             holder.amountUntaxed.setText("Base: " + new BigDecimal(order.getAmountUntaxed().floatValue()).setScale(2, RoundingMode.HALF_UP).toString()
-                    + holder.amountUntaxed.getResources().getString(
+                    + " " + holder.amountUntaxed.getResources().getString(
                     R.string.currency_symbol));
         }
         if (order.getState() != null && order.getState().contains("draft"))
+            holder.state.setText("Borrador");
+        else if (order.getState() != null && order.getState().contains("sent"))
             holder.state.setText("Borrador");
         else if (order.getState() != null && order.getState().contains("progress"))
             holder.state.setText("Confirmado");

@@ -56,7 +56,6 @@ public class Shop extends BaseRemoteEntity implements Comparable<Order> {
     @RemoteProperty(name = "indirect_invoicing")
     private Boolean indirectInvoicing;
 
-
     @Property(columnName = "pricelist_id")
     @RemoteProperty(name = "pricelist_id")
     private Number pricelistId;

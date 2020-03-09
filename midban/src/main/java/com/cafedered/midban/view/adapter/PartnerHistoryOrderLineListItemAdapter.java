@@ -113,16 +113,12 @@ public class PartnerHistoryOrderLineListItemAdapter extends BaseAdapter {
             holder.quantity.setText(line.getProductUomQuantity().toString());
         if (line.getProductUomQuantity() != null)
             holder.quantity.setText(line.getProductUomQuantity().toString());
-        if ("unit".equals(line.getProduct().getMinUnit()))
-            holder.unit.setImageResource(R.drawable.ficha_producto_unidad);
-        else if ("box".equals(line.getProduct().getMinUnit()))
-            holder.unit.setImageResource(R.drawable.ficha_producto_caja);
         if (line.getPriceUnit() != null)
-            holder.price.setText(line.getPriceUnit() + "€");
+            holder.price.setText(line.getPriceUnit() + " €");
         if (line.getDiscount() != null)
             holder.discount.setText(line.getDiscount() + "%");
         if (line.getPriceSubtotal() != null)
-            holder.total.setText(line.getPriceSubtotal() + "€");
+            holder.total.setText(line.getPriceSubtotal() + " €");
         return vi;
     }
 

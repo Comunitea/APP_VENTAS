@@ -16,7 +16,8 @@
             android:id="@+id/tv_configuration_version"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Versión: 3.6 - 22/12/2015" />
+            android:layout_marginBottom="@dimen/field_bottom_margin"
+            android:text="Versión: 1.0.1 - 06/03/2020 - PGC" />
 
         <TextView
             android:id="@+id/tv_configuration_field_protocol"
@@ -96,6 +97,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/field_bottom_margin"
             android:id="@+id/fragment_configuration_field_warehouse"
             />
 

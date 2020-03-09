@@ -87,7 +87,7 @@ public class UserRepository extends BaseRepository<User, UserDAO> {
 			}
 			FilterCollection filters = new User().getRemoteFilters();
 			RowCollection entities;
-			String[] fieldsRemote = {"id", "login", "route_ids", "company_id"};
+			String[] fieldsRemote = {"id", "login", "company_id"};
 			try {
 				entities = adapter.searchAndReadObject(filters, fieldsRemote,
 						"1900-01-01 00:00:00");
@@ -97,8 +97,7 @@ public class UserRepository extends BaseRepository<User, UserDAO> {
 						delete(user.getId());
 				for (Row row : entities) {
 					User detail = new User();
-					Object[] routeIds = (Object[]) row
-							.get("route_ids");
+					Object[] routeIds = null;
 					String routes = "";
 					if (routeIds != null) {
 						for (Object id : routeIds) {

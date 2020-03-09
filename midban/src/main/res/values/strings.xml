@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">El Nogal</string>
+    <string name="app_name">VALQUIN</string>
     <string name="action_settings">Settings</string>
 
     <!-- configuration parameters -->
@@ -544,7 +544,7 @@
     <string name="ordenar_categoria">Ord. categoría</string>
     <string name="ordenar_referencia">Ord. referencia</string>
     <string name="ordenar_alfabeticamente">Ord. alfabético</string>
-    <string name="loading_more_items">cargando...</string>
+    <string name="loading_more_items">Cargando...</string>
     <string name="fragment_partner_append_quick_product">Añadir</string>
     <string name="cannot_retrieve_product">No se puede recuperar el producto.</string>
     <string name="activity_portada_select_product_dialog">Seleccionar producto</string>
@@ -562,7 +562,7 @@
     <string name="logout">Salir</string>
     <string name="configuration">Configuración</string>
     <string name="order_catalog">Ordenar</string>
-    <string name="loading_new_line">calculando precios</string>
+    <string name="loading_new_line">Calculando precios</string>
     <string name="cannot_confirm_while_calculating_prices">No se puede confirmar un pedido mientras se están calculando precios</string>
     <string name="units_cannot_be_modified_when_read_only_mode">No se pueden cambiar las unidades de este pedido. Está en modo lectura.</string>
     <string name="product_was_already_added">El producto ya se había añadido. Sólo puede haber dos líneas para el mismo producto y una de ellas ha de tener precio = 0.</string>
@@ -579,4 +579,5 @@
     <string name="error_irrecuperable_en_pedido">ERROR IRRECUPERABLE EN PEDIDO. Contacta con un administrador.</string>
     <string name="error_recuperable_en_pedido">PENDIENTE: el pedido no se ha sincronizado por un fallo de red. Se intentará su reenvío más tarde.</string>
     <string name="error_al_anadir_producto">ERROR al añadir producto. Si persiste cierre la aplicación y vuelva a intentarlo.</string>
+    <string name="order_shop_no_permitido_cambio_tienda">No se puede cambiar de tienda si ya se han añadido productos al pedido.</string>
 </resources>

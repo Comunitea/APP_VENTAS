@@ -178,11 +178,11 @@ public class ProductCatalogItemAdapter extends BaseAdapter {
                             .getCompleteName().split("/");
                     int arrayLength = categories.length;
                     if (arrayLength > 1) {
-                        holder.category.setText(categories[arrayLength - 2]);
-                        holder.subcategory.setText(categories[arrayLength - 1]);
+                        holder.category.setText(categories[arrayLength - 2].trim());
+                        holder.subcategory.setText(categories[arrayLength - 1].trim());
                     } else {
                         if (arrayLength > 0)
-                            holder.category.setText(categories[arrayLength - 1]);
+                            holder.category.setText(categories[arrayLength - 1].trim());
                     }
                 } else {
                     holder.category.setText("");
@@ -210,9 +210,6 @@ public class ProductCatalogItemAdapter extends BaseAdapter {
             holder.icons.removeAllViews();
             //TODO remove this mock stuff
             if (position % 3 == 0) {
-//        if (product.getProductClass().equals(
-//                vi.getResources().getString(
-//                        R.string.fragment_product_catalog_type_frozen))) {
                 ImageView anIcon = new ImageView(vi.getContext());
                 anIcon.setImageDrawable(vi.getResources().getDrawable(
                         R.drawable.ficha_producto_congelado));

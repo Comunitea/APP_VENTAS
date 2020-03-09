@@ -54,14 +54,14 @@
         android:orientation="vertical"
         android:layout_weight="1.2">
         <TextView
-            android:id="@+id/order_list_item_amount"
+            android:id="@+id/order_list_item_amount_untaxed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/separator_margin"
             android:gravity="right"
             android:textSize="@dimen/h5" />
         <TextView
-            android:id="@+id/order_list_item_amount_untaxed"
+            android:id="@+id/order_list_item_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/separator_margin"

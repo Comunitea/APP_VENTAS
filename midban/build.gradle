@@ -7,7 +7,7 @@ android {
     }
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.cafedered.midban_quival"
+        applicationId "com.cafedered.midban_valquin"
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 1

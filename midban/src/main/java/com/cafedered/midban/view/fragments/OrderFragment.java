@@ -293,7 +293,7 @@ public class OrderFragment extends BaseSupportFragment implements IProductSelect
                 } else {
                     riskLimit.setTextColor(MidbanApplication.getContext().getResources().getColor(R.color.midban_text_color));
                 }
-                riskLimit.setText("Crédito disponible: " + new BigDecimal(availableCredit.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + "€");
+                riskLimit.setText("Crédito disponible: " + new BigDecimal(availableCredit.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + " €");
             }
             if (availableDebitOnline == null) {
                 new AsyncTask<Void, Void, Float>() {
@@ -339,7 +339,7 @@ public class OrderFragment extends BaseSupportFragment implements IProductSelect
                                 } else {
                                     riskLimit.setTextColor(MidbanApplication.getContext().getResources().getColor(R.color.midban_text_color));
                                 }
-                                riskLimit.setText("Crédito disponible: " + new BigDecimal(disponible.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + "€");
+                                riskLimit.setText("Crédito disponible: " + new BigDecimal(disponible.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + " €");
                                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
                                 riskLimit.startAnimation(fadeIn);
                                 fadeIn.setDuration(1500);
@@ -674,7 +674,7 @@ public class OrderFragment extends BaseSupportFragment implements IProductSelect
                     OrderRepository.getCurrentOrder().setPricelistId(
                             partner.getPricelistId());
                     OrderRepository.getCurrentOrder().setName("/");
-                    OrderRepository.getCurrentOrder().setChanel("tablet");
+                    OrderRepository.getCurrentOrder().setChannel("tablet");
                     orderlinesCount.setText(""
                             + OrderRepository.getCurrentOrder().getLines().size());
                     orderTotalAmount.setText(OrderRepository.getCurrentOrder()

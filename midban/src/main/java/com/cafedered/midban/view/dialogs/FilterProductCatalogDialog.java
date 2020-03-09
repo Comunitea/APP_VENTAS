@@ -189,7 +189,7 @@ public class FilterProductCatalogDialog extends Dialog {
                             try {
                                 currentProducts.addAll(ProductRepository.getInstance()
                                         .getByExample(productExample, Restriction.AND,
-                                                true, page, page*15));
+                                                true, page, page * 15));
 
                             } catch (ServiceException e) {
                                 e.printStackTrace();

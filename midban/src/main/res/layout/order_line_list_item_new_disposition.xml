@@ -53,7 +53,7 @@
                 android:id="@+id/order_line_list_item_new_disposition_quantity_uom"
                 android:layout_width="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/h5"
+                android:textSize="@dimen/h6"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:id="@+id/order_line_list_item_new_disposition_less_icon_uom"
@@ -67,8 +67,9 @@
             android:id="@+id/order_line_list_item_new_disposition_unit_uom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textColor="@color/abc_search_url_text"
-            android:textSize="@dimen/h4" />
+            android:textSize="@dimen/h6" />
 
     </LinearLayout>
 
@@ -93,7 +94,7 @@
                 android:id="@+id/order_line_list_item_new_disposition_quantity_uos"
                 android:layout_width="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/h5"
+                android:textSize="@dimen/h6"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:id="@+id/order_line_list_item_new_disposition_less_icon_uos"
@@ -107,8 +108,9 @@
             android:id="@+id/order_line_list_item_new_disposition_unit_uos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textColor="@color/abc_search_url_text"
-            android:textSize="@dimen/h4" />
+            android:textSize="@dimen/h6" />
 
     </LinearLayout>
 
@@ -125,12 +127,13 @@
     <EditText
         android:id="@+id/order_line_list_item_new_disposition_discount"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="right|center_horizontal"
-        android:inputType="numberDecimal"
         android:imeOptions="actionDone"
-        android:textSize="@dimen/h6"
-        android:layout_height="wrap_content" />
+        android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
+        android:textSize="@dimen/h6" />
 
     <TextView
         android:id="@+id/order_line_list_item_new_disposition_total"

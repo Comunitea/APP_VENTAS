@@ -250,8 +250,10 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
         if (partner == null) {
             getActivity().finish();
         } else {
-            String title = (partner.getRef() + " - " + partner.getName());
-            ((BaseSupportActivity) getActivity()).getSupportActionBar().setTitle(title.length() > 30 ? title.substring(0, 30) : title);
+            // String title = (partner.getRef() + " - " + partner.getName());
+            // ((BaseSupportActivity) getActivity()).getSupportActionBar().setTitle(title.length() > 30 ? title.substring(0, 30) : title);
+            String title = partner.getName();
+            ((BaseSupportActivity) getActivity()).getSupportActionBar().setTitle(title.length() > 60 ? title.substring(0, 20) + "..." + title.substring(title.length() - 40) : title);
             calculateRiskLimit(partner);
             OrderRepository.getCurrentOrder().setPartnerId(partner.getId());
             paymentMode.setText(getString(R.string.fragment_partner_detail_tab_card_payment_mode));
@@ -259,7 +261,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 try {
                     PaymentMode pm = PaymentModeRepository.getInstance().getById(partner.getCustomerPaymentMode().longValue());
                     if (pm != null){
-                        paymentMode.setText(getString(R.string.fragment_partner_detail_tab_card_payment_mode) + pm.getName());
+                        paymentMode.setText(getString(R.string.fragment_partner_detail_tab_card_payment_mode) + " " + pm.getName());
                     }
                 } catch (ConfigurationException e) {
                     e.printStackTrace();
@@ -272,7 +274,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 try {
                     AccountPaymentTerm pm = AccountPaymentTermRepository.getInstance().getById(partner.getPropertyPaymentTerm().longValue());
                     if (pm != null){
-                        paymentTerm.setText(getString(R.string.fragment_partner_detail_tab_card_account_payment_term) + pm.getName());
+                        paymentTerm.setText(getString(R.string.fragment_partner_detail_tab_card_account_payment_term) + " " + pm.getName());
                     }
                 } catch (ConfigurationException e) {
                     e.printStackTrace();
@@ -370,11 +372,9 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     }
 
     public void loadOnResume() {
-
         loadingItems.setVisibility(View.VISIBLE);
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 if (isAdded()) {
@@ -385,18 +385,17 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                             //do nothing
                         }
                     }
-
                     numberOfLinesView.setText("Núm. Líneas: "
                             + OrderRepository.getCurrentOrder().getLines().size());
                     adapterLines.notifyDataSetChanged();
                     calculateAmounts();
                     amountTotalView.setText("Total: " + OrderRepository.getCurrentOrder()
                             .getAmountTotal().toString()
-                            + getResources().getString(R.string.currency_symbol));
+                            + " " + getResources().getString(R.string.currency_symbol));
                     if (OrderRepository.getCurrentOrder().getAmountUntaxed() != null)
                         amountUntaxedView.setText("Base: " + OrderRepository.getCurrentOrder()
                                 .getAmountUntaxed().toString()
-                                + getResources().getString(R.string.currency_symbol));
+                                + " " + getResources().getString(R.string.currency_symbol));
 //        if (OrderRepository.getCurrentOrder().getAmountUntaxed().floatValue() != 0)
 //            orderMarginAmount.setText(new BigDecimal((OrderRepository
 //                    .getCurrentOrder().getAmountUntaxed().floatValue()
@@ -420,7 +419,6 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
 //            editButtons.setVisibility(View.VISIBLE);
 //            readOnlyButtons.setVisibility(View.GONE);
                     }
-//
                     if (reloadProducts)
                         obtainProductsForPartner(partner);
                     calculateRiskLimit(partner);
@@ -428,8 +426,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
 
                 loadingItems.setVisibility(View.GONE);
             }
-        }, 200 );//time in milisecond
-
+        }, 200 ); // time in miliseconds
     }
 
     public boolean isEditable() {
@@ -491,7 +488,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                             } else {
                                 if (p.getPricelistIndirectId() != null) {
                                     loaded = true;
-                                    info = "NO es dirección de entrega. Carga indirecta del cliente " + p.getName();
+                                    info = "No es dirección de entrega. Carga indirecta del cliente " + p.getName();
                                     setTarifaActual(p.getPricelistIndirectId().toString());
                                 }
                             }
@@ -519,7 +516,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                         // - Si el partner seleccionado no es una dirección carga su tarifa (productos y precios)
                         if (!loaded) {
                             if ((p != null) && (p.getPricelistId() != null)) {
-                                info = "NO es dirección de entrega. Carga directa cliente " + p.getName();
+                                info = "No es dirección de entrega. Carga directa cliente " + p.getName();
                                 setTarifaActual(p.getPricelistId().toString());
                             }
                         }
@@ -688,66 +685,6 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                         }
                     }
                     line.setPriceUnit(result.floatValue());
-                   // ProductUom uom = product.getUom();
-                        /* DAVID - ESTAS PROPIEDADES YA NO EXISTEN
-                    try {
-                        if (product.getBaseUseSale() != null && product.getBaseUseSale() && product.getLogBaseId() != null)
-                            uom = ProductUomRepository.getInstance().getById(product.getLogBaseId().longValue());
-                        if (product.getBoxUseSale() != null && product.getBoxUseSale() && product.getLogBoxId() != null)
-                            uom = ProductUomRepository.getInstance().getById(product.getLogBoxId().longValue());
-                        if (product.getUnitUseSale() != null && product.getUnitUseSale() && product.getLogUnitId() != null)
-                            uom = ProductUomRepository.getInstance().getById(product.getLogUnitId().longValue());
-                        if (line.getProductUos() != null)
-                            uom = ProductUomRepository.getInstance().getById(line.getProductUos().longValue());
-                    } catch (ConfigurationException e) {
-                        e.printStackTrace();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
-                    String uomMarcaPrecio = "";
-                    /* DAVID - ESTAS PROPIEDADES YA NO EXISTEN
-                    if (product.getBaseUseSale() != null && product.getUomId().equals(product.getLogBaseId())) {
-                        uomMarcaPrecio = "BASE";
-                    } else if (product.getUnitUseSale() != null && product.getUomId().equals(product.getLogUnitId())) {
-                        uomMarcaPrecio = "UNIT";
-                    } else if (product.getBoxUseSale() != null && product.getUomId().equals(product.getLogBoxId())) {
-                        uomMarcaPrecio = "BOX";
-                    }
-                    // DAVID - añado comprobación para evitar error por null
-                    if (uom != null && uom.getId() != null) {
-                        if (product.getBaseUseSale() != null && uom.getId().equals(product.getLogBaseId().longValue())) {
-                            if (uomMarcaPrecio.equals("BASE"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("UNIT"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() / product.getKgUn().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("BOX"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() / product.getKgUn().floatValue() / product.getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-
-                        } else if (product.getUnitUseSale() != null && uom.getId().equals(product.getLogUnitId().longValue())) {
-                            if (uomMarcaPrecio.equals("BASE"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * product.getKgUn().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("UNIT"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("BOX"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() / product.getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                        } else if (product.getBoxUseSale() != null && uom.getId().equals(product.getLogBoxId().longValue())) {
-                            if (uomMarcaPrecio.equals("BASE"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * product.getKgUn().floatValue() * product.getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("UNIT"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * product.getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            else if (uomMarcaPrecio.equals("BOX"))
-                                line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                        }
-                    }
-                    if (line.getProductUosQuantity() != null) {
-                        line.setPriceSubtotal(line.getProductUosQuantity().floatValue()
-                                * line.getPriceUdv().floatValue());
-                        line.setProductUomQuantity(line.getProductUomQuantity());
-                    } else {
-                        line.setProductUosQuantity(1);
-                        line.setProductUomQuantity(1.0);
-                    }
-                    */
                     /* DAVID - MODIFICACION */
                     //line.setProductUomQuantity(line.getProductUomQuantity());
                     line.setPriceSubtotal(line.getPriceUnit().floatValue() * line.getProductUomQuantity().floatValue());
@@ -775,6 +712,10 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
     public void clickSelectShop(){
 
         try {
+            if (OrderRepository.getCurrentOrder().getLines().size() > 0) {
+                MessagesForUser.showMessage(getView(), getResources().getString(R.string.order_shop_no_permitido_cambio_tienda), Toast.LENGTH_SHORT, Level.SEVERE);
+                return;
+            }
             List<Shop> shops = ShopRepository.getInstance().getAll(0, 100000);
 
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
@@ -909,11 +850,12 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                                     OrderRepository.getCurrentOrder().setClientOrderRef(refView.getText().toString());
                                     if (OrderRepository.getCurrentOrder().getName() == null)
                                         OrderRepository.getCurrentOrder().setName("/");
-                                    OrderRepository.getCurrentOrder().setChanel("tablet");
+                                    OrderRepository.getCurrentOrder().setChannel("tablet");
                                     numberOfLinesView.setText("Núm. Lineas: "
                                             + OrderRepository.getCurrentOrder().getLines().size());
                                     amountTotalView.setText("Total: " + OrderRepository.getCurrentOrder()
-                                            .getAmountTotal().toString());
+                                            .getAmountTotal().toString()
+                                            + getResources().getString(R.string.currency_symbol));
                                     if (OrderRepository.getCurrentOrder().getAmountUntaxed() != null)
                                         amountUntaxedView.setText("Base: " + OrderRepository.getCurrentOrder()
                                                 .getAmountUntaxed().toString()
@@ -972,7 +914,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().intValue());
             if (confirmOrder.getCreateDate() != null)
                 orderOdoo.put("create_date", confirmOrder.getCreateDate());
-            orderOdoo.put("chanel", "tablet");
+            orderOdoo.put("channel", "tablet");
             if (confirmOrder.getNote() != null && confirmOrder.getNote().length() > 0)
                 orderOdoo.put("note", confirmOrder.getNote());
             if (confirmOrder.getName() != null)
@@ -1017,7 +959,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 orderOdoo.put("partner_shipping_id", confirmOrder.getPartnerShippingId().intValue());
             if (confirmOrder.getCreateDate() != null)
                 orderOdoo.put("create_date", confirmOrder.getCreateDate());
-            orderOdoo.put("chanel", "tablet");
+            orderOdoo.put("channel", "tablet");
             if (confirmOrder.getNote() != null)
                 orderOdoo.put("note", confirmOrder.getNote());
             if (confirmOrder.getName() != null)
@@ -1393,7 +1335,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
             if (!isCancelled()) {
                 Product productSearch = new Product();
                 String productSearchF = params[0];
-                if (productSearchF.length() > 2) {
+                if (productSearchF.length() > 1) {
                     productSearch.setNameTemplate(productSearchF.toString());
                     productSearch.setCode(productSearchF.toString());
                     try {
@@ -1444,7 +1386,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                         @Override
                         protected List<Product> doInBackground(Void... params) {
                             try {
-                                List<Product> a = ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 15, (page-1) * 15, true, false, _tarifaActual);
+                                List<Product> a = ProductRepository.getInstance().getByExample(productSearchScroll, Restriction.OR, false, 15, (page - 1) * 15, true, false, _tarifaActual);
                                 return a;
                             } catch (ServiceException e) {
                                 e.printStackTrace();
@@ -1654,7 +1596,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                 } else {
                     creditAvailableView.setTextColor(MidbanApplication.getContext().getResources().getColor(R.color.midban_text_color));
                 }
-                creditAvailableView.setText("Crédito disponible: " + new BigDecimal(availableCredit.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + "€");
+                creditAvailableView.setText("Crédito disponible: " + new BigDecimal(availableCredit.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + " €");
             }
             if (availableDebitOnline == null) {
                 new AsyncTask<Void, Void, Float>() {
@@ -1702,7 +1644,7 @@ public class OrderNewDispositionFragment extends BaseSupportFragment implements 
                                 } else {
                                     creditAvailableView.setTextColor(MidbanApplication.getContext().getResources().getColor(R.color.midban_text_color));
                                 }
-                                creditAvailableView.setText("Crédito disponible: " + new BigDecimal(disponible.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + "€");
+                                creditAvailableView.setText("Crédito disponible: " + new BigDecimal(disponible.floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue() + " €");
                                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
                                 creditAvailableView.startAnimation(fadeIn);
                                 fadeIn.setDuration(1500);

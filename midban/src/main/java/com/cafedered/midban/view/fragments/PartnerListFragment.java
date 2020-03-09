@@ -112,7 +112,7 @@ public class PartnerListFragment extends BaseSupportFragment implements CancelAs
                                 partnerSearch.setUserId(user.getId());
                                 try {
                                     return PartnerRepository.getInstance()
-                                        .getByExampleUser(partnerSearch,  Restriction.OR, false, 15, page * 15);
+                                        .getByExampleUser(partnerSearch,  Restriction.OR, false, 15, (page - 1) * 15);
 
                                 } catch (ServiceException e) {
                                     e.printStackTrace();
@@ -182,7 +182,7 @@ public class PartnerListFragment extends BaseSupportFragment implements CancelAs
                     partnerSearch.setUserId(user.getId());
                     try {
                         currentValues.addAll(PartnerRepository.getInstance()
-                                .getByExampleUser(partnerSearch, Restriction.OR, false, 10, 0));
+                                .getByExampleUser(partnerSearch, Restriction.OR, false, 15, 0));
                     } catch (ServiceException e) {
                         e.printStackTrace();
                     }
@@ -208,7 +208,7 @@ public class PartnerListFragment extends BaseSupportFragment implements CancelAs
                                 protected List<Partner> doInBackground(Void... params) {
                                     try {
                                         return PartnerRepository.getInstance()
-                                                .getByExampleUser(partnerSearch, Restriction.OR, false, 15, page * 15);
+                                                .getByExampleUser(partnerSearch, Restriction.OR, false, 15, (page - 1) * 15);
 
                                     } catch (ServiceException e) {
                                         e.printStackTrace();

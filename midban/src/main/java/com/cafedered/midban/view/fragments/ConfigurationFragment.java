@@ -99,9 +99,9 @@ public class ConfigurationFragment extends BaseSupportFragment {
             else {
                 // FIXME delete this hardcoded test data
                 protocol.setText("http");
-                openErpServer.setText("elnapp.livingodoo.com");
+                openErpServer.setText("100.0.29.80");
                 openErpPort.setText("80");
-                openErpDatabase.setText("elnapp");
+                openErpDatabase.setText("odoo_elnogal_0306-1");
                 defaultUser.setText("cmnt");
             }
 

@@ -193,25 +193,36 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
                     entity.getClass());
             String utcDate = DateUtil.convertToUTC(maxDateOld);
             // PETICIÓN EXPRESA DEL INTEGRADOR. No enviar la fecha en la primera sincronización
-            if ("0001-01-01 00:00:00".equals(utcDate)){
+            if ("0001-01-01 00:00:00".equals(utcDate)) {
                 utcDate = null;
             }
-            entities = adapter.searchAndReadObject(
-                    filters,
-                    fieldsRemote,
-                    utcDate);
             // en la primera sincronización no hay que comprobar los eliminados, no tiene sentido
             if ((utcDate != null) && doDeletes) {
                 String[] fieldId = new String[1];
                 fieldId[0] = "id";
                 // obtengo todos los ids de servidor
                 RowCollection serverIds = adapter.searchAndReadObject(
-                        entity.getRemoteFilters(),
-                        fieldId,
-                        null);
+                        filters, fieldId, null);
                 try {
                         // obtengo todos los ids en local
                         List<E> localIds = dao.getAll(0, 1000000);
+                        // Probamos este nuevo método para eliminar lo que sobra - Pedro Gómez - 05/03/2020
+                        List<Long> serverIdsList = new ArrayList<>();
+                        for (Row row : serverIds) {
+                            serverIdsList.add(((Integer) row.get("id")).longValue());
+                        }
+                        for (int i = 0; i < localIds.size(); i++) {
+                            Long id = localIds.get(i).getId();
+                            if (!serverIdsList.contains(id)) {
+                                try {
+                                    dao.delete(id);
+                                } catch (ReflectionException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        // Hasta aquí - Pedro Gómez - 05/03/2020
+                        /* Este era el anterior - Pedro Gómez - 05/03/2020
                         // para cada id en local ...
                         for (int i = 0; i < localIds.size(); i++) {
                             boolean exists = false;
@@ -219,8 +230,7 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
                             // ... lo busco en la lista que me llegó de servidor
                             for (Row row : serverIds) {
                                 // si lo encuentro dejo una marca como que sigue existiendo
-                                if (id == ((Integer) row.get("id"))
-                                        .longValue()){
+                                if (id == ((Integer) row.get("id")).longValue()) {
                                     exists = true;
                                     break;
                                 }
@@ -234,10 +244,13 @@ public class BaseRepository<E extends BaseEntity, D extends BaseDAO<E>> {
                                 }
                             }
                         }
+                        */
                 } catch (DatabaseException e) {
                     e.printStackTrace();
                 }
             }
+            entities = adapter.searchAndReadObject(
+                    filters, fieldsRemote, utcDate);
             List<E> toSave = new ArrayList<E>();
             if (LoggerUtil.isDebugEnabled()) {
                 System.out.println("Procesada petición de red. " + entities.size() + " elementos. Tiempo: " + (new Date().getTime() - timeInit) / 1000L);

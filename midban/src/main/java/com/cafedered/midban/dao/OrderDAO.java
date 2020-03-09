@@ -37,7 +37,10 @@ import com.cafedered.cafedroidlitedao.extractor.JDBCQueryMaker;
 import com.cafedered.midban.entities.BaseEntity;
 import com.cafedered.midban.entities.Order;
 import com.cafedered.midban.entities.OrderLine;
+import com.cafedered.midban.entities.PricelistPrices;
 import com.cafedered.midban.entities.Product;
+import com.cafedered.midban.entities.ProductCategory;
+import com.cafedered.midban.entities.ProductTemplate;
 import com.cafedered.midban.entities.ProductUom;
 import com.cafedered.midban.entities.decorators.LastSaleCustomObject;
 import com.cafedered.midban.service.repositories.OrderRepository;
@@ -65,16 +68,20 @@ public class OrderDAO extends BaseDAO<Order> {
             query = "SELECT p.* FROM "
                     + ((BaseEntity) ReflectionUtils.createObject(Product.class))
                     .getClass().getAnnotation(Entity.class).tableName() + " p, "
-                    + ((BaseEntity) ReflectionUtils
-                    .createObject(OrderLine.class)).getClass()
-                    .getAnnotation(Entity.class).tableName()
-                    + " l, product_template t, product_category c, "
+                    + ((BaseEntity) ReflectionUtils.createObject(OrderLine.class))
+                    .getClass().getAnnotation(Entity.class).tableName() + " l, "
+                    + ((BaseEntity) ReflectionUtils.createObject(ProductTemplate.class))
+                    .getClass().getAnnotation(Entity.class).tableName() + " t, "
+                    + ((BaseEntity) ReflectionUtils.createObject(ProductCategory.class))
+                    .getClass().getAnnotation(Entity.class).tableName() + " c, "
                     + ((BaseEntity) ReflectionUtils.createObject(Order.class))
-                    .getClass().getAnnotation(Entity.class).tableName()
-                    + " o WHERE l.order_partner_id = "
-                    + idPartner
-                    + " AND l.order_id = o.id AND l.product_id = p.id";
-
+                    .getClass().getAnnotation(Entity.class).tableName() + " o, "
+                    + ((BaseEntity) ReflectionUtils.createObject(PricelistPrices.class))
+                    .getClass().getAnnotation(Entity.class).tableName() + " tpp "
+                    + "WHERE l.order_partner_id = " + idPartner
+                    + " AND l.order_id = o.id"
+                    + " AND l.product_id = p.id"
+                    + " AND l.product_id = tpp.product_id";
             if (datesBack != OrderRepository.DateFilters.LAST_ORDER
                     .getDatesBack()) {
                 Calendar date = Calendar.getInstance();
@@ -84,7 +91,7 @@ public class OrderDAO extends BaseDAO<Order> {
                         + DateUtil.toFormattedString(date.getTime(),
                         "yyyy-MM-dd") + "'";
                 query = query + " AND p.product_tmpl_id = t.id AND t.categ_id = c.id ";
-                query = query + " ORDER BY c.name ";
+                query = query + " ORDER BY p.default_code ";
             } else {
                 Long idOrder = null;
                 Cursor cursor = getDaoHelper()
@@ -207,7 +214,7 @@ public class OrderDAO extends BaseDAO<Order> {
 
     public List<LastSaleCustomObject> getProductLastSalesForPartner(
             Long partnerId, Long productId) {
-        String query = "SELECT o.date_order, l.price_unit, l.price_subtotal, l.product_uom_qty, l.discount, l.product_uos, o.id, p.min_unit "
+        String query = "SELECT o.date_order, l.price_unit, l.price_subtotal, l.product_uom_qty, l.discount, l.product_uos, o.id "
                 + "FROM sale_order o, sale_order_line l, product_product p  "
                 + "WHERE o.partner_id = "
                 + partnerId

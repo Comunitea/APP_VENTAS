@@ -519,7 +519,6 @@ VOY A COMENTAR TODA LA PARTE QUE VA A BUSCAR EL PRECIO A SERVIDOR, AHORA YA NO F
                 ((User) MidbanApplication.getValueFromContext(ContextAttributes.LOGGED_USER));
             Product entity = new Product();
             entity.setSaleOk(true);
-            entity.setSaleApp(true);
             entity.setActive(true);
             return dao.getByExample(entity, Restriction.OR, true,
                     numElements, offset, ordenarPorCategoria, ordenarAlfabeticamente, tarifaPorLaQueFiltrar);

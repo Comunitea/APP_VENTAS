@@ -61,21 +61,11 @@
         android:layout_marginTop="@dimen/activity_vertical_margin" >
 
         <TextView
-            android:id="@+id/dialog_product_to_cart_packaging"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/separator_margin"
-            android:layout_marginRight="@dimen/separator_margin"
-            android:textSize="@dimen/h4" />
-
-        <TextView
             android:id="@+id/dialog_product_to_cart_stock_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/separator_margin"
-            android:layout_toRightOf="@+id/dialog_product_to_cart_packaging"
-            android:text="@string/dialog_product_to_cart_stock"
-            android:textSize="@dimen/h4" />
+            android:text="@string/dialog_product_to_cart_stock" />
 
         <TextView
             android:id="@+id/dialog_product_to_cart_stock_content"
@@ -83,16 +73,22 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/separator_margin"
             android:layout_marginLeft="@dimen/separator_margin"
-            android:layout_toRightOf="@+id/dialog_product_to_cart_stock_label"
-            android:textSize="@dimen/h4" />
+            android:layout_toRightOf="@+id/dialog_product_to_cart_stock_label" />
+
+        <TextView
+            android:id="@+id/dialog_product_to_cart_packaging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/separator_margin"
+            android:layout_marginRight="@dimen/separator_margin"
+            android:layout_toRightOf="@+id/dialog_product_to_cart_stock_content" />
 
         <CheckBox
             android:id="@+id/dialog_product_to_cart_check_sample"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/dialog_product_to_cart_sample"
-            android:textSize="@dimen/h4" />
+            android:text="@string/dialog_product_to_cart_sample" />
     </RelativeLayout>
 
     <LinearLayout
@@ -133,7 +129,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2" >
 
-                <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
+                <org.droidparts.widget.ClearableEditText
+                    android:drawableRight="@drawable/general_filtrar_borrar"
+                    android:drawablePadding="12dp"
                     android:id="@+id/dialog_product_to_cart_quantity_uom_et"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -251,7 +249,7 @@
 
                 <org.droidparts.widget.ClearableEditText         android:drawableRight="@drawable/general_filtrar_borrar"         android:drawablePadding="12dp"
                     android:id="@+id/dialog_product_to_cart_discount_et"
-                    android:layout_width="45dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/dialog_product_to_cart_discount_label"
                     android:background="@color/midban_grey"

@@ -25,10 +25,6 @@ public class Tax extends BaseRemoteEntity{
     @RemoteProperty(name = "description")
     private String description;
 
-    @Property(columnName = "code")
-    @RemoteProperty(name = "code")
-    private String code;
-
     @Property(columnName = "type")
     @RemoteProperty(name = "type")
     private String type;
@@ -59,14 +55,6 @@ public class Tax extends BaseRemoteEntity{
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getType() {

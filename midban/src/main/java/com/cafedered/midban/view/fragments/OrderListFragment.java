@@ -111,15 +111,13 @@ public class OrderListFragment extends BaseSupportFragment implements
                             Order order = new Order();
                             if (pendingOrder.get("id") != null) {
                                 order.setId((Long) pendingOrder.get("id"));
-                            }
-                            else{
+                            } else {
                                 order.setId(Calendar.getInstance().getTimeInMillis());
                             }
                             if (pendingOrder.get("name").equals("/")) {
                                 //String partnerName = PartnerRepository.getInstance().getById(((Integer) pendingOrder.get("partner_id")).longValue()).getName();
                                 order.setName("(Pendiente)");
-                            }
-                            else{
+                            } else {
                                 order.setName((String) pendingOrder.get("name"));
                             }
                             order.setState((String) pendingOrder.get("state"));
@@ -168,13 +166,13 @@ public class OrderListFragment extends BaseSupportFragment implements
                         R.string.fragment_order_list_amount_orders)
                         + " "
                         + new BigDecimal(amount).setScale(2, RoundingMode.HALF_UP).toString()
-                        + view.getResources().getString(
+                        + " " + view.getResources().getString(
                                 R.string.currency_symbol));
                 marginOrders.setText(view.getResources().getString(
                         R.string.fragment_order_list_margin_orders)
                         + " "
                         + new BigDecimal(margin).setScale(2, RoundingMode.HALF_UP).toString()
-                        + view.getResources().getString(
+                        + " " + view.getResources().getString(
                                 R.string.currency_symbol));
             }
         }.execute();

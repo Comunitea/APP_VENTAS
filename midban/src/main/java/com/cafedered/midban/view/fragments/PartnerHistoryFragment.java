@@ -115,7 +115,11 @@ public class PartnerHistoryFragment extends BaseSupportFragment {
             protected List<Order> doInBackground(Void... params) {
                 try {
                     order = new Order();
-                    order.setPartnerId(partner.getId());
+                    if (partner.getIsCompany() == true) {
+                        order.setPartnerId(partner.getId());
+                    } else {
+                        order.setPartnerShippingId(partner.getId());
+                    }
                     if (searchField.getText() != null
                             && !searchField.getText().toString().isEmpty()) {
                         try {

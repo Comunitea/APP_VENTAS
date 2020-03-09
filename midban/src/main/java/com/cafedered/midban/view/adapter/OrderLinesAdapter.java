@@ -130,22 +130,18 @@ public class OrderLinesAdapter extends BaseAdapter {
         try {
             if (line.getProductUosQuantity() != null)
                 holder.quantity.setText(line.getProductUosQuantity().toString());
-            if (line.getProductUos() != null && ProductUomRepository.getInstance().getById(line.getProductUos().longValue()).getLikeType().equals("units"))
-                holder.unit.setImageResource(R.drawable.ficha_producto_unidad);
-            else if (line.getProductUos() != null && ProductUomRepository.getInstance().getById(line.getProductUos().longValue()).getLikeType().equals("boxes"))
-                holder.unit.setImageResource(R.drawable.ficha_producto_caja);
         } catch (Exception e) {
             //do nothing
         }
         if (line.getPriceUnit() != null)
             // cambio a 3 decimales
             holder.price.setText(new BigDecimal(line.getPriceUdv()
-                    .doubleValue()).setScale(3, RoundingMode.HALF_UP) + "€");
+                    .doubleValue()).setScale(3, RoundingMode.HALF_UP) + " €");
         if (line.getDiscount() != null)
             holder.discount.setText(line.getDiscount() + "%");
         if (line.getPriceSubtotal() != null)
             holder.total.setText(new BigDecimal(line.getPriceSubtotal()
-                    .doubleValue()).setScale(2, RoundingMode.HALF_UP) + "€");
+                    .doubleValue()).setScale(2, RoundingMode.HALF_UP) + " €");
         if (showDeleteIcon)
             holder.deleteIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -167,14 +163,6 @@ public class OrderLinesAdapter extends BaseAdapter {
                     ProductUom uom = null;
                     try {
                         uom = ProductUomRepository.getInstance().getById(line.getProductUos().longValue());
-                        /* DAVID -  SE ELIMINARON ESTAS VARIABLES
-                        if (line.getProduct().getBaseUseSale() != null && uom.getId().equals(line.getProduct().getLogBaseId().longValue()))
-                            line.setPriceUdv(line.getPriceUnit());
-                        else if (line.getProduct().getUnitUseSale() != null && uom.getId().equals(line.getProduct().getLogUnitId().longValue()))
-                            line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * line.getProduct().getKgUn().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                        else if (line.getProduct().getBoxUseSale() != null && uom.getId().equals(line.getProduct().getLogBoxId().longValue()))
-                            line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * line.getProduct().getKgUn().floatValue() * line.getProduct().getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                            */
                         line.setPriceSubtotal(line.getProductUosQuantity().floatValue()
                                 * line.getPriceUdv().floatValue()
                                 - (line.getProductUosQuantity().floatValue()
@@ -195,14 +183,6 @@ public class OrderLinesAdapter extends BaseAdapter {
                     ProductUom uom = null;
                     try {
                         uom = ProductUomRepository.getInstance().getById(line.getProductUos().longValue());
-                    /* DAVID -  SE ELIMINARON ESTAS VARIABLES
-                        if (line.getProduct().getBaseUseSale() != null && uom.getId().equals(line.getProduct().getLogBaseId().longValue()))
-                            line.setPriceUdv(line.getPriceUnit());
-                        else if (line.getProduct().getUnitUseSale() != null && uom.getId().equals(line.getProduct().getLogUnitId().longValue()))
-                            line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * line.getProduct().getKgUn().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                        else if (line.getProduct().getBoxUseSale() != null && uom.getId().equals(line.getProduct().getLogBoxId().longValue()))
-                            line.setPriceUdv(new BigDecimal(line.getPriceUnit().floatValue() * line.getProduct().getKgUn().floatValue() * line.getProduct().getUnCa().floatValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
-                    */
                         line.setPriceSubtotal(line.getProductUosQuantity().floatValue()
                                 * line.getPriceUdv().floatValue()
                                 - (line.getProductUosQuantity().floatValue()

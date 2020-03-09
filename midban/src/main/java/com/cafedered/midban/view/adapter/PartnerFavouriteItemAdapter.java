@@ -246,16 +246,6 @@ public class PartnerFavouriteItemAdapter extends BaseAdapter {
                 + " " + product.getProduct().getVirtualAvailable());
 
         holder.icons.removeAllViews();
-        if (product
-                .getProduct()
-                .getProductClass()
-                .equals(convertView.getResources().getString(
-                        R.string.fragment_partner_favourite_type_frozen))) {
-            ImageView anIcon = new ImageView(convertView.getContext());
-            anIcon.setImageDrawable(convertView.getResources().getDrawable(
-                    R.drawable.ficha_producto_congelado));
-            holder.icons.addView(anIcon);
-        }
         boolean showCestaActivada = false;
         if (OrderRepository.getInstance().isOrderInitialized()) {
             for (OrderLine line : OrderRepository.getCurrentOrder().getLines()) {

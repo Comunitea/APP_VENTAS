@@ -79,8 +79,8 @@ public class OrderLine extends BaseRemoteEntity {
     @RemoteProperty(name = "price_subtotal")
     private Number priceSubtotal;
 
-    @Property(columnName = "price_udv", type = Property.SQLType.REAL)
-    @RemoteProperty(name = "price_udv")
+    // @Property(columnName = "price_udv", type = Property.SQLType.REAL)
+    // @RemoteProperty(name = "price_udv")
     private Number priceUdv;
 
     @Property(columnName = "discount", type = Property.SQLType.REAL)

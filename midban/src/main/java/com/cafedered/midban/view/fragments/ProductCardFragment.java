@@ -77,7 +77,8 @@ public class ProductCardFragment extends BaseSupportFragment {
     @Wire(view = R.id.fragment_product_card_product_name,
             field = "nameTemplate")
     private TextView productName;
-    @Wire(view = R.id.fragment_product_card_product_code, field = "defaultCode")
+    @Wire(view = R.id.fragment_product_card_product_code,
+            field = "defaultCode")
     private TextView productCode;
     @Wire(view = R.id.fragment_product_card_product_stock,
             field = "virtualAvailable")
@@ -253,7 +254,7 @@ public class ProductCardFragment extends BaseSupportFragment {
                     super.onPostExecute(result);
                     productPrice.setText(result);
                 }
-            }.execute(getResources().getString(R.string.currency_symbol));
+            }.execute(" " + getResources().getString(R.string.currency_symbol));
             if (!ImageCache.getInstance().exists(
                     Product.class.getName() + product.getId() + "" + 0))
                 ImageCache.getInstance().putInCache(

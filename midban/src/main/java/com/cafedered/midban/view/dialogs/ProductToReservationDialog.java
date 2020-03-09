@@ -74,8 +74,6 @@ public class ProductToReservationDialog extends Dialog {
     @Wire(view = R.id.dialog_product_to_reservation_margin)
     private TextView margin;
     @Wire(view = R.id.dialog_product_to_reservation_quantity_units_packaging)
-    private TextView quantityUnits;
-    @Wire(view = R.id.dialog_product_to_reservation_quantity_units_label)
     private TextView unitsPackaging;
     @Wire(view = R.id.dialog_product_to_reservation_price_et)
     EditText price;
@@ -138,7 +136,6 @@ public class ProductToReservationDialog extends Dialog {
         productDiscount.setText("0"); // initialization
         // TODO remove hardcoding
         // TODO where should we put sample checkbox?
-        quantityUnits.setText(product.getUom().getLikeType());
         unitsPackaging.setText("(Mínimo una Caja)");
         if (product.getProductUl() != null)
             productPackaging.setText(product.getProductUl().getName());

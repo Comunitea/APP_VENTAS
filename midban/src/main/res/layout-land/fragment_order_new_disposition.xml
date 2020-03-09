@@ -14,18 +14,6 @@
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:padding="@dimen/separator_margin" >
-        <android.support.design.widget.FloatingActionButton
-            app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:clickable="true"
-            android:id="@+id/fragment_order_new_disposition_button_cancel"
-            android:src="@drawable/general_cancelar_blanco" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -40,55 +28,6 @@
                 android:layout_marginRight="@dimen/separator_margin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fragment_order_new_disposition_ref_tv"
-                    android:textSize="@dimen/h5" />
-                <org.droidparts.widget.ClearableEditText
-                    android:id="@+id/fragment_order_ref_et"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/label_to_value_margin"
-                    android:textSize="@dimen/h5" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="@dimen/separator_margin"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fragment_order_new_disposition_shop_tv"
-                    android:textSize="@dimen/h5" />
-                <TextView
-                    android:id="@+id/fragment_order_shop_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/label_to_value_margin"
-                    android:textSize="@dimen/h5" />
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="8dp"
-                    android:clickable="true"
-                    app:elevation="6dp"
-                    app:pressedTranslationZ="12dp"
-                    android:id="@+id/fragment_order_new_disposition_button_shop"
-                    android:src="@drawable/general_buscar" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -99,31 +38,99 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/fragment_order_new_disposition_delivery_date_tv"
+                        android:text="@string/fragment_order_new_disposition_shop_tv"
                         android:textSize="@dimen/h5" />
-                    <org.droidparts.widget.ClearableEditText
-                        android:drawableRight="@drawable/general_filtrar_borrar"
-                        android:drawablePadding="12dp"
-                        android:id="@+id/fragment_order_delivery_date_et"
-                        android:layout_width="150dp"
+                    <TextView
+                        android:id="@+id/fragment_order_shop_tv"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/label_to_value_margin"
                         android:textSize="@dimen/h5" />
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        app:elevation="6dp"
+                        app:pressedTranslationZ="12dp"
+                        android:id="@+id/fragment_order_new_disposition_button_shop"
+                        android:src="@drawable/general_buscar" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/separator_margin"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/separator_margin"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_order_new_disposition_delivery_date_tv"
+                            android:textSize="@dimen/h5" />
+                        <org.droidparts.widget.ClearableEditText
+                            android:id="@+id/fragment_order_delivery_date_et"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/label_to_value_margin"
+                            android:textSize="@dimen/h5" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/separator_margin"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fragment_order_new_disposition_ref_tv"
+                            android:textSize="@dimen/h5" />
+                        <org.droidparts.widget.ClearableEditText
+                            android:id="@+id/fragment_order_ref_et"
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/label_to_value_margin"
+                            android:textSize="@dimen/h5" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/separator_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/separator_margin">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/fragment_order_new_disposition_amount_total"
+                        android:id="@+id/fragment_order_new_disposition_amount_untaxed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:textSize="@dimen/h5" />
                     <TextView
-                        android:id="@+id/fragment_order_new_disposition_amount_untaxed"
+                        android:id="@+id/fragment_order_new_disposition_amount_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -134,7 +141,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/separator_margin"
                     android:layout_weight="1"
                     android:visibility="gone"
                     android:textSize="@dimen/h5" />
@@ -150,37 +156,37 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/separator_margin">
                 <TextView
                     android:id="@+id/fragment_order_new_disposition_payment_mode"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/text_x_small" />
-
-
+                    android:textSize="@dimen/h5" />
                 <TextView
                     android:id="@+id/fragment_order_new_disposition_payment_term"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/text_x_small" />
-
+                    android:textSize="@dimen/h5" />
             </LinearLayout>
-
         </LinearLayout>
 
-
-
+        <android.support.design.widget.FloatingActionButton
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:id="@+id/fragment_order_new_disposition_button_cancel"
+            android:src="@drawable/general_cancelar_blanco" />
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
             android:clickable="true"
             app:elevation="6dp"
@@ -190,9 +196,6 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
             android:clickable="true"
             app:elevation="6dp"
@@ -201,6 +204,7 @@
             android:id="@+id/fragment_order_new_disposition_button_repeat"
             android:src="@drawable/general_reservado_transparente" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -221,76 +225,74 @@
                 android:drawableStart="@drawable/midban_button_search"
                 android:textSize="@dimen/h5"
                 android:hint="@string/fragment_product_catalog_search_field_hint" />
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/fragment_order_new_disposition_textview_loading_items"
+                    android:textSize="@dimen/h3"
+                    android:text="Cargando..."
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/fragment_order_new_disposition_favourites_toggle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/fragment_order_new_disposition_textview_loading_items"
-                        android:textSize="40dp"
-                        android:textStyle="bold"
-                        android:text="Cargando..."
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:id="@+id/fragment_order_new_disposition_favourites_toggle"
-                        android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/separator_margin"
+                    android:text="@string/fragment_order_new_disposition_product_favourites"
+                    android:textSize="@dimen/h4"
+                    android:textColor="@color/abc_search_url_text"
+                    android:drawableRight="@drawable/general_flecha_arriba" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/midban_grey" />
+                <ListView
+                    android:id="@+id/fragment_order_new_disposition_product_favourites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/midban_grey" />
+                <TextView
+                    android:id="@+id/fragment_order_new_disposition_all_catalog_toggle"
+                    android:layout_marginTop="@dimen/separator_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_order_new_disposition_all_catalog"
+                    android:textSize="@dimen/h4"
+                    android:textColor="@color/abc_search_url_text"
+                    android:drawableRight="@drawable/general_flecha_arriba"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/midban_grey" />
+                <ListView
+                    android:id="@+id/fragment_order_new_disposition_product_catalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:id="@+id/list_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:visibility="gone">
+                    <ImageView
+                        android:id="@+id/img_animated_wheel"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/separator_margin"
-                        android:text="@string/fragment_order_new_disposition_product_favourites"
-                        android:textSize="@dimen/h4"
-                        android:textColor="@color/abc_search_url_text"
-                        android:drawableRight="@drawable/general_flecha_arriba" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/midban_grey" />
-                    <ListView
-                        android:id="@+id/fragment_order_new_disposition_product_favourites"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/midban_grey" />
+                        android:src="@drawable/animated_wheel"/>
                     <TextView
-                        android:id="@+id/fragment_order_new_disposition_all_catalog_toggle"
-                        android:layout_marginTop="@dimen/separator_margin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fragment_order_new_disposition_all_catalog"
-                        android:textSize="@dimen/h4"
-                        android:textColor="@color/abc_search_url_text"
-                        android:drawableRight="@drawable/general_flecha_arriba"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/midban_grey" />
-                    <ListView
-                        android:id="@+id/fragment_order_new_disposition_product_catalog"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:id="@+id/list_footer"
-                        android:layout_width="match_parent"
+                        android:text="@string/loading_more_items"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:visibility="gone">
-                        <ImageView
-                            android:id="@+id/img_animated_wheel"
-                            android:layout_marginBottom="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/animated_wheel"/>
-                        <TextView
-                            android:text="@string/loading_more_items"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:textSize="@dimen/h3"
-                            android:gravity="center_vertical"/>
-                    </LinearLayout>
+                        android:textSize="@dimen/h3"
+                        android:gravity="center_vertical"/>
                 </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
         <View
             android:layout_width="1dp"

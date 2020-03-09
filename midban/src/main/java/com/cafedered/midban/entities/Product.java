@@ -69,10 +69,6 @@ public class Product extends BaseRemoteEntity {
             orderedProperties = { "id", "name" })
     private Number ul;
 
-//    @Property(columnName = "code")
-//    @RemoteProperty(name = "code")
-//    private String code;
-
     @Property(columnName = "color")
     @RemoteProperty(name = "color")
     private Number color;
@@ -93,41 +89,17 @@ public class Product extends BaseRemoteEntity {
     @RemoteProperty(name = "price_extra")
     private Number priceExtra;
 
-    @Property(columnName = "price_margin")
-    @RemoteProperty(name = "price_margin")
-    private Number priceMargin;
-
     @Property(columnName = "sale_ok")
     @RemoteProperty(name = "sale_ok")
     private Boolean saleOk;
-
-    @Property(columnName = "sale_app")
-    @RemoteProperty(name = "sale_app")
-    private Boolean saleApp;
 
     @Property(columnName = "purchase_ok")
     @RemoteProperty(name = "purchase_ok")
     private Boolean purchaseOk;
 
-    @Property(columnName = "var_weight")
-    @RemoteProperty(name = "var_weight")
-    private Boolean varWeight;
-
-    @Property(columnName = "consignment")
-    @RemoteProperty(name = "consignment")
-    private Boolean consignment;
-
-    @Property(columnName = "bulk")
-    @RemoteProperty(name = "bulk")
-    private Boolean bulk;
-
     @Property(columnName = "type")
     @RemoteProperty(name = "type")
     private String type;
-
-    @Property(columnName = "product_class")
-    @RemoteProperty(name = "product_class")
-    private String productClass;
 
     @Property(columnName = "uom_id")
     @RemoteProperty(name = "uom_id")
@@ -141,10 +113,6 @@ public class Product extends BaseRemoteEntity {
     @RemoteProperty(name = "list_price")
     private Number listPrice;
 
-    @Property(columnName = "last_purchase_price")
-    @RemoteProperty(name = "last_purchase_price")
-    private Number lastPurchasePrice;
-
     @Property(columnName = "default_code")
     @RemoteProperty(name = "default_code")
     private String defaultCode;
@@ -157,73 +125,9 @@ public class Product extends BaseRemoteEntity {
     @RemoteProperty(name = "dun14")
     private String dun14;
 
-    @Property(columnName = "ean14")
-    @RemoteProperty(name = "ean14")
-    private String ean14;
-
-    @Property(columnName = "sale_type")
-    @RemoteProperty(name = "sale_type")
-    private String saleType;
-
-    @Property(columnName = "product_type")
-    @RemoteProperty(name = "product_type")
-    private String productType;
-
     @Property(columnName = "temperature", type = Property.SQLType.REAL)
     @RemoteProperty(name = "temperature")
     private Number temperature;
-
-    @Property(columnName = "mark")
-    @RemoteProperty(name = "mark")
-    private String mark;
-
-    @Property(columnName = "min_unit")
-    @RemoteProperty(name = "min_unit")
-    private String minUnit;
-
-    @Property(columnName = "scientific_name")
-    @RemoteProperty(name = "scientific_name")
-    private String scientificName;
-
-    @Property(columnName = "web")
-    @RemoteProperty(name = "web")
-    private String web;
-
-    @Property(columnName = "glazed")
-    @RemoteProperty(name = "glazed")
-    private Boolean glazed;
-
-    @Property(columnName = "first_course")
-    @RemoteProperty(name = "first_course")
-    private Boolean firstCourse;
-
-    @Property(columnName = "second_course")
-    @RemoteProperty(name = "second_course")
-    private Boolean secondCourse;
-
-    @Property(columnName = "dessert")
-    @RemoteProperty(name = "dessert")
-    private Boolean dessert;
-
-    @Property(columnName = "breakfast_snack")
-    @RemoteProperty(name = "breakfast_snack")
-    private Boolean breakfastSnack;
-
-    @Property(columnName = "accompaniment")
-    @RemoteProperty(name = "accompaniment")
-    private Boolean accompaniment;
-
-    @Property(columnName = "procure_method")
-    @RemoteProperty(name = "procure_method")
-    private String procureMethod;
-
-    @Property(columnName = "supply_method")
-    @RemoteProperty(name = "supply_method")
-    private String supplyMethod;
-
-    @Property(columnName = "purchase_requisition")
-    @RemoteProperty(name = "purchase_requisition")
-    private Boolean purchaseRequisition;
 
     @Property(columnName = "cost_method")
     @RemoteProperty(name = "cost_method")
@@ -232,14 +136,6 @@ public class Product extends BaseRemoteEntity {
     @Property(columnName = "standard_price")
     @RemoteProperty(name = "standard_price")
     private Number standardPrice;
-
-    @Property(columnName = "cmc")
-    @RemoteProperty(name = "cmc")
-    private Number cmc;
-
-    @Property(columnName = "sec_margin")
-    @RemoteProperty(name = "sec_margin")
-    private Number secMargin;
 
     @Property(columnName = "produce_delay")
     @RemoteProperty(name = "produce_delay")
@@ -252,62 +148,6 @@ public class Product extends BaseRemoteEntity {
     @Property(columnName = "uom_po_id")
     @RemoteProperty(name = "uom_po_id")
     private Number uomPoId;
-
-    @Property(columnName = "manufacturer_pname")
-    @RemoteProperty(name = "manufacturer_pname")
-    private String manufacturerPname;
-
-    @Property(columnName = "manufacturer_pref")
-    @RemoteProperty(name = "manufacturer_pref")
-    private String manufacturerPref;
-
-    @Property(columnName = "supplier_un_ca")
-    @RemoteProperty(name = "supplier_un_ca")
-    private Number supplierUnCa;
-
-    @Property(columnName = "supplier_ca_ma")
-    @RemoteProperty(name = "supplier_ca_ma")
-    private Number supplierCaMa;
-
-    @Property(columnName = "supplier_ma_pa")
-    @RemoteProperty(name = "supplier_ma_pa")
-    private Number supplierMaPA;
-
-    @Property(columnName = "supplier_ca_width")
-    @RemoteProperty(name = "supplier_ca_width")
-    private Number supplierCaWidth;
-
-    @Property(columnName = "supplier_ma_width")
-    @RemoteProperty(name = "supplier_ma_width")
-    private Number supplierMaWidth;
-
-    @Property(columnName = "supplier_pa_width")
-    @RemoteProperty(name = "supplier_pa_width")
-    private Number supplierPaWidth;
-
-    @Property(columnName = "supplier_ca_heigth")
-    @RemoteProperty(name = "supplier_ca_heigth")
-    private Number supplierCaHeigth;
-
-    @Property(columnName = "supplier_ma_heigth")
-    @RemoteProperty(name = "supplier_ma_heigth")
-    private Number supplierMaHeigth;
-
-    @Property(columnName = "supplier_pa_heigth")
-    @RemoteProperty(name = "supplier_pa_heigth")
-    private Number supplierPaHeigth;
-
-    @Property(columnName = "supplier_ca_length")
-    @RemoteProperty(name = "supplier_ca_length")
-    private Number supplierCaLength;
-
-    @Property(columnName = "supplier_ma_length")
-    @RemoteProperty(name = "supplier_ma_length")
-    private Number supplierMaLength;
-
-    @Property(columnName = "life")
-    @RemoteProperty(name = "life")
-    private Number life;
 
     @Property(columnName = "qty_available", type = Property.SQLType.REAL)
     @RemoteProperty(name = "qty_available")
@@ -388,86 +228,6 @@ public class Product extends BaseRemoteEntity {
     @Property(columnName = "sale_delay")
     @RemoteProperty(name = "sale_delay")
     private Number saleDelay;
-
-    @Property(columnName = "kg_un")
-    @RemoteProperty(name = "kg_un")
-    private Number kgUn;
-
-    @Property(columnName = "un_ca")
-    @RemoteProperty(name = "un_ca")
-    private Number unCa;
-
-    @Property(columnName = "ca_ma")
-    @RemoteProperty(name = "ca_ma")
-    private Number caMa;
-
-    @Property(columnName = "ma_pa")
-    @RemoteProperty(name = "ma_pa")
-    private Number maPa;
-
-    @Property(columnName = "un_width")
-    @RemoteProperty(name = "un_width")
-    private Number unWidth;
-
-    @Property(columnName = "ca_width")
-    @RemoteProperty(name = "ca_width")
-    private Number caWidth;
-
-    @Property(columnName = "ma_width")
-    @RemoteProperty(name = "ma_width")
-    private Number maWidth;
-
-    @Property(columnName = "pa_width")
-    @RemoteProperty(name = "pa_width")
-    private Number paWidth;
-
-    @Property(columnName = "un_height")
-    @RemoteProperty(name = "un_height")
-    private Number unHeight;
-
-    @Property(columnName = "ca_height")
-    @RemoteProperty(name = "ca_height")
-    private Number caHeight;
-
-    @Property(columnName = "ma_height")
-    @RemoteProperty(name = "ma_height")
-    private Number maHeight;
-
-    @Property(columnName = "pa_height")
-    @RemoteProperty(name = "pa_height")
-    private Number paHeight;
-
-    @Property(columnName = "un_length")
-    @RemoteProperty(name = "un_length")
-    private Number unLength;
-
-    @Property(columnName = "ca_length")
-    @RemoteProperty(name = "ca_length")
-    private Number caLength;
-
-    @Property(columnName = "ma_length")
-    @RemoteProperty(name = "ma_length")
-    private Number maLength;
-
-    @Property(columnName = "pa_length")
-    @RemoteProperty(name = "pa_length")
-    private Number paLength;
-
-    @Property(columnName = "sale_line_warn")
-    @RemoteProperty(name = "sale_line_warn")
-    private String saleLineWarn;
-
-    @Property(columnName = "sale_line_warn_msg")
-    @RemoteProperty(name = "sale_line_warn_msg")
-    private String saleLineWarnMsg;
-
-    @Property(columnName = "purchase_line_warn")
-    @RemoteProperty(name = "purchase_line_warn")
-    private String purchaseLineWarn;
-
-    @Property(columnName = "purchase_line_warn_msg")
-    @RemoteProperty(name = "purchase_line_warn_msg")
-    private String purchaseLineWarnMsg;
 
     @Property(columnName = "box_units")
     @RemoteProperty(name = "box_units")
@@ -581,28 +341,12 @@ public class Product extends BaseRemoteEntity {
         this.priceExtra = priceExtra;
     }
 
-    public Number getPriceMargin() {
-        return priceMargin;
-    }
-
-    public void setPriceMargin(Number priceMargin) {
-        this.priceMargin = priceMargin;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getProductClass() {
-        return productClass;
-    }
-
-    public void setProductClass(String productClass) {
-        this.productClass = productClass;
     }
 
     public Number getUomId() {
@@ -619,14 +363,6 @@ public class Product extends BaseRemoteEntity {
 
     public void setListPrice(Number listPrice) {
         this.listPrice = listPrice;
-    }
-
-    public Number getLastPurchasePrice() {
-        return lastPurchasePrice;
-    }
-
-    public void setLastPurchasePrice(Number lastPurchasePrice) {
-        this.lastPurchasePrice = lastPurchasePrice;
     }
 
     public String getDefaultCode() {
@@ -653,76 +389,12 @@ public class Product extends BaseRemoteEntity {
         this.dun14 = dun14;
     }
 
-    public String getEan14() {
-        return ean14;
-    }
-
-    public void setEan14(String ean14) {
-        this.ean14 = ean14;
-    }
-
-    public String getSaleType() {
-        return saleType;
-    }
-
-    public void setSaleType(String saleType) {
-        this.saleType = saleType;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
     public Number getTemperature() {
         return temperature;
     }
 
     public void setTemperature(Number temperature) {
         this.temperature = temperature;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
-    public String getScientificName() {
-        return scientificName;
-    }
-
-    public void setScientificName(String scientificName) {
-        this.scientificName = scientificName;
-    }
-
-    public String getWeb() {
-        return web;
-    }
-
-    public void setWeb(String web) {
-        this.web = web;
-    }
-
-    public String getProcureMethod() {
-        return procureMethod;
-    }
-
-    public void setProcureMethod(String procureMethod) {
-        this.procureMethod = procureMethod;
-    }
-
-    public String getSupplyMethod() {
-        return supplyMethod;
-    }
-
-    public void setSupplyMethod(String supplyMethod) {
-        this.supplyMethod = supplyMethod;
     }
 
     public String getCostMethod() {
@@ -741,22 +413,6 @@ public class Product extends BaseRemoteEntity {
         this.standardPrice = standardPrice;
     }
 
-    public Number getCmc() {
-        return cmc;
-    }
-
-    public void setCmc(Number cmc) {
-        this.cmc = cmc;
-    }
-
-    public Number getSecMargin() {
-        return secMargin;
-    }
-
-    public void setSecMargin(Number secMargin) {
-        this.secMargin = secMargin;
-    }
-
     public Number getProduceDelay() {
         return produceDelay;
     }
@@ -771,118 +427,6 @@ public class Product extends BaseRemoteEntity {
 
     public void setUomPoId(Number uomPoId) {
         this.uomPoId = uomPoId;
-    }
-
-    public String getManufacturerPname() {
-        return manufacturerPname;
-    }
-
-    public void setManufacturerPname(String manufacturerPname) {
-        this.manufacturerPname = manufacturerPname;
-    }
-
-    public String getManufacturerPref() {
-        return manufacturerPref;
-    }
-
-    public void setManufacturerPref(String manufacturerPref) {
-        this.manufacturerPref = manufacturerPref;
-    }
-
-    public Number getSupplierUnCa() {
-        return supplierUnCa;
-    }
-
-    public void setSupplierUnCa(Number supplierUnCa) {
-        this.supplierUnCa = supplierUnCa;
-    }
-
-    public Number getSupplierCaMa() {
-        return supplierCaMa;
-    }
-
-    public void setSupplierCaMa(Number supplierCaMa) {
-        this.supplierCaMa = supplierCaMa;
-    }
-
-    public Number getSupplierMaPA() {
-        return supplierMaPA;
-    }
-
-    public void setSupplierMaPA(Number supplierMaPA) {
-        this.supplierMaPA = supplierMaPA;
-    }
-
-    public Number getSupplierCaWidth() {
-        return supplierCaWidth;
-    }
-
-    public void setSupplierCaWidth(Number supplierCaWidth) {
-        this.supplierCaWidth = supplierCaWidth;
-    }
-
-    public Number getSupplierMaWidth() {
-        return supplierMaWidth;
-    }
-
-    public void setSupplierMaWidth(Number supplierMaWidth) {
-        this.supplierMaWidth = supplierMaWidth;
-    }
-
-    public Number getSupplierPaWidth() {
-        return supplierPaWidth;
-    }
-
-    public void setSupplierPaWidth(Number supplierPaWidth) {
-        this.supplierPaWidth = supplierPaWidth;
-    }
-
-    public Number getSupplierCaHeigth() {
-        return supplierCaHeigth;
-    }
-
-    public void setSupplierCaHeigth(Number supplierCaHeigth) {
-        this.supplierCaHeigth = supplierCaHeigth;
-    }
-
-    public Number getSupplierMaHeigth() {
-        return supplierMaHeigth;
-    }
-
-    public void setSupplierMaHeigth(Number supplierMaHeigth) {
-        this.supplierMaHeigth = supplierMaHeigth;
-    }
-
-    public Number getSupplierPaHeigth() {
-        return supplierPaHeigth;
-    }
-
-    public void setSupplierPaHeigth(Number supplierPaHeigth) {
-        this.supplierPaHeigth = supplierPaHeigth;
-    }
-
-    public Number getSupplierCaLength() {
-        return supplierCaLength;
-    }
-
-    public void setSupplierCaLength(Number supplierCaLength) {
-        this.supplierCaLength = supplierCaLength;
-    }
-
-    public Number getSupplierMaLength() {
-        return supplierMaLength;
-    }
-
-    public void setSupplierMaLength(Number supplierMaLength) {
-        this.supplierMaLength = supplierMaLength;
-    }
-
-    public Number getLife() {
-        return life;
-    }
-
-    public void setLife(Number life) {
-        this.life = life;
     }
 
     public Number getQtyAvailable() {
@@ -1023,166 +567,6 @@ public class Product extends BaseRemoteEntity {
         this.saleDelay = saleDelay;
     }
 
-    public Number getKgUn() {
-        return kgUn;
-    }
-
-    public void setKgUn(Number kgUn) {
-        this.kgUn = kgUn;
-    }
-
-    public Number getUnCa() {
-        return unCa;
-    }
-
-    public void setUnCa(Number unCa) {
-        this.unCa = unCa;
-    }
-
-    public Number getCaMa() {
-        return caMa;
-    }
-
-    public void setCaMa(Number caMa) {
-        this.caMa = caMa;
-    }
-
-    public Number getMaPa() {
-        return maPa;
-    }
-
-    public void setMaPa(Number maPa) {
-        this.maPa = maPa;
-    }
-
-    public Number getUnWidth() {
-        return unWidth;
-    }
-
-    public void setUnWidth(Number unWidth) {
-        this.unWidth = unWidth;
-    }
-
-    public Number getCaWidth() {
-        return caWidth;
-    }
-
-    public void setCaWidth(Number caWidth) {
-        this.caWidth = caWidth;
-    }
-
-    public Number getMaWidth() {
-        return maWidth;
-    }
-
-    public void setMaWidth(Number maWidth) {
-        this.maWidth = maWidth;
-    }
-
-    public Number getPaWidth() {
-        return paWidth;
-    }
-
-    public void setPaWidth(Number paWidth) {
-        this.paWidth = paWidth;
-    }
-
-    public Number getUnHeight() {
-        return unHeight;
-    }
-
-    public void setUnHeight(Number unHeight) {
-        this.unHeight = unHeight;
-    }
-
-    public Number getCaHeight() {
-        return caHeight;
-    }
-
-    public void setCaHeight(Number caHeight) {
-        this.caHeight = caHeight;
-    }
-
-    public Number getMaHeight() {
-        return maHeight;
-    }
-
-    public void setMaHeight(Number maHeight) {
-        this.maHeight = maHeight;
-    }
-
-    public Number getPaHeight() {
-        return paHeight;
-    }
-
-    public void setPaHeight(Number paHeight) {
-        this.paHeight = paHeight;
-    }
-
-    public Number getUnLength() {
-        return unLength;
-    }
-
-    public void setUnLength(Number unLength) {
-        this.unLength = unLength;
-    }
-
-    public Number getCaLength() {
-        return caLength;
-    }
-
-    public void setCaLength(Number caLength) {
-        this.caLength = caLength;
-    }
-
-    public Number getMaLength() {
-        return maLength;
-    }
-
-    public void setMaLength(Number maLength) {
-        this.maLength = maLength;
-    }
-
-    public Number getPaLength() {
-        return paLength;
-    }
-
-    public void setPaLength(Number paLength) {
-        this.paLength = paLength;
-    }
-
-    public String getSaleLineWarn() {
-        return saleLineWarn;
-    }
-
-    public void setSaleLineWarn(String saleLineWarn) {
-        this.saleLineWarn = saleLineWarn;
-    }
-
-    public String getSaleLineWarnMsg() {
-        return saleLineWarnMsg;
-    }
-
-    public void setSaleLineWarnMsg(String saleLineWarnMsg) {
-        this.saleLineWarnMsg = saleLineWarnMsg;
-    }
-
-    public String getPurchaseLineWarn() {
-        return purchaseLineWarn;
-    }
-
-    public void setPurchaseLineWarn(String purchaseLineWarn) {
-        this.purchaseLineWarn = purchaseLineWarn;
-    }
-
-    public String getPurchaseLineWarnMsg() {
-        return purchaseLineWarnMsg;
-    }
-
-    public void setPurchaseLineWarnMsg(String purchaseLineWarnMsg) {
-        this.purchaseLineWarnMsg = purchaseLineWarnMsg;
-    }
-
     public Boolean getSaleOk() {
         return saleOk;
     }
@@ -1191,100 +575,12 @@ public class Product extends BaseRemoteEntity {
         this.saleOk = saleOk;
     }
 
-    public Boolean getSaleApp() {
-        return saleApp;
-    }
-
-    public void setSaleApp(Boolean saleApp) {
-        this.saleApp = saleApp;
-    }
-
     public Boolean getPurchaseOk() {
         return purchaseOk;
     }
 
     public void setPurchaseOk(Boolean purchaseOk) {
         this.purchaseOk = purchaseOk;
-    }
-
-    public Boolean getVarWeight() {
-        return varWeight;
-    }
-
-    public void setVarWeight(Boolean varWeight) {
-        this.varWeight = varWeight;
-    }
-
-    public Boolean getConsignment() {
-        return consignment;
-    }
-
-    public void setConsignment(Boolean consignment) {
-        this.consignment = consignment;
-    }
-
-    public Boolean getBulk() {
-        return bulk;
-    }
-
-    public void setBulk(Boolean bulk) {
-        this.bulk = bulk;
-    }
-
-    public Boolean getGlazed() {
-        return glazed;
-    }
-
-    public void setGlazed(Boolean glazed) {
-        this.glazed = glazed;
-    }
-
-    public Boolean getFirstCourse() {
-        return firstCourse;
-    }
-
-    public void setFirstCourse(Boolean firstCourse) {
-        this.firstCourse = firstCourse;
-    }
-
-    public Boolean getSecondCourse() {
-        return secondCourse;
-    }
-
-    public void setSecondCourse(Boolean secondCourse) {
-        this.secondCourse = secondCourse;
-    }
-
-    public Boolean getDessert() {
-        return dessert;
-    }
-
-    public void setDessert(Boolean dessert) {
-        this.dessert = dessert;
-    }
-
-    public Boolean getBreakfastSnack() {
-        return breakfastSnack;
-    }
-
-    public void setBreakfastSnack(Boolean breakfastSnack) {
-        this.breakfastSnack = breakfastSnack;
-    }
-
-    public Boolean getAccompaniment() {
-        return accompaniment;
-    }
-
-    public void setAccompaniment(Boolean accompaniment) {
-        this.accompaniment = accompaniment;
-    }
-
-    public Boolean getPurchaseRequisition() {
-        return purchaseRequisition;
-    }
-
-    public void setPurchaseRequisition(Boolean purchaseRequisition) {
-        this.purchaseRequisition = purchaseRequisition;
     }
 
     public Boolean getActive() {
@@ -1317,14 +613,6 @@ public class Product extends BaseRemoteEntity {
 
     public void setTrackOutgoing(Boolean trackOutgoing) {
         this.trackOutgoing = trackOutgoing;
-    }
-
-    public String getMinUnit() {
-        return minUnit;
-    }
-
-    public void setMinUnit(String minUnit) {
-        this.minUnit = minUnit;
     }
 
     public String getSubstituteProducts() {
@@ -1436,7 +724,7 @@ public class Product extends BaseRemoteEntity {
 
     // FIXME implement this when we know data of maxDiscount for product
     public Float getMaxDiscount() {
-        return 10F;
+        return 20F;
     }
 
     public Number getUosId() {

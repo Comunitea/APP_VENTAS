@@ -38,10 +38,6 @@ public class ProductUom extends BaseRemoteEntity {
     @RemoteProperty(name = "name")
     private String name;
 
-    @Property(columnName = "like_type")
-    @RemoteProperty(name = "like_type")
-    private String likeType;
-
     @Property(columnName = "category_id")
     @RemoteProperty(name = "category_id")
     private Long categoryId;
@@ -85,14 +81,6 @@ public class ProductUom extends BaseRemoteEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLikeType() {
-        return likeType;
-    }
-
-    public void setLikeType(String likeType) {
-        this.likeType = likeType;
     }
 
     public String getName() {

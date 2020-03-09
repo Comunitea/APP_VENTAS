@@ -153,7 +153,7 @@ public class ProductToCartDialog extends Dialog   {
     private void loadUi() {
         setImage();
         productName.setText(product.getNameTemplate());
-        productCode.setText("" + product.getId());
+        productCode.setText("" + product.getDefaultCode());
         productStock.setText("" + product.getVirtualAvailable());
         // Obtener precio del producto
         new AsyncTask<String, Void, String>() {
